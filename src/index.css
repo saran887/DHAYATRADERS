@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-deep: #0D2136;
+  --color-navy: #1B3A5C;
+  --color-steel: #2E6B9E;
+  --color-teal: #4AABB8;
+  --color-silver: #E8EDF2;
+  --color-gray-light: #F2F4F6;
+  --color-white: #FFFFFF;
+
+  /* Backward-compatible variables for any left-over classes */
+  --color-brand-blue: #0D2136;
+  --color-brand-navy: #1B3A5C;
+  --color-brand-steel: #2E6B9E;
+  --color-brand-accent: #4AABB8;
+  --color-brand-light: #F2F4F6;
+  --color-brand-silver: #E8EDF2;
+
+  --font-serif: "Playfair Display", "Libre Caslon Text", Georgia, serif;
+  --font-sans: "Inter", "Manrope", system-ui, sans-serif;
+  
+  --shadow-steel-glow: 0 4px 20px rgba(46, 107, 158, 0.45);
+  --shadow-premium: 0 10px 30px -10px rgba(13, 33, 54, 0.08), 0 4px 6px -4px rgba(13, 33, 54, 0.05);
+  --shadow-premium-hover: 0 20px 40px -15px rgba(13, 33, 54, 0.15), 0 10px 15px -5px rgba(13, 33, 54, 0.07);
+}
+
+@utility glass-card {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+@utility glass-card-dark {
+  background-color: rgba(13, 33, 54, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@utility bg-steel-radial {
+  background-image: radial-gradient(circle at 50% 50%, rgba(46, 107, 158, 0.15) 0%, transparent 80%);
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(135deg, #0D2136 0%, #2E6B9E 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility hover-card-trigger {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Base style resets and scrollbar design */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-gray-light);
+  color: var(--color-navy-deep);
+  overflow-x: hidden;
+}
+
+/* Sleek customized scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-silver);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-steel);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-navy);
+}
