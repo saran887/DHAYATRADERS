@@ -3,7 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DHAYATRADERS • Building Your Future With Trust</title>
+    <title>DHAYATRADERS • Trusted Building & Property Solutions</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="DHAYATRADERS is the leading house construction, land sales, ready-made houses, and premium building materials (sand, steel, bricks) supplier in Cochin, Kerala, India. Trusted Building & Property Solutions." />
+    <meta name="keywords" content="construction company in India, builders near me, land sale company, building materials supplier, sand supplier, steel supplier, ready made house, house construction services, DHAYATRADERS, Kerala builders" />
+    
+    <!-- OpenGraph Tags -->
+    <meta property="og:title" content="DHAYATRADERS • Trusted Building & Property Solutions" />
+    <meta property="og:description" content="House Construction, Land Sales, Ready-made Villa/House and premium Sand, Steel, and Bricks supply in Cochin, Kerala." />
+    <meta property="og:image" content="/assets/logo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.dhayatraders.com" />
+    
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/logo.png" />
     <!-- Google Fonts -->
@@ -22,9 +34,9 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "DHAYATRADERS",
-      "slogan": "Building Prosperity – Trusted Global Trading",
+      "slogan": "Trusted Building & Property Solutions",
       "description": "Premium construction, land sales and building materials company in Kerala",
-      "telephone": "+18005553429",
+      "telephone": "+918005553429",
       "email": "trade@dhayatraders.com",
       "address": {
         "@type": "PostalAddress",
@@ -32,8 +44,8 @@
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 23.2921,
-        "longitude": 72.8291
+        "latitude": 9.9702,
+        "longitude": 76.2625
       },
       "openingHours": "Mo-Fr 08:00-18:00",
       "priceRange": "$$$$"
@@ -41,7 +53,20 @@
     </script>
   </head>
   <body class="bg-gray-light text-navy-deep scroll-smooth antialiased">
-    <div id="root"></div>
+    <div id="root">
+      <!-- Instant Circular Loader Screen -->
+      <div style="position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #0D2136; z-index: 9999;">
+        <div style="position: relative; display: flex; align-items: center; justify-content: center;">
+          <div style="width: 80px; height: 80px; border: 2px solid rgba(46,107,158,0.2); border-top: 2px solid #4AABB8; border-radius: 50%; animation: spin 1s linear infinite; position: absolute;"></div>
+          <img src="/assets/logo.png" alt="DHAYATRADERS Logo" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; background-color: white; border: 1px solid rgba(46,107,158,0.3); animation: pulse 1.5s ease-in-out infinite; position: relative; z-index: 10;" />
+        </div>
+        <p style="color: #E8EDF2; font-size: 10px; margin-top: 20px; font-family: sans-serif; letter-spacing: 0.15em; text-transform: uppercase; font-weight: bold; animation: pulse 1.5s ease-in-out infinite;">DHAYATRADERS</p>
+      </div>
+      <style>
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+      </style>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

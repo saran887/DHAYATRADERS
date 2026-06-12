@@ -197,26 +197,27 @@ export const PROJECTS_DATA: Project[] = [
 export const TESTIMONIALS_DATA: Testimonial[] = [
   {
     id: 't1',
-    name: 'Alexander Sterling',
-    role: 'Managing Partner, Sterling & Co. Holdings',
-    review: 'DHAYATRADERS redefined what execution means in luxury construction. Their land purchase department had every document certified, cleared, and digitized within days. The villa build is structurally immaculate, using only top-grade materials from their own direct steel supply.',
+    name: 'Rajesh Kumar',
+    role: 'Local Contractor',
+    review: 'Very trusted company. Good material quality and fast delivery.',
+    rating: 5,
+    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200'
+  },
+  {
+    id: 't2',
+    name: 'Praveen Kumar',
+    role: 'Property Owner',
+    review: 'Professional construction service and clear land documentation.',
     rating: 5,
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200'
   },
   {
-    id: 't2',
-    name: 'Dr. Evelyn Martinez',
-    role: 'Chief Medical Director & Real Estate Investor',
-    review: 'Our clinic development required strict weight-bearing certifications and specific non-porous structural sand plaster. Dhaya Traders not only consultated on the structural layouts, but their premium double-washed River Sand and Grade 53 cement supply was flawless and delivered under budget.',
+    id: 't3',
+    name: 'Suresh Babu',
+    role: 'Homeowner',
+    review: 'Reliable builders. Work quality and materials are very good.',
     rating: 5,
     image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200'
-  },
-  {
-    id: 't3',
-    name: 'Rajesh Subramaniam',
-    role: 'Founder, Subramaniam Gated Communities',
-    review: 'Sourcing 400 metric tonnes of high-compression clinker bricks and reinforcement steel for high-rise projects is extremely risky. DHAYATRADERS executed direct deliveries without shipping delays or middleman pricing. Their certified land document auditing was exceptionally transparent.',
-    rating: 5,
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200'
   }
 ];
+

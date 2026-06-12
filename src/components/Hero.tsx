@@ -49,7 +49,7 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookS
           <motion.div
             key={currentSlide}
             initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 0.45, scale: 1 }}
+            animate={{ opacity: 0.65, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.5, ease: 'easeInOut' }}
             className="absolute inset-0 w-full h-full bg-cover bg-center"
@@ -58,12 +58,12 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookS
         </AnimatePresence>
 
         {/* Gradients blending content */}
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/85 to-transparent z-1" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-transparent to-navy-deep/35 z-1" />
+        <div className="absolute inset-0 bg-[#0D2136]/70 lg:bg-gradient-to-r lg:from-[#0D2136] lg:via-[#0D2136]/65 lg:to-transparent z-1" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0D2136] via-[#0D2136]/30 to-[#0D2136]/50 z-1" />
       </div>
 
       {/* Floating abstract decorative blueprints in background */}
-      <div className="absolute inset-0 bg-steel-radial opacity-30 pointer-events-none z-1" />
+      <div className="absolute inset-0 bg-steel-radial opacity-20 pointer-events-none z-1" />
 
       {/* Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-10 py-14 w-full flex flex-col justify-center min-h-[90vh]">
@@ -77,14 +77,17 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookS
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal/15 border border-teal/30 text-[10px] md:text-xs text-teal tracking-widest font-sans uppercase font-bold"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal/25 border border-teal/50 text-[10px] md:text-xs text-teal tracking-widest font-sans uppercase font-bold shadow-sm"
             >
               <Award className="h-4 w-4 animate-pulse text-teal" />
               <span>{HERO_SLIDES[currentSlide].badge}</span>
             </motion.div>
 
             {/* Static Core Title with word-by-word reveal */}
-            <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-white tracking-normal leading-tight font-medium">
+            <h2 
+              className="font-serif text-3xl sm:text-5xl lg:text-6xl text-white tracking-normal leading-tight font-bold"
+              style={{ textShadow: '2px 2px 10px rgba(0, 0, 0, 0.95), 0 4px 15px rgba(13, 33, 86, 0.8)' }}
+            >
               {headlineWords.map((word, i) => (
                 <span
                   key={i}
@@ -101,50 +104,50 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookS
             </h2>
 
             {/* Subtext description */}
-            <p className="font-sans text-sm sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
-              House Construction • Land Sales • Building Materials
+            <p 
+              className="font-sans text-sm sm:text-lg text-slate-100 max-w-2xl leading-relaxed font-semibold"
+              style={{ textShadow: '1px 2px 5px rgba(0, 0, 0, 0.95)' }}
+            >
+              House Construction • Land Sales • Ready House • Bricks • Sand • Steel • Building Materials
             </p>
 
             {/* CTA row */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+            <div className="flex flex-col sm:flex-row gap-4 pt-3">
               <button
                 onClick={onExploreProperties}
-                className="group flex items-center justify-center gap-3 bg-steel hover:bg-navy text-white font-sans text-xs uppercase tracking-widest font-semibold py-4 px-8 rounded-lg shadow-lg hover:shadow-steel-glow transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
+                className="group flex items-center justify-center gap-2 bg-[#2E6B9E] hover:bg-[#1B3A5C] text-white font-sans text-xs uppercase tracking-widest font-extrabold py-4 px-8 rounded-lg shadow-lg hover:shadow-[#2E6B9E]/50 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
               >
                 <span>Explore Properties</span>
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </button>
 
               <button
-                onClick={onGetMaterialsQuote}
-                className="group flex items-center justify-center gap-3 bg-transparent border-2 border-steel text-steel hover:bg-steel hover:text-white font-sans text-xs uppercase tracking-widest font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
+                onClick={onBookSiteVisit}
+                className="group flex items-center justify-center gap-2 bg-[#4AABB8] hover:bg-[#3d919c] text-[#0D2136] font-sans text-xs uppercase tracking-widest font-extrabold py-4 px-8 rounded-lg shadow-lg hover:shadow-[#4AABB8]/50 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
               >
-                <span>Request Quote</span>
+                <span>Book Site Visit</span>
               </button>
 
               <button
-                onClick={onBookSiteVisit}
-                className="group flex items-center justify-center gap-3 bg-transparent border border-white/20 hover:border-teal/60 text-slate-300 hover:text-white font-sans text-xs uppercase tracking-widest font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
+                onClick={onGetMaterialsQuote}
+                className="group flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/40 font-sans text-xs uppercase tracking-widest font-extrabold py-4 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
               >
-                <span>Contact Us</span>
+                <span>Request Quote</span>
               </button>
             </div>
 
             {/* Quick Metrics Overlay */}
-            <div className="grid grid-cols-3 gap-4 pt-8 max-w-xl">
-              <div className="p-3 bg-white/5 rounded-lg border border-white/10">
-                <p className="text-xl md:text-2xl font-serif text-teal font-bold">100%</p>
-                <p className="text-[10px] text-slate-400 uppercase tracking-widest">Trusted</p>
+            <div className="grid grid-cols-2 gap-4 pt-8 max-w-md">
+              <div className="p-3 bg-white/10 rounded-lg border border-white/20 backdrop-blur-md">
+                <p className="text-xl md:text-2xl font-serif text-teal font-bold" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.8)' }}>100%</p>
+                <p className="text-[10px] text-slate-200 uppercase tracking-widest font-bold">Trusted</p>
               </div>
-              <div className="p-3 bg-white/5 rounded-lg border border-white/10">
-                <p className="text-xl md:text-2xl font-serif text-teal font-bold">500+</p>
-                <p className="text-[10px] text-slate-400 uppercase tracking-widest">Projects</p>
-              </div>
-              <div className="p-3 bg-white/5 rounded-lg border border-white/10">
-                <p className="text-xl md:text-2xl font-serif text-teal font-bold">1000+</p>
-                <p className="text-[10px] text-slate-400 uppercase tracking-widest">Customers</p>
+              <div className="p-3 bg-white/10 rounded-lg border border-white/20 backdrop-blur-md">
+                <p className="text-xl md:text-2xl font-serif text-teal font-bold" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.8)' }}>1000+</p>
+                <p className="text-[10px] text-slate-200 uppercase tracking-widest font-bold">Happy Customers</p>
               </div>
             </div>
+
 
           </div>
 

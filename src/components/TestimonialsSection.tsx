@@ -22,9 +22,9 @@ export default React.memo(function TestimonialsSection() {
 
         {/* Header Title */}
         <div className="text-center md:max-w-3xl md:mx-auto space-y-4 mb-8">
-          <span className="text-[10px] md:text-xs uppercase tracking-widest text-steel font-extrabold block">CLIENT SENTIMENTS</span>
+          <span className="text-[10px] md:text-xs uppercase tracking-widest text-steel font-extrabold block">TRUSTED REVIEWS</span>
           <h2 className="font-serif text-3xl md:text-5xl text-navy tracking-tight font-medium">
-            Affirmations of Satisfaction
+            What Our Customers Say
           </h2>
           <div className="w-16 h-1 bg-steel mx-auto rounded-full" />
         </div>

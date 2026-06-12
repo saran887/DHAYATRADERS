@@ -3,7 +3,102 @@ import { AnimatePresence, motion } from 'motion/react';
 import { MapPin, Sparkles, Filter, Search, Check, ShieldAlert, ArrowRight, Calendar, User, Phone, CheckCircle2 } from 'lucide-react';
 import { PROPERTIES_DATA } from '../data';
 import { Property, PropertyType } from '../types';
+import { Link } from 'react-router-dom';
 import RevealCard from './RevealCard';
+
+const renderSpecs = (prop: Property) => {
+  switch (prop.type) {
+    case 'Land':
+      return (
+        <div className="space-y-2 border-t border-b border-silver py-3 my-1">
+          <div className="grid grid-cols-2 gap-2 text-[10px] font-sans">
+            <div className="bg-emerald-50 border border-emerald-100 p-2 rounded text-left">
+              <span className="text-[8px] text-emerald-800 uppercase tracking-wider font-extrabold block">Plot Size</span>
+              <span className="text-navy font-bold">{prop.size}</span>
+            </div>
+            <div className="bg-emerald-50 border border-emerald-100 p-2 rounded text-left">
+              <span className="text-[8px] text-emerald-800 uppercase tracking-wider font-extrabold block">Doc Verification</span>
+              <span className="text-emerald-700 font-bold flex items-center gap-0.5">
+                <Check className="h-3 w-3 text-emerald-500 shrink-0" />
+                <span className="truncate">Title Vetted</span>
+              </span>
+            </div>
+          </div>
+          <div className="text-[10px] text-slate-600 bg-slate-50 p-2 rounded text-left space-y-1">
+            <div className="flex gap-2 items-center">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block shrink-0" />
+              <span className="truncate"><strong>Area:</strong> {prop.location}</span>
+            </div>
+            <div className="flex gap-2 items-center">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block shrink-0" />
+              <span className="truncate"><strong>Location:</strong> Cochin, Kerala</span>
+            </div>
+          </div>
+        </div>
+      );
+    case 'Ready-Made House':
+    case 'Villa': {
+      const bedrooms = prop.features.find(f => f.toLowerCase().includes('bedroom')) || '3-4 BHK';
+      const parking = prop.features.find(f => f.toLowerCase().includes('parking') || f.toLowerCase().includes('garage')) || 'Private Garage';
+      const quality = 'Direct Steel & OPC-53';
+      return (
+        <div className="space-y-2 border-t border-b border-silver py-3 my-1">
+          <div className="grid grid-cols-2 gap-2 text-[10px] font-sans">
+            <div className="bg-blue-50 border border-blue-100 p-2 rounded text-left">
+              <span className="text-[8px] text-blue-800 uppercase tracking-wider font-extrabold block">Bedrooms</span>
+              <span className="text-navy font-bold">{bedrooms}</span>
+            </div>
+            <div className="bg-blue-50 border border-blue-100 p-2 rounded text-left">
+              <span className="text-[8px] text-blue-800 uppercase tracking-wider font-extrabold block">House Type</span>
+              <span className="text-navy font-bold">{prop.type}</span>
+            </div>
+          </div>
+          <div className="text-[10px] text-slate-600 bg-slate-50 p-2 rounded text-left space-y-1">
+            <div className="flex gap-2 items-center">
+              <span className="w-1.5 h-1.5 rounded-full bg-steel inline-block shrink-0" />
+              <span className="truncate"><strong>Parking:</strong> {parking}</span>
+            </div>
+            <div className="flex gap-2 items-center">
+              <span className="w-1.5 h-1.5 rounded-full bg-steel inline-block shrink-0" />
+              <span className="truncate"><strong>Construction:</strong> {quality}</span>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    case 'Commercial': {
+      const suitability = prop.features.find(f => f.toLowerCase().includes('suitability') || f.toLowerCase().includes('retail') || f.toLowerCase().includes('office') || f.toLowerCase().includes('commercial')) || 'Office / Retail';
+      const parking = prop.features.find(f => f.toLowerCase().includes('parking') || f.toLowerCase().includes('garage')) || 'Ample Parking';
+      const accessibility = 'NH Frontage Access';
+      return (
+        <div className="space-y-2 border-t border-b border-silver py-3 my-1">
+          <div className="grid grid-cols-2 gap-2 text-[10px] font-sans">
+            <div className="bg-teal-50 border border-teal-100 p-2 rounded text-left">
+              <span className="text-[8px] text-teal-800 uppercase tracking-wider font-extrabold block">Building Area</span>
+              <span className="text-navy font-bold">{prop.size}</span>
+            </div>
+            <div className="bg-teal-50 border border-teal-100 p-2 rounded text-left">
+              <span className="text-[8px] text-teal-800 uppercase tracking-wider font-extrabold block">Accessibility</span>
+              <span className="text-navy font-bold truncate block">{accessibility}</span>
+            </div>
+          </div>
+          <div className="text-[10px] text-slate-600 bg-slate-50 p-2 rounded text-left space-y-1">
+            <div className="flex gap-2 items-center">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal inline-block shrink-0" />
+              <span className="truncate"><strong>Suitability:</strong> {suitability}</span>
+            </div>
+            <div className="flex gap-2 items-center">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal inline-block shrink-0" />
+              <span className="truncate"><strong>Parking:</strong> {parking}</span>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    default:
+      return null;
+  }
+};
 
 export default React.memo(function PropertyShowcase() {
   const [activeType, setActiveType] = useState<PropertyType | 'All'>('All');
@@ -14,11 +109,14 @@ export default React.memo(function PropertyShowcase() {
   const [visitDate, setVisitDate] = useState('');
   const [clientName, setClientName] = useState('');
   const [clientPhone, setClientPhone] = useState('');
+  const [visitType, setVisitType] = useState('Site Visit');
+  const [timeSlot, setTimeSlot] = useState('Morning (9 AM - 12 PM)');
+  const [clientMessage, setClientMessage] = useState('');
   const [submittingVisit, setSubmittingVisit] = useState(false);
   const [submittedVisit, setSubmittedVisit] = useState(false);
 
-  // Categories list
-  const categories: (PropertyType | 'All')[] = ['All', 'Villa', 'Ready-Made House', 'Land', 'Commercial'];
+  // Categories list ordered: All | Land | House | Villa | Commercial
+  const categories: (PropertyType | 'All')[] = ['All', 'Land', 'Ready-Made House', 'Villa', 'Commercial'];
 
   // Filters calculation
   const filteredProperties = useMemo(() => {
@@ -45,6 +143,9 @@ export default React.memo(function PropertyShowcase() {
         setVisitDate('');
         setClientName('');
         setClientPhone('');
+        setVisitType('Site Visit');
+        setTimeSlot('Morning (9 AM - 12 PM)');
+        setClientMessage('');
       }, 3500);
     }, 1500);
   }, [visitDate, clientName, clientPhone]);
@@ -148,30 +249,36 @@ export default React.memo(function PropertyShowcase() {
                         <p className="text-xs text-slate-500 line-clamp-3 leading-relaxed">{prop.description}</p>
                       </div>
 
-                      {/* Bullet Specs Row */}
-                      <div className="grid grid-cols-2 gap-2 border-t border-b border-silver py-3">
-                        {prop.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center gap-1.5 text-navy text-[10px] font-semibold">
-                            <Sparkles className="h-3 w-3 text-steel shrink-0" />
-                            <span>{feature}</span>
-                          </div>
-                        ))}
-                      </div>
+                      {/* Category Specific Layout */}
+                      {renderSpecs(prop)}
 
                       {/* Bottom CTA & Pricing */}
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-[9px] text-slate-400 uppercase tracking-widest leading-none">Est Price Guide</p>
-                          <p className="text-md font-serif text-steel font-bold">{prop.price}</p>
+                      <div className="flex flex-col space-y-3 pt-2">
+                        <div className="flex items-center justify-between border-b border-silver pb-2">
+                          <div>
+                            <p className="text-[9px] text-slate-400 uppercase tracking-widest leading-none">Est Price Guide</p>
+                            <p className="text-md font-serif text-[#2E6B9E] font-bold">{prop.price}</p>
+                          </div>
+                          <span className="text-[9px] font-sans font-bold text-teal bg-teal/10 px-2 py-0.5 rounded">
+                            {prop.type === 'Ready-Made House' ? 'House' : prop.type}
+                          </span>
                         </div>
 
-                        <button
-                          onClick={() => setSelectedProperty(prop)}
-                          className="flex items-center gap-1.5 bg-steel hover:bg-navy text-white text-[10px] uppercase tracking-widest font-bold py-2.5 px-4 rounded-lg shadow-sm hover:shadow transition-all cursor-pointer"
-                        >
-                          <span>Schedule Visit</span>
-                          <ArrowRight className="h-3 w-3" />
-                        </button>
+                        <div className="grid grid-cols-2 gap-2">
+                          <button
+                            onClick={() => setSelectedProperty(prop)}
+                            className="flex items-center justify-center bg-steel hover:bg-navy text-white text-[10px] uppercase tracking-widest font-extrabold py-2.5 px-3 rounded-lg shadow-sm hover:shadow transition-all cursor-pointer text-center"
+                          >
+                            <span>Book Visit</span>
+                          </button>
+                          
+                          <Link
+                            to="/contact"
+                            className="flex items-center justify-center border border-steel text-steel hover:bg-steel hover:text-white text-[10px] uppercase tracking-widest font-extrabold py-2.5 px-3 rounded-lg transition-all cursor-pointer text-center"
+                          >
+                            <span>Request Details</span>
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -204,13 +311,13 @@ export default React.memo(function PropertyShowcase() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="glass-card-dark max-w-md w-full rounded-2xl overflow-hidden shadow-2xl relative z-10 border border-teal/25 text-white flex flex-col p-6 space-y-6"
+              className="glass-card-dark max-w-lg w-full rounded-2xl overflow-hidden shadow-2xl relative z-10 border border-teal/25 text-white flex flex-col p-6 space-y-4"
             >
               <div>
                 <span className="text-[10px] text-teal uppercase tracking-widest font-extrabold block">LANDMARK SITE INQUIRY</span>
                 <h4 className="font-serif text-lg sm:text-xl font-bold text-white">Book Site Visit</h4>
                 <p className="text-xs text-slate-300 font-sans mt-1">
-                  You are scheduling a premium physical audit for <span className="font-semibold text-white">{selectedProperty.title}</span> in {selectedProperty.location}.
+                  You are scheduling a premium site visit or consultation for <span className="font-semibold text-white">{selectedProperty.title}</span> in {selectedProperty.location}.
                 </p>
               </div>
 
@@ -220,44 +327,79 @@ export default React.memo(function PropertyShowcase() {
                     <CheckCircle2 className="h-8 w-8" />
                   </div>
                   <div>
-                    <h5 className="font-serif text-md font-bold text-white">Visit Slot Tentatively Scheduled!</h5>
+                    <h5 className="font-serif text-md font-bold text-white">Visit Scheduled Successfully!</h5>
                     <p className="text-xs text-slate-300 font-sans mt-1">
-                      Our elite property desk is reviewing the legal title docs matching your slot. We will phone you shortly.
+                      Thank you! Our local coordinator will call you shortly on your provided contact number to confirm the details.
                     </p>
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleBookVisitSubmit} className="space-y-4">
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] uppercase tracking-wider text-slate-300 font-semibold flex items-center gap-1">
-                      <User className="h-3 w-3 text-teal" /> Full Name
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Alexander Sterling"
-                      value={clientName}
-                      onChange={(e) => setClientName(e.target.value)}
-                      className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white"
-                    />
+                <form onSubmit={handleBookVisitSubmit} className="space-y-3.5 text-left">
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div className="space-y-1">
+                      <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
+                        <User className="h-3 w-3 text-teal" /> Full Name
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Rajesh Kumar"
+                        value={clientName}
+                        onChange={(e) => setClientName(e.target.value)}
+                        className="w-full text-xs font-sans px-3 py-2.5 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
+                        <Phone className="h-3 w-3 text-teal" /> Mobile Contact
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="+91 98450 12345"
+                        value={clientPhone}
+                        onChange={(e) => setClientPhone(e.target.value)}
+                        className="w-full text-xs font-sans px-3 py-2.5 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white"
+                      />
+                    </div>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] uppercase tracking-wider text-slate-300 font-semibold flex items-center gap-1">
-                      <Phone className="h-3 w-3 text-teal" /> Mobile Contact
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="+1 (555) 438-2921"
-                      value={clientPhone}
-                      onChange={(e) => setClientPhone(e.target.value)}
-                      className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white"
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div className="space-y-1">
+                      <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
+                        <Calendar className="h-3 w-3 text-teal" /> Inquiry / Visit Type
+                      </label>
+                      <select
+                        value={visitType}
+                        onChange={(e) => setVisitType(e.target.value)}
+                        className="w-full text-xs font-sans px-3 py-2.5 bg-[#0D2136] border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white cursor-pointer"
+                      >
+                        <option value="Site Visit">Physical Site Visit</option>
+                        <option value="Consultation">Free Builders Consultation</option>
+                        <option value="Property Discussion">Property Specs Discussion</option>
+                      </select>
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
+                        <Calendar className="h-3 w-3 text-teal" /> Time Slot
+                      </label>
+                      <select
+                        value={timeSlot}
+                        onChange={(e) => setTimeSlot(e.target.value)}
+                        className="w-full text-xs font-sans px-3 py-2.5 bg-[#0D2136] border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white cursor-pointer"
+                      >
+                        <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
+                        <option value="Afternoon (12 PM - 3 PM)">Afternoon (12 PM - 3 PM)</option>
+                        <option value="Evening (3 PM - 6 PM)">Evening (3 PM - 6 PM)</option>
+                      </select>
+                    </div>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] uppercase tracking-wider text-slate-300 font-semibold flex items-center gap-1">
+                  <div className="space-y-1">
+                    <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
                       <Calendar className="h-3 w-3 text-teal" /> Preferred Visit Date
                     </label>
                     <input
@@ -265,24 +407,35 @@ export default React.memo(function PropertyShowcase() {
                       required
                       value={visitDate}
                       onChange={(e) => setVisitDate(e.target.value)}
-                      className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white cursor-pointer"
+                      className="w-full text-xs font-sans px-3 py-2.5 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white cursor-pointer"
                     />
                   </div>
 
-                  <div className="flex gap-3 pt-3">
+                  <div className="space-y-1">
+                    <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold">Message (Optional)</label>
+                    <textarea
+                      rows={2}
+                      placeholder="Specify any questions or details about your requirement..."
+                      value={clientMessage}
+                      onChange={(e) => setClientMessage(e.target.value)}
+                      className="w-full text-xs font-sans px-3 py-2 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white resize-none"
+                    />
+                  </div>
+
+                  <div className="flex gap-3 pt-2">
                     <button
                       type="button"
                       onClick={() => setSelectedProperty(null)}
-                      className="w-1/2 text-center bg-white/10 hover:bg-white/15 text-slate-300 font-sans text-xs uppercase tracking-widest font-bold py-3.5 rounded-lg border border-white/10 transition-colors cursor-pointer"
+                      className="w-1/2 text-center bg-white/10 hover:bg-white/15 text-slate-300 font-sans text-xs uppercase tracking-widest font-bold py-3 rounded-lg border border-white/10 transition-colors cursor-pointer"
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
                       disabled={submittingVisit}
-                      className="w-1/2 text-center bg-teal hover:bg-white text-navy-deep font-sans text-xs uppercase tracking-widest font-extrabold py-3.5 rounded-lg transition-colors cursor-pointer disabled:opacity-50"
+                      className="w-1/2 text-center bg-teal hover:bg-white text-navy-deep font-sans text-xs uppercase tracking-widest font-extrabold py-3 rounded-lg transition-colors cursor-pointer disabled:opacity-50"
                     >
-                      {submittingVisit ? 'Verifying...' : 'Request Slot'}
+                      {submittingVisit ? 'Scheduling...' : 'Book Visit'}
                     </button>
                   </div>
                 </form>

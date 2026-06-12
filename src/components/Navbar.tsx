@@ -36,26 +36,25 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
   return (
     <nav
       id="main-navbar"
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-200 ${isScrolled
-        ? 'bg-[#0D2136]/92 backdrop-blur-md border-b border-steel/30 py-3 shadow-lg'
-        : 'bg-[#0D2136]/60 backdrop-blur-sm border-b border-steel/10 py-5'
-        }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#0D2136] border-b border-steel/30 shadow-lg ${
+        isScrolled ? 'py-3' : 'py-4.5'
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
         {/* Logo Section */}
         <Link to="/" className="flex items-center gap-3 group">
           <img
             src="/assets/logo.png"
-            alt="Dhaya Traders"
-            className="h-10 w-auto object-contain"
+            alt="Dhaya Traders Logo"
+            className="h-11 w-11 md:h-12 md:w-12 rounded-full object-cover bg-white border border-steel/30 shadow-sm"
             loading="eager"
           />
-          <div>
-            <h1 className="font-serif text-lg md:text-xl font-bold text-white tracking-wider group-hover:text-teal transition-all duration-300">
+          <div className="flex flex-col justify-center">
+            <h1 className="font-serif text-lg md:text-xl font-bold text-white tracking-wider group-hover:text-teal transition-all duration-300 leading-tight">
               DHAYATRADERS
             </h1>
-            <p className="text-[9px] md:text-[10px] text-teal/80 uppercase tracking-widest leading-none">
-              Building Prosperity • Global Trading
+            <p className="text-[8px] md:text-[9px] text-teal uppercase tracking-widest font-semibold mt-0.5 leading-none">
+              Trusted Building &amp; Property Solutions
             </p>
           </div>
         </Link>
@@ -69,8 +68,8 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
                   to={link.href}
                   className={({ isActive }) =>
                     isActive
-                      ? 'text-teal border-b-2 border-teal pb-0.5 text-sm font-medium transition-colors'
-                      : 'text-white/80 hover:text-teal text-sm font-medium transition-colors'
+                      ? 'text-teal border-b-2 border-teal pb-1 text-sm font-bold tracking-wide transition-colors'
+                      : 'text-white/90 hover:text-teal text-sm font-medium tracking-wide transition-colors'
                   }
                 >
                   {link.name}
@@ -84,9 +83,9 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
           {/* Core Booking CTA */}
           <Link
             to="/contact"
-            className="bg-steel hover:bg-navy text-white px-4 py-2 rounded text-sm font-semibold transition-all hover:-translate-y-0.5"
+            className="bg-steel hover:bg-navy text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all hover:-translate-y-0.5 shadow-md hover:shadow-steel-glow"
           >
-            Book Consultation
+            Book Site Visit
           </Link>
         </div>
 
@@ -94,13 +93,13 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
         <div className="flex items-center gap-4 lg:hidden">
           <button
             onClick={onOpenConsultation}
-            className="bg-steel hover:bg-navy text-white text-[10px] uppercase font-bold px-3 py-2 rounded-md transition-colors"
+            className="bg-steel hover:bg-navy text-white text-[10px] uppercase font-extrabold px-3 py-2 rounded-md transition-colors"
           >
             Consult
           </button>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-white hover:text-teal hover:bg-white/10 p-1.5 rounded-lg transition-colors cursor-pointer"
+            className="text-white hover:text-teal hover:bg-white/10 p-2.5 rounded-lg transition-colors cursor-pointer"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -116,10 +115,11 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
               <li key={link.name}>
                 <NavLink
                   to={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className={({ isActive }) =>
                     isActive
-                      ? 'block w-full text-left font-sans text-sm font-bold text-teal pl-2 border-l-2 border-teal transition-colors'
-                      : 'block w-full text-left font-sans text-sm text-slate-300 hover:text-teal transition-colors'
+                      ? 'block w-full text-left font-sans text-sm font-bold text-teal pl-3 border-l-2 border-teal transition-colors py-2'
+                      : 'block w-full text-left font-sans text-sm text-slate-300 hover:text-teal transition-colors py-2'
                   }
                 >
                   {link.name}
@@ -133,9 +133,10 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
           <div className="flex flex-col gap-4">
             <Link
               to="/contact"
-              className="w-full text-center bg-steel hover:bg-navy text-white font-sans text-xs uppercase tracking-widest font-semibold py-3 px-5 rounded-lg hover:shadow-lg transition-all duration-300"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-full text-center bg-steel hover:bg-navy text-white font-sans text-xs uppercase tracking-widest font-bold py-4 px-5 rounded-lg hover:shadow-lg transition-all duration-300"
             >
-              Book Consultation Now
+              Book Site Visit
             </Link>
           </div>
         </div>

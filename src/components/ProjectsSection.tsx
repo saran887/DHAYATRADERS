@@ -70,7 +70,7 @@ export default function ProjectsSection() {
                 className="rounded-3xl overflow-hidden shadow-premium hover:shadow-premium-hover border border-silver flex flex-col bg-silver/20 hover-card-trigger"
               >
                 {/* Visual comparator frame */}
-                <div className="h-96 relative overflow-hidden bg-navy-deep group">
+                <div className="aspect-video w-full relative overflow-hidden bg-navy-deep group">
                   {/* Stacked before and after images with absolute positioning for crossfade */}
                   <div className="absolute inset-0 w-full h-full">
                     <img

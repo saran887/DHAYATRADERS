@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import ScrollToTop from './components/ScrollToTop';
 import PageLoader from './components/PageLoader';
 import ConsultationModal from './components/ConsultationModal';
-import { ShieldCheck, Phone, Mail, Clock, Award } from 'lucide-react';
+import { ShieldCheck, Phone, Mail, Clock, Award, MessageCircle } from 'lucide-react';
 
 // Lazy load all 6 pages
 const Home = lazy(() => import('./pages/Home'));
@@ -50,75 +50,74 @@ export default function App() {
             {/* Column 1 - Brand Slogan */}
             <div className="md:col-span-4 space-y-4 text-left">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 bg-white/10 rounded-lg flex items-center justify-center border border-white/10">
-                  <span className="font-serif text-lg font-bold text-white tracking-widest leading-none">D</span>
-                </div>
+                <img
+                  src="/assets/logo.png"
+                  alt="DHAYATRADERS Logo"
+                  className="h-10 w-10 rounded-full object-cover bg-white border border-steel/30 shadow-sm"
+                />
                 <h4 className="font-serif text-xl font-bold tracking-wider text-white">DHAYATRADERS</h4>
               </div>
+              <p className="text-xs text-slate-200 font-sans font-bold">
+                “Trusted Building &amp; Property Solutions”
+              </p>
               <p className="text-xs text-slate-400 font-sans leading-relaxed">
-                Building Prosperity • Trusted Global Trading. Delivering architectural permanence, direct bulk aggregate logistics, and premium gated layout sales matching top regulatory indices.
+                Delivering solid house construction, pre-vetted land sales, ready houses, and certified construction materials.
               </p>
 
-              {/* Quick Contact Line */}
-              <div className="space-y-1 pt-2">
-                <p className="text-xs text-white uppercase tracking-widest font-bold font-sans">Trading Desk Line</p>
-                <div className="flex items-center gap-2 text-xs text-slate-300">
-                  <Phone className="h-4 w-4 text-teal" />
-                  <a href="tel:+18005553429" className="hover:text-teal transition-colors">+1 (800) DHAYA-TRADE</a>
-                </div>
-              </div>
+
             </div>
 
             {/* Column 2 - Sitemap Links */}
             <div className="md:col-span-3 space-y-4 text-left">
-              <h5 className="text-xs uppercase tracking-widest font-extrabold text-teal font-sans">Corporate Portal</h5>
-              <ul className="grid grid-cols-1 gap-2 text-xs text-slate-400">
+              <h5 className="text-xs uppercase tracking-widest font-extrabold text-teal font-sans">Quick Links</h5>
+              <ul className="grid grid-cols-1 gap-2.5 text-xs text-slate-400 font-semibold font-sans">
                 <li>
-                  <Link to="/" className="hover:text-white transition-colors">
-                    Home Workspace
-                  </Link>
+                  <Link to="/" className="hover:text-white transition-colors">Home</Link>
                 </li>
                 <li>
-                  <Link to="/" className="hover:text-white transition-colors">
-                    Our Heritage &amp; Profile
-                  </Link>
+                  <Link to="/services" className="hover:text-white transition-colors">Services</Link>
                 </li>
                 <li>
-                  <Link to="/services" className="hover:text-white transition-colors">
-                    Services Directory
-                  </Link>
+                  <Link to="/properties" className="hover:text-white transition-colors">Properties</Link>
                 </li>
                 <li>
-                  <Link to="/properties" className="hover:text-white transition-colors">
-                    Estate &amp; Plot Database
-                  </Link>
+                  <Link to="/materials" className="hover:text-white transition-colors">Materials</Link>
+                </li>
+                <li>
+                  <Link to="/projects" className="hover:text-white transition-colors">Projects</Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
                 </li>
               </ul>
             </div>
 
-            {/* Column 3 - Enterprise Trading Links */}
+            {/* Column 3 - Quick Contact Actions */}
             <div className="md:col-span-3 space-y-4 text-left">
-              <h5 className="text-xs uppercase tracking-widest font-extrabold text-teal font-sans">Enterprise Trading</h5>
-              <ul className="grid grid-cols-1 gap-2 text-xs text-slate-400">
+              <h5 className="text-xs uppercase tracking-widest font-extrabold text-teal font-sans">Quick Contact</h5>
+              <ul className="grid grid-cols-1 gap-3 text-xs text-slate-400 font-semibold font-sans">
                 <li>
-                  <Link to="/materials" className="hover:text-white transition-colors">
-                    Materials Catalog
-                  </Link>
+                  <a
+                    href="https://wa.me/918005553429?text=Hello%20DHAYATRADERS,%20I%20am%20interested%20in%20a%20construction%20project/materials."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-teal transition-colors flex items-center gap-2"
+                  >
+                    <MessageCircle className="h-4 w-4 text-emerald-400 fill-emerald-400/10 shrink-0" />
+                    <span>WhatsApp</span>
+                  </a>
                 </li>
                 <li>
-                  <Link to="/projects" className="hover:text-white transition-colors">
-                    Transformation Portfolios
-                  </Link>
+                  <a href="tel:+918005553429" className="hover:text-teal transition-colors flex items-center gap-2">
+                    <Phone className="h-4 w-4 text-teal shrink-0" />
+                    <span>Call Now</span>
+                  </a>
                 </li>
                 <li>
-                  <Link to="/projects" className="hover:text-white transition-colors">
-                    Media Glass Gallery
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/contact" className="hover:text-white transition-colors">
-                    Feasibility Docket Forms
-                  </Link>
+                  <a href="mailto:trade@dhayatraders.com" className="hover:text-teal transition-colors flex items-center gap-2">
+                    <Mail className="h-4 w-4 text-teal shrink-0" />
+                    <span>Email</span>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -152,9 +151,7 @@ export default function App() {
             <div className="flex gap-6 font-sans">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <span>•</span>
-              <a href="#" className="hover:text-white transition-colors">Trading Compliance Docket</a>
-              <span>•</span>
-              <a href="#" className="hover:text-white transition-colors">Legal Deed Terms</a>
+              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
             </div>
           </div>
         </div>

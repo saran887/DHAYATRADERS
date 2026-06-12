@@ -8,7 +8,7 @@ export default function PageLoader() {
         <img
           src="/assets/logo.png"
           alt="DHAYATRADERS Logo"
-          className="w-16 h-16 object-contain animate-pulse relative z-10"
+          className="w-16 h-16 rounded-full object-cover bg-white border border-[#2E6B9E]/30 animate-pulse relative z-10"
         />
       </div>
       <p className="text-[#E8EDF2] text-[10px] mt-6 font-sans tracking-widest uppercase font-bold animate-pulse">
