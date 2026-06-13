@@ -5,48 +5,48 @@ export default function WhyChooseUs() {
   const cards = [
     {
       id: 1,
-      title: 'Trusted Corporation & Governance',
-      description: 'Under DHAYATRADERS corporate lineage, every transaction is audited with complete transparency and compliance. No loopholes, absolute fidelity.',
+      title: 'Trusted Local Partner & Transparency',
+      description: 'Under DHAYA TRADERS, every transaction is handled with complete transparency and local compliance. No hidden charges, absolute trust.',
       icon: <ShieldCheck className="h-7 w-7 text-teal" />,
       className: 'lg:col-span-2 bg-gradient-to-br from-navy-deep to-navy text-white',
       descColor: 'text-slate-300'
     },
     {
       id: 2,
-      title: 'Double-Audited Land Deeds',
-      description: 'Every plot is vetted through three tiers of legal departments and government land registries to secure immediate clean transfers.',
+      title: 'Government Approved Plot Deeds',
+      description: 'Every plot is legally vetted, DTCP or RERA approved, ensuring immediate, clean registration and hassle-free transfer.',
       icon: <FileCheck className="h-7 w-7 text-steel" />,
       className: 'bg-white text-navy border border-silver',
       descColor: 'text-slate-500'
     },
     {
       id: 3,
-      title: 'Certified Elite Raw Materials',
-      description: 'We test our rebar steels and structural clinkers in internal laboratories, rejecting aggregate consignments which do not exceed peak regulations.',
+      title: 'Top Grade Construction Materials',
+      description: 'We supply direct tested Fe-550 TMT steels, graded river sand/M-sand, and high-compressive red bricks matching highest standard requirements.',
       icon: <Diamond className="h-7 w-7 text-steel" />,
       className: 'bg-white text-navy border border-silver',
       descColor: 'text-slate-500'
     },
     {
       id: 4,
-      title: 'Direct Strategic Wholesale Pricing',
-      description: 'By operating dedicated logistics fleets and direct source yards, we pass volume discounts on to properties and commercial builders.',
+      title: 'Direct Wholesale Price (No Broker)',
+      description: 'By supplying directly from our own sand yards and manufacturing brick kilns, we eliminate middleman commissions and save major costs for you.',
       icon: <DollarSign className="h-7 w-7 text-steel" />,
       className: 'bg-white text-navy border border-silver',
       descColor: 'text-slate-500'
     },
     {
       id: 5,
-      title: 'Professional Master Builders',
-      description: 'All construction works are supervised by senior engineering heads with certifications in state seismic resistance codes and high-rise civil projects.',
+      title: 'Professional Site Builders',
+      description: 'All constructions are managed by experienced site engineers, following best architectural designs and structural standards.',
       icon: <Hammer className="h-7 w-7 text-teal animate-pulse" />,
       className: 'lg:col-span-2 bg-steel text-white',
       descColor: 'text-slate-200'
     },
     {
       id: 6,
-      title: 'Guaranteed On-Schedule Deploy',
-      description: 'Our proprietary fleet tracking guarantees deliveries of river sand and bricks directly to your project base on absolute schedules.',
+      title: 'On-Time Material Delivery',
+      description: 'Our dedicated supply trucks guarantee river sand, M-sand, and brick deliveries directly to your site on time to avoid labor delay.',
       icon: <Truck className="h-7 w-7 text-steel" />,
       className: 'bg-white text-navy border border-silver',
       descColor: 'text-slate-500'

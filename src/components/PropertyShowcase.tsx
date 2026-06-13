@@ -31,7 +31,7 @@ const renderSpecs = (prop: Property) => {
             </div>
             <div className="flex gap-2 items-center">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block shrink-0" />
-              <span className="truncate"><strong>Location:</strong> Cochin, Kerala</span>
+              <span className="truncate"><strong>Location:</strong> Erode, Tamil Nadu</span>
             </div>
           </div>
         </div>

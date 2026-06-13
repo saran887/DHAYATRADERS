@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { X, Calendar, Clock, Sparkles, User, Mail, Phone, DollarSign, CheckCircle2 } from 'lucide-react';
+import { X, Calendar, Clock, Sparkles, User, Mail, Phone, IndianRupee, CheckCircle2 } from 'lucide-react';
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -13,7 +13,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
     email: '',
     phone: '',
     concept: 'House Construction',
-    budget: '$100,000 - $500,000',
+    budget: '₹25 Lakhs - ₹1 Crore',
     date: '',
     time: '10:00'
   });
@@ -37,7 +37,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
           email: '',
           phone: '',
           concept: 'House Construction',
-          budget: '$100,000 - $500,000',
+          budget: '₹25 Lakhs - ₹1 Crore',
           date: '',
           time: '10:00'
         });
@@ -116,7 +116,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                   type="text"
                   name="name"
                   required
-                  placeholder="e.g. Dr. Arthur Pendelton"
+                  placeholder="e.g. Rajesh Kumar"
                   value={formData.name}
                   onChange={handleChange}
                   className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
@@ -132,7 +132,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     type="email"
                     name="email"
                     required
-                    placeholder="e.g. arthur@sterling.com"
+                    placeholder="e.g. rajesh@gmail.com"
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
@@ -147,7 +147,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     type="tel"
                     name="phone"
                     required
-                    placeholder="+1 (555) 793-2941"
+                    placeholder="e.g. +91 98450 12345"
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
@@ -176,7 +176,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
 
                 <div className="space-y-1">
                   <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
-                    <DollarSign className="h-3 w-3 text-teal" /> Estimated Budget
+                    <IndianRupee className="h-3 w-3 text-teal" /> Estimated Budget
                   </label>
                   <select
                     name="budget"
@@ -184,9 +184,9 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     onChange={handleChange}
                     className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white font-medium cursor-pointer"
                   >
-                    <option value="Under $100,000" className="bg-navy-deep text-white">Under $100,000</option>
-                    <option value="$100,000 - $500,000" className="bg-navy-deep text-white">$100,000 - $500,000</option>
-                    <option value="Over $500,000" className="bg-navy-deep text-white">Over $500,000</option>
+                    <option value="Under ₹25 Lakhs" className="bg-navy-deep text-white">Under ₹25 Lakhs</option>
+                    <option value="₹25 Lakhs - ₹1 Crore" className="bg-navy-deep text-white">₹25 Lakhs - ₹1 Crore</option>
+                    <option value="Over ₹1 Crore" className="bg-navy-deep text-white">Over ₹1 Crore</option>
                   </select>
                 </div>
               </div>

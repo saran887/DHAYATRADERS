@@ -85,7 +85,7 @@ export default function AboutSection() {
                   <Milestone className="h-7 w-7 text-teal animate-pulse" />
                   <p className="text-xl font-serif font-bold text-white">100% Certified</p>
                   <p className="text-[10px] text-slate-300 uppercase tracking-widest font-sans font-semibold">
-                    Global Sovereign Registry Vetted
+                    DTCP & RERA Approved Layouts
                   </p>
                 </motion.div>
               </div>
@@ -148,7 +148,7 @@ export default function AboutSection() {
             </div>
 
             <p className="font-sans text-xs sm:text-sm text-slate-500 leading-relaxed">
-              Established as an integrated civil contractor and raw aggregates exporter, DHAYATRADERS bridges the gap between massive material procurement and delicate luxury real estate design. We represent high-net-worth developers, industrial entities and families seeking elite permanent structural properties.
+              Established as a trusted partner for home builders and property buyers in Tamil Nadu, DHAYA TRADERS combines quality material supply with reliable construction services. We help families, local builders, and contractors across Madurai, Erode, Trichy, Coimbatore, and Chennai build strong homes and secure verified plots with 100% clear deeds.
             </p>
 
             {/* Highlighted Values bullets */}

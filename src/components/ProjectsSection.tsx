@@ -6,25 +6,25 @@ import { Columns, Calendar, MapPin, Eye, Building2, Quote } from 'lucide-react';
 const PROJECTS_LOCAL_DATA = [
   {
     id: 'proj1',
-    title: 'The Azure Heritage Villa Complex',
+    title: 'Nandavan Villas Complex',
     category: 'Luxury Residential',
     status: 'Completed',
-    location: 'Emerald Hills Estates',
+    location: 'Perundurai Bypass Road, Erode',
     year: '2025',
     imageBefore: '/assets/20260610_173450.jpg',
     imageAfter: '/assets/20260610_173518.jpg',
-    description: 'Transforming 5 acres of undeveloped hillside land into a premium, completely secure gated layout of 6 architectural duplex smart villas.'
+    description: 'Transforming 5 acres of undeveloped land into a premium, secure gated layout of modern duplex villas with DTCP approvals and clear water facilities.'
   },
   {
     id: 'proj2',
-    title: 'Metro Hub Commercial Complex',
+    title: 'Dhaya Business Center',
     category: 'Heavy Commercial Build',
     status: 'Completed',
-    location: 'Business Central Strip',
+    location: 'Sathy Road, Erode',
     year: '2024',
     imageBefore: '/assets/20260610_173945.jpg',
     imageAfter: '/assets/20260610_173957.jpg',
-    description: 'A multi-tier retail and corporate office development built completely using Dhaya high-tensile Fe-550 structural steel and Grade 53 high-compression cement. Full seismic mitigation architecture.'
+    description: 'A multi-tier commercial showroom complex built completely using Dhaya Fe-550 TMT Steel and Grade 53 Cement for strong structural stability.'
   }
 ];
 
@@ -182,8 +182,8 @@ export default function ProjectsSection() {
                       <Quote className="h-4 w-4 text-steel font-bold shrink-0 mt-0.5" />
                       <p className="text-[11px] italic text-slate-600 leading-relaxed font-sans">
                         {showsAfter
-                          ? '"DHAYATRADERS integrated complete pre-vetted design parameters, achieving absolute vertical grade alignments."'
-                          : '"Excavation phase involved removing 3,500 cubic yards of high-moisture clays and implementing custom aggregate base columns."'}
+                          ? '"Dhaya Traders supplied all raw materials on time, ensuring strong foundation and quick structural completion."'
+                          : '"Excavation phase involved clearing site foundation and implementing proper structural base."'}
                       </p>
                     </div>
                   </div>

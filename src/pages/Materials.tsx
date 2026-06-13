@@ -7,7 +7,7 @@ export default function Materials() {
     <PageTransition>
       <Helmet>
         <title>TMT Steel, Bricks, River Sand & Cement | DHAYATRADERS</title>
-        <meta name="description" content="Direct-sourced Fe-550D TMT steel, Grade-A red clay bricks, triple-washed river sand, and OPC 53 cement. Bulk supply across Kerala with verified quality standards." />
+        <meta name="description" content="Direct-sourced Fe-550D TMT steel, Grade-A red clay bricks, triple-washed river sand, and OPC 53 cement. Bulk supply across Tamil Nadu with verified quality standards." />
         <link rel="canonical" href="https://dhayatraders.com/materials" />
       </Helmet>
 

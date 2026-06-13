@@ -6,7 +6,7 @@ export default function Properties() {
   return (
     <PageTransition>
       <Helmet>
-        <title>Land & Property Listings Kerala | DHAYATRADERS</title>
+        <title>Land & Property Listings Tamil Nadu | DHAYATRADERS</title>
         <meta name="description" content="Browse DHAYATRADERS' elite portfolio: luxury villas, gated land plots, ready-made duplex homes, and commercial hubs. Double-audited titles, instant registry." />
         <link rel="canonical" href="https://dhayatraders.com/properties" />
       </Helmet>

@@ -12,7 +12,7 @@ const HERO_SLIDES = [
   {
     image: '/assets/20260610_173338.jpg',
     title: 'Architectural Excellence',
-    tagline: 'Designing residences that stand the test of civilizational shifts.',
+    tagline: 'Designing residences that stand the test of time and weather.',
     badge: 'Luxury Real Estate'
   },
   {
@@ -23,9 +23,9 @@ const HERO_SLIDES = [
   },
   {
     image: '/assets/20260610_173443.jpg',
-    title: 'Verified Sovereign Land Deals',
-    tagline: '100% audited title land blocks in high-growth investment sectors.',
-    badge: 'Prime Land Portfolios'
+    title: 'DTCP Approved Land Plots',
+    tagline: '100% verified clear title land plots in high-growth investment areas.',
+    badge: 'Prime Land Plots'
   }
 ];
 
@@ -182,7 +182,7 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookS
                 <div className="absolute inset-0 bg-[#0D2136]/60 flex items-center justify-center p-3 text-center">
                   <div>
                     <MapPin className="h-6 w-6 text-teal mx-auto mb-2" />
-                    <p className="text-xs font-semibold text-white uppercase tracking-wider">Emerald Hills Plot Layout</p>
+                    <p className="text-xs font-semibold text-white uppercase tracking-wider">Erode Gated Plot Layout</p>
                     <p className="text-[10px] text-slate-300">Phase 2 Plot Sales Live</p>
                   </div>
                 </div>
@@ -190,7 +190,7 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookS
 
               <div className="space-y-2.5">
                 <p className="text-xs text-slate-300 leading-relaxed font-sans">
-                  "Sovereign Land Sales represent DHAYATRADERS double-audited residential layouts with immediate deed transfers."
+                  "Gated Plot Sales represent DHAYA TRADERS fully verified residential layouts with instant deed registration."
                 </p>
                 <div className="flex items-center justify-between text-[11px] border-t border-white/10 pt-3">
                   <span className="text-slate-400">Registry status</span>

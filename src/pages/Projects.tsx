@@ -8,7 +8,7 @@ export default function Projects() {
     <PageTransition>
       <Helmet>
         <title>Completed Projects & Portfolio | DHAYATRADERS</title>
-        <meta name="description" content="Witness DHAYATRADERS' completed landmark estates: luxury villa complexes, commercial hubs, and architectural transformations across Kerala." />
+        <meta name="description" content="Witness DHAYATRADERS' completed landmark estates: luxury villa complexes, commercial hubs, and architectural transformations across Tamil Nadu." />
         <link rel="canonical" href="https://dhayatraders.com/projects" />
       </Helmet>
 

@@ -215,7 +215,7 @@ export default function ContactSection() {
                   <div>
                     <p className="text-[9px] text-slate-400 uppercase tracking-widest font-bold">Office Address</p>
                     <p className="text-[11px] text-slate-200 mt-0.5 font-sans leading-relaxed">
-                      Dhaya Plaza, Meridian Central Square, Bypass Junction, Cochin, Kerala
+                      Dhaya Plaza, Perundurai Road Junction, Erode, Tamil Nadu, 638011
                     </p>
                   </div>
                 </div>
@@ -279,14 +279,14 @@ export default function ContactSection() {
             {/* SMALL MAP EMBED - INTERACTIVE GOOGLE MAP */}
             <div className="rounded-xl overflow-hidden h-36 relative border border-white/10 group bg-slate-800">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.0729729864273!2d76.26253457585093!3d9.970176873523298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d514abec6bf%3A0xbd582caf714422c5!2sCochin%20Bypass%20Junction!5e0!3m2!1sen!2sin!4v1718182903847!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3911.9729864273!2d77.717208!3d11.341036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96f4e1f721ab9%3A0x86e680d922fb68!2sErode%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1718183200000!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen={false}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="DHAYATRADERS Cochin Map Location"
+                title="DHAYATRADERS Erode Map Location"
               />
             </div>
 

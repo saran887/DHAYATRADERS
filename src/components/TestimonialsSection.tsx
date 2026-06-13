@@ -58,14 +58,6 @@ export default React.memo(function TestimonialsSection() {
 
               {/* User Bio Details */}
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-6 border-t border-silver">
-                <img
-                  src={TESTIMONIALS_DATA[active].image}
-                  alt={TESTIMONIALS_DATA[active].name}
-                  className="h-14 w-14 rounded-full object-cover border-2 border-steel"
-                  loading="lazy"
-                  width={56}
-                  height={56}
-                />
                 <div className="text-center sm:text-left">
                   <h4 className="font-serif text-md font-bold text-navy">{TESTIMONIALS_DATA[active].name}</h4>
                   <p className="text-[10px] text-slate-500 uppercase tracking-widest font-sans font-semibold mt-0.5">
