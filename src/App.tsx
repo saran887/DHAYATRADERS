@@ -62,10 +62,12 @@ export default function App() {
               <div className="flex items-center gap-3">
                 <div className="h-14 w-14 flex items-center justify-center p-1.5 bg-white border border-steel/30 rounded-lg shadow-sm overflow-visible">
                   <img
-                    src="../assets/Logo.png"
+                    src="/assets/logo.png"
                     alt="DHAYATRADERS Logo"
                     draggable={false}
                     className="w-full h-full object-contain select-none"
+                    width={56}
+                    height={56}
                   />
                 </div>
                 <h4 className="font-serif text-xl font-bold tracking-wider text-white">DHAYATRADERS</h4>

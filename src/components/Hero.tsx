@@ -65,6 +65,8 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookC
             alt={HERO_SLIDES[currentSlide].title}
             fetchPriority="high"
             loading="eager"
+            width={1200}
+            height={800}
           />
         </AnimatePresence>
 
@@ -181,12 +183,13 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookC
               </div>
 
               {/* Minimal preview map placeholder */}
-              <div className="h-40 rounded-lg overflow-hidden relative group cursor-pointer border border-white/10 bg-slate-800/50">
+              <div className="hero-card-image-container rounded-lg border border-white/10 group cursor-pointer bg-slate-800/50">
                 <img
                   src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=400"
                   alt="Sovereign Land Plot Layout Sketch"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="eager"
+                  fetchPriority="high"
                   width={400}
                   height={200}
                 />

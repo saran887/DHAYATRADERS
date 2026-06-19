@@ -92,3 +92,32 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-navy);
 }
+
+/* ============================================================
+   PERFORMANCE: content-visibility for off-screen sections
+   Reduces initial Layout/Style cost → fixes ~1,221ms render delay
+   ============================================================ */
+footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 360px;
+}
+
+/* ============================================================
+   CLS FIX: Reserve space for hero background image container
+   Prevents the 0.15 layout shift from the LCP image slot
+   ============================================================ */
+#home > .absolute.inset-0.z-0 {
+  /* The hero section itself is min-h-screen, so the background
+     layer doesn't need a separate aspect-ratio. The key fix is
+     giving the motion.img a stable intrinsic size via width/height. */
+  position: absolute;
+  inset: 0;
+}
+
+/* Hero card image in the right-side widget: fixed dimensions to prevent CLS */
+.hero-card-image-container {
+  aspect-ratio: 2 / 1;
+  background-color: #1e3a52;
+  overflow: hidden;
+  position: relative;
+}
