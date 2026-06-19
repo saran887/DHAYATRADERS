@@ -1,4 +1,4 @@
-import logo from '../assets/Logo.png';
+// Logo served from public folder — no Vite import to avoid bundling the 1.19MB PNG
 
 export default function PageLoader() {
   return (
@@ -8,9 +8,11 @@ export default function PageLoader() {
         <div className="w-24 h-24 border-2 border-[#2E6B9E]/20 border-t-[#4AABB8] rounded-full animate-spin absolute" />
         <div className="w-16 h-16 flex items-center justify-center rounded-full bg-white border border-[#2E6B9E]/30 animate-pulse relative z-10 overflow-hidden">
           <img
-            src={logo}
+            src="/assets/logo.webp"
             alt="DHAYATRADERS Logo"
             draggable={false}
+            width={64}
+            height={64}
             className="w-full h-full object-contain select-none"
           />
         </div>

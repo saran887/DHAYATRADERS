@@ -4,7 +4,6 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import viteCompression from 'vite-plugin-compression';
 import { visualizer } from 'rollup-plugin-visualizer';
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 export default defineConfig(() => {
   return {
@@ -12,7 +11,8 @@ export default defineConfig(() => {
       react(),
       tailwindcss(),
       viteCompression(),
-      cssInjectedByJsPlugin(),
+      // NOTE: cssInjectedByJsPlugin removed — it delayed CSS until after JS execution,
+      // blocking FCP and causing CLS 0.15. CSS is now a separate parallel-loaded file.
       visualizer({ open: false, filename: 'dist/stats.html' })
     ],
     resolve: {

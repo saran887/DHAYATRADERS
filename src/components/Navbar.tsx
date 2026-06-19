@@ -2,7 +2,8 @@ import { useState, useEffect, useMemo } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
-import logo from '../assets/Logo.png';
+// Logo served from /public/assets/logo.webp (34KB WebP) — NOT imported via Vite
+// to avoid bundling the 1.19MB PNG into the JS asset graph.
 interface NavbarProps {
   onOpenConsultation: () => void;
 }
@@ -85,11 +86,15 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
           <Link to="/" className="flex items-center gap-3 group">
             <div className="h-14 w-14 lg:h-20 lg:w-20 flex items-center justify-center bg-white rounded-full shadow-md overflow-hidden border border-steel/20">
               <img
-                src={logo}
+                src="/assets/logo.webp"
                 alt="Dhaya Traders Logo"
                 draggable={false}
                 className="w-20 h-20 object-contain select-none"
-                loading="eager" />
+                loading="eager"
+                fetchPriority="high"
+                width={80}
+                height={80}
+              />
             </div>
 
           <div className="flex flex-col justify-center">

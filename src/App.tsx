@@ -62,7 +62,7 @@ export default function App() {
               <div className="flex items-center gap-3">
                 <div className="h-14 w-14 flex items-center justify-center p-1.5 bg-white border border-steel/30 rounded-lg shadow-sm overflow-visible">
                   <img
-                    src="/assets/logo.png"
+                    src="/assets/logo.webp"
                     alt="DHAYATRADERS Logo"
                     draggable={false}
                     className="w-full h-full object-contain select-none"
