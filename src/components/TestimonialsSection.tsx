@@ -35,38 +35,40 @@ export default React.memo(function TestimonialsSection() {
           {/* Giant decorative quotation mark */}
           <Quote className="absolute top-6 left-6 h-16 w-16 text-steel/10 select-none pointer-events-none" />
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.4 }}
-              className="space-y-6 text-center sm:text-left"
-            >
-              {/* Star Rating Panel */}
-              <div className="flex items-center justify-center sm:justify-start gap-1">
-                {[...Array(TESTIMONIALS_DATA[active].rating)].map((_, i) => (
-                  <Star key={i} className="h-4.5 w-4.5 fill-teal text-teal" />
-                ))}
-              </div>
-
-              {/* Review block text */}
-              <p className="font-sans text-xs sm:text-lg text-navy leading-relaxed italic md:font-medium">
-                "{TESTIMONIALS_DATA[active].review}"
-              </p>
-
-              {/* User Bio Details */}
-              <div className="flex flex-col sm:flex-row items-center gap-4 pt-6 border-t border-silver">
-                <div className="text-center sm:text-left">
-                  <h4 className="font-serif text-md font-bold text-navy">{TESTIMONIALS_DATA[active].name}</h4>
-                  <p className="text-[10px] text-slate-500 uppercase tracking-widest font-sans font-semibold mt-0.5">
-                    {TESTIMONIALS_DATA[active].role}
-                  </p>
+          <div className="min-h-[240px] sm:min-h-[180px] flex flex-col justify-between">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.4 }}
+                className="space-y-6 text-center sm:text-left"
+              >
+                {/* Star Rating Panel */}
+                <div className="flex items-center justify-center sm:justify-start gap-1">
+                  {[...Array(TESTIMONIALS_DATA[active].rating)].map((_, i) => (
+                    <Star key={i} className="h-4.5 w-4.5 fill-teal text-teal" />
+                  ))}
                 </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+
+                {/* Review block text */}
+                <p className="font-sans text-xs sm:text-lg text-navy leading-relaxed italic md:font-medium">
+                  "{TESTIMONIALS_DATA[active].review}"
+                </p>
+
+                {/* User Bio Details */}
+                <div className="flex flex-col sm:flex-row items-center gap-4 pt-6 border-t border-silver">
+                  <div className="text-center sm:text-left">
+                    <h4 className="font-serif text-md font-bold text-navy">{TESTIMONIALS_DATA[active].name}</h4>
+                    <p className="text-[10px] text-slate-500 uppercase tracking-widest font-sans font-semibold mt-0.5">
+                      {TESTIMONIALS_DATA[active].role}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
           {/* Nav buttons in carousel corners */}
           <div className="absolute bottom-6 right-6 flex gap-2 pt-4 justify-end">

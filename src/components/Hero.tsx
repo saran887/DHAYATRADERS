@@ -181,12 +181,12 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookC
               </div>
 
               {/* Minimal preview map placeholder */}
-              <div className="h-40 rounded-lg overflow-hidden relative group cursor-pointer border border-white/10">
+              <div className="h-40 rounded-lg overflow-hidden relative group cursor-pointer border border-white/10 bg-slate-800/50">
                 <img
                   src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=400"
                   alt="Sovereign Land Plot Layout Sketch"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  loading="lazy"
+                  loading="eager"
                   width={400}
                   height={200}
                 />
