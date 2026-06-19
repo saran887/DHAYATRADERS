@@ -35,7 +35,7 @@ export default function App() {
       <Navbar onOpenConsultation={() => setIsConsultationOpen(true)} />
 
       {/* Main Pages with Suspense Loader */}
-      <main id="main" className={`flex-grow ${isHomePage ? '' : 'pt-24 lg:pt-28'}`}>
+      <main id="main" className={`flex-grow min-h-[85vh] ${isHomePage ? '' : 'pt-24 lg:pt-28'}`}>
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<Home onOpenConsultation={() => setIsConsultationOpen(true)} />} />
