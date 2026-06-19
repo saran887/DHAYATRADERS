@@ -63,6 +63,8 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookC
             srcSet={`${HERO_SLIDES[currentSlide].image400} 400w, ${HERO_SLIDES[currentSlide].image800} 800w, ${HERO_SLIDES[currentSlide].image} 1200w`}
             sizes="(max-width: 600px) 400px, 800px"
             alt={HERO_SLIDES[currentSlide].title}
+            fetchPriority="high"
+            loading="eager"
           />
         </AnimatePresence>
 
