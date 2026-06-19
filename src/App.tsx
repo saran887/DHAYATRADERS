@@ -51,7 +51,7 @@ export default function App() {
       </main>
 
       {/* Persistent Brand Footer */}
-      <footer className="bg-navy-deep text-white pt-14 pb-10 border-t border-steel/30 relative">
+      <footer className="bg-navy-deep text-white pt-14 pb-10 border-t border-steel/30 relative min-h-[360px] md:min-h-[290px]">
         <div className="absolute inset-0 bg-steel-radial opacity-10 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-10 relative z-10">
