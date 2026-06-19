@@ -37,6 +37,22 @@ const renderServiceIcon = (iconName: string) => {
 
 export default React.memo(function ServicesSection() {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      q: "What construction models do you offer?",
+      a: "We offer end-to-end turn-key contracts, design-build services, and structural shell contracts. Our architectural division drafts complete 2D plans and 3D elevations while securing necessary building permits."
+    },
+    {
+      q: "Are the gated community plots DTCP or RERA approved?",
+      a: "Yes. All land layouts marketed by DHAYATRADERS hold 100% clear legal titles, complete DTCP/Local Body approvals, and are fully vetted by panel attorneys before listing. We handle the registration process directly."
+    },
+    {
+      q: "How do you manage quality control during construction?",
+      a: "We deploy dedicated site engineers for constant supervision. Standard cube tests for concrete, brick absorption audits, and steel grade inspections are conducted and logged daily for absolute compliance."
+    }
+  ];
 
   return (
     <section id="services" className="py-14 bg-gradient-to-b from-gray-light to-white relative">
@@ -103,6 +119,41 @@ export default React.memo(function ServicesSection() {
             </RevealCard>
           ))}
         </div>
+
+        {/* Rich Corporate Services FAQ */}
+        <div className="mt-16 border-t border-silver pt-12 max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <h3 className="font-serif text-2xl md:text-3xl text-navy tracking-tight font-medium">
+              Construction & Land Services FAQ
+            </h3>
+            <div className="w-10 h-0.5 bg-steel mx-auto rounded-full mt-2" />
+          </div>
+          <div className="space-y-3">
+            {faqs.map((faq, fIdx) => (
+              <div key={fIdx} className="bg-white rounded-xl border border-silver overflow-hidden transition-all duration-300">
+                <button
+                  onClick={() => setActiveFaq(activeFaq === fIdx ? null : fIdx)}
+                  className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 font-serif text-sm md:text-base font-semibold text-navy hover:text-steel transition-colors cursor-pointer"
+                >
+                  <span>{faq.q}</span>
+                  <span className="text-steel shrink-0 text-xl font-mono leading-none">
+                    {activeFaq === fIdx ? '−' : '+'}
+                  </span>
+                </button>
+                <div
+                  className={`px-5 transition-all duration-300 ease-in-out overflow-hidden ${
+                    activeFaq === fIdx ? 'max-h-40 pb-4 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <p className="font-sans text-xs sm:text-sm text-slate-500 leading-relaxed">
+                    {faq.a}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
 
       {/* Learn More popover modal */}

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send, CheckCircle2, Clock, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, CheckCircle2, MessageCircle } from 'lucide-react';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    service: 'House Construction',
+    propertyType: 'Land',
+    consultationType: 'Physical Consultation',
     message: ''
   });
 
@@ -15,7 +16,7 @@ export default function ContactSection() {
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.phone) return;
+    if (!formData.name || !formData.email || !formData.message) return;
 
     setIsSubmitting(true);
     setTimeout(() => {
@@ -27,7 +28,8 @@ export default function ContactSection() {
           name: '',
           email: '',
           phone: '',
-          service: 'House Construction',
+          propertyType: 'Land',
+          consultationType: 'Physical Consultation',
           message: ''
         });
       }, 4000);
@@ -47,9 +49,9 @@ export default function ContactSection() {
 
         {/* Title Unit */}
         <div className="text-center md:max-w-3xl md:mx-auto space-y-4 mb-8">
-          <span className="text-[10px] md:text-xs uppercase tracking-widest text-steel font-extrabold block">CONTACT US</span>
+          <span className="text-[10px] md:text-xs uppercase tracking-widest text-steel font-extrabold block">ENQUIRY</span>
           <h2 className="font-serif text-3xl md:text-5xl text-navy tracking-tight font-medium">
-            Get In Touch
+            Let's Discuss Your Requirement
           </h2>
           <div className="w-16 h-1 bg-steel mx-auto rounded-full" />
           <p className="font-sans text-xs sm:text-sm text-slate-500 leading-relaxed">
@@ -60,13 +62,13 @@ export default function ContactSection() {
         {/* Dual Layout Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
-          {/* CLIENT INQUIRY FORM PANEL - LEFT LARGE */}
-          <div className="lg:col-span-8 bg-white rounded-3xl shadow-2xl border-2 border-[#2E6B9E]/30 p-8 sm:p-10 flex flex-col justify-between transition-all hover:border-[#2E6B9E]/50">
+          {/* CLIENT ENQUIRY FORM PANEL - RIGHT LARGE */}
+          <div className="order-1 lg:order-2 lg:col-span-8 bg-white rounded-3xl shadow-2xl border-2 border-[#2E6B9E]/30 p-8 sm:p-10 flex flex-col justify-between transition-all hover:border-[#2E6B9E]/50">
             <div className="space-y-3 mb-6 border-b border-silver pb-4 text-left">
-              <span className="text-[9px] uppercase tracking-widest text-[#2E6B9E] font-extrabold px-2 py-1 bg-[#2E6B9E]/10 rounded inline-block">Direct Inquiry Desk</span>
-              <h4 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#1B3A5C] leading-tight mt-1">Start Your Build Journey</h4>
+              <span className="text-[9px] uppercase tracking-widest text-[#2E6B9E] font-extrabold px-2 py-1 bg-[#2E6B9E]/10 rounded inline-block">Direct Enquiry Desk</span>
+              <h4 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#1B3A5C] leading-tight mt-1">Enquiry Form</h4>
               <p className="text-xs text-slate-500 font-sans leading-relaxed">
-                Select your service, fill in your coordinates, and get a professional response from our coordinator within 24 hours.
+                Fill in your coordinates and requirements, and get a professional response from our coordinator within 24 hours.
               </p>
             </div>
 
@@ -76,9 +78,9 @@ export default function ContactSection() {
                   <CheckCircle2 className="h-10 w-10" />
                 </div>
                 <div>
-                  <h5 className="font-serif text-xl font-bold text-navy">Inquiry Received Successfully!</h5>
+                  <h5 className="font-serif text-xl font-bold text-navy">Enquiry Received Successfully!</h5>
                   <p className="text-xs text-slate-500 font-sans max-w-sm mx-auto mt-1">
-                    Thank you for reaching out. One of our project managers will contact you shortly on your provided phone number.
+                    Thank you for reaching out. One of our project managers will contact you shortly via email or phone callback.
                   </p>
                 </div>
               </div>
@@ -87,7 +89,7 @@ export default function ContactSection() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Your Name</label>
+                    <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Your Name *</label>
                     <input
                       type="text"
                       name="name"
@@ -100,22 +102,7 @@ export default function ContactSection() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Phone Number</label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      required
-                      placeholder="e.g. +91 98450 12345"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full text-xs font-sans px-4 py-3 bg-slate-50 border border-silver focus:border-steel focus:ring-1 focus:ring-steel focus:outline-none rounded-lg text-navy placeholder:text-slate-400 font-medium transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Email Address</label>
+                    <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Email Address *</label>
                     <input
                       type="email"
                       name="email"
@@ -126,26 +113,55 @@ export default function ContactSection() {
                       className="w-full text-xs font-sans px-4 py-3 bg-slate-50 border border-silver focus:border-steel focus:ring-1 focus:ring-steel focus:outline-none rounded-lg text-navy placeholder:text-slate-400 font-medium transition-colors"
                     />
                   </div>
+                </div>
 
-                  <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Service Required</label>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="space-y-1.5 sm:col-span-1">
+                    <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Phone Number (Optional)</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="e.g. +91 98450 12345"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full text-xs font-sans px-4 py-3 bg-slate-50 border border-silver focus:border-steel focus:ring-1 focus:ring-steel focus:outline-none rounded-lg text-navy placeholder:text-slate-400 font-medium transition-colors"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5 sm:col-span-1">
+                    <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Property Type *</label>
                     <select
-                      name="service"
-                      value={formData.service}
+                      name="propertyType"
+                      value={formData.propertyType}
                       onChange={handleInputChange}
                       className="w-full text-xs font-sans px-4 py-3 bg-slate-50 border border-silver focus:border-steel focus:outline-none rounded-lg text-navy font-medium transition-colors cursor-pointer"
                     >
-                      <option value="House Construction">House Construction</option>
-                      <option value="Land Sales">Land Sales &amp; Plots</option>
-                      <option value="Ready-Made House">Ready-Made House / Villa</option>
-                      <option value="Materials Supply">Building Materials (Steel, Bricks, Sand)</option>
-                      <option value="Construction Consultation">Free Consultation</option>
+                      <option value="Land">Land</option>
+                      <option value="House">House</option>
+                      <option value="Villa">Villa</option>
+                      <option value="Commercial">Commercial</option>
+                      <option value="Materials">Materials</option>
+                      <option value="General Consultation">General Consultation</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1.5 sm:col-span-1">
+                    <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Consultation Type *</label>
+                    <select
+                      name="consultationType"
+                      value={formData.consultationType}
+                      onChange={handleInputChange}
+                      className="w-full text-xs font-sans px-4 py-3 bg-slate-50 border border-silver focus:border-steel focus:outline-none rounded-lg text-navy font-medium transition-colors cursor-pointer"
+                    >
+                      <option value="Physical Consultation">Physical Consultation</option>
+                      <option value="Online Consultation">Online Consultation</option>
+                      <option value="Property Discussion">Property Discussion</option>
                     </select>
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Message / Requirements</label>
+                  <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Message / Requirements *</label>
                   <textarea
                     name="message"
                     required
@@ -164,7 +180,7 @@ export default function ContactSection() {
 
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                     <p className="text-[10px] text-slate-400 font-sans text-center sm:text-left">
-                      By submitting, you agree to our team contacting you via call or WhatsApp.
+                      By submitting, you agree to our team contacting you via email or callback.
                     </p>
                     <button
                       type="submit"
@@ -172,7 +188,7 @@ export default function ContactSection() {
                       className="w-full sm:w-auto bg-[#2E6B9E] hover:bg-[#1B3A5C] text-white font-sans text-xs uppercase tracking-widest font-extrabold py-4 px-8 rounded-lg shadow-lg hover:shadow-[#2E6B9E]/30 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                     >
                       <Send className="h-4 w-4" />
-                      <span>{isSubmitting ? 'Sending...' : 'Submit Inquiry'}</span>
+                      <span>{isSubmitting ? 'Sending...' : 'Submit Enquiry'}</span>
                     </button>
                   </div>
 
@@ -195,8 +211,8 @@ export default function ContactSection() {
 
           </div>
 
-          {/* CONTACT INFO & SMALL MAP - RIGHT SMALL */}
-          <div className="lg:col-span-4 flex flex-col justify-between space-y-6 bg-navy-deep text-white rounded-2xl shadow-xl border border-teal/20 p-6 relative overflow-hidden">
+          {/* CONTACT INFO & SMALL MAP - LEFT SMALL */}
+          <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-6 bg-navy-deep text-white rounded-2xl shadow-xl border border-teal/20 p-6 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-teal/5 rounded-full blur-2xl pointer-events-none" />
 
             <div className="space-y-6">
@@ -226,7 +242,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="text-[9px] text-slate-400 uppercase tracking-widest font-bold">Helpline</p>
-                    <a href="tel:+918005553429" className="text-[11px] text-slate-200 hover:text-teal transition-colors block mt-0.5 font-sans">
+                    <a href={`tel:+${import.meta.env.VITE_WHATSAPP_NUMBER}`} className="text-[11px] text-slate-200 hover:text-teal transition-colors block mt-0.5 font-sans">
                       +91 800 555 3429
                     </a>
                   </div>
@@ -251,7 +267,7 @@ export default function ContactSection() {
               <span className="text-[9px] text-teal uppercase tracking-widest font-bold block mb-1">Quick Contact Actions</span>
               <div className="grid grid-cols-1 gap-2">
                 <a
-                  href="https://wa.me/918005553429?text=Hello%20DHAYATRADERS,%20I%20am%20interested%20in%20a%20construction%20project/materials."
+                  href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=Hello%20DHAYATRADERS,%20I%20am%20interested%20in%20a%20construction%20project/materials.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white py-2.5 px-4 rounded-lg text-xs font-bold transition-all shadow"
@@ -260,7 +276,7 @@ export default function ContactSection() {
                   <span>WhatsApp Chat</span>
                 </a>
                 <a
-                  href="tel:+918005553429"
+                  href={`tel:+${import.meta.env.VITE_WHATSAPP_NUMBER}`}
                   className="flex items-center justify-center gap-2 bg-steel hover:bg-navy text-white py-2.5 px-4 rounded-lg text-xs font-bold transition-all shadow"
                 >
                   <Phone className="h-4 w-4" />

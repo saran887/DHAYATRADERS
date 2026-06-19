@@ -1,45 +1,22 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Columns, Calendar, MapPin, Eye, Building2, Quote } from 'lucide-react';
-
-// Hardcoded matching the requested project definitions but mapping to our local files
-const PROJECTS_LOCAL_DATA = [
-  {
-    id: 'proj1',
-    title: 'Nandavan Villas Complex',
-    category: 'Luxury Residential',
-    status: 'Completed',
-    location: 'Perundurai Bypass Road, Erode',
-    year: '2025',
-    imageBefore: '/assets/20260610_173450.jpg',
-    imageAfter: '/assets/20260610_173518.jpg',
-    description: 'Transforming 5 acres of undeveloped land into a premium, secure gated layout of modern duplex villas with DTCP approvals and clear water facilities.'
-  },
-  {
-    id: 'proj2',
-    title: 'Dhaya Business Center',
-    category: 'Heavy Commercial Build',
-    status: 'Completed',
-    location: 'Sathy Road, Erode',
-    year: '2024',
-    imageBefore: '/assets/20260610_173945.jpg',
-    imageAfter: '/assets/20260610_173957.jpg',
-    description: 'A multi-tier commercial showroom complex built completely using Dhaya Fe-550 TMT Steel and Grade 53 Cement for strong structural stability.'
-  }
-];
+import { Calendar, MapPin, Eye, Building2, Quote, ChevronDown } from 'lucide-react';
+import { PROJECTS_DATA } from '../data';
 
 export default function ProjectsSection() {
-  const [projectStateState, setProjectStateState] = useState<{ [projectId: string]: 'before' | 'after' }>({
-    proj1: 'after',
-    proj2: 'after'
-  });
+  const [selectedFilter, setSelectedFilter] = useState<'All' | 'Completed' | 'Ongoing'>('All');
 
-  const toggleProjectImage = (id: string) => {
-    setProjectStateState((prev) => ({
-      ...prev,
-      [id]: prev[id] === 'after' ? 'before' : 'after'
-    }));
-  };
+  // Track "showAfter" per project id — default true (show After)
+  const [showAfterMap, setShowAfterMap] = useState<Record<string, boolean>>({});
+  const toggleImage = (id: string) =>
+    setShowAfterMap(prev => ({ ...prev, [id]: !(prev[id] !== false) }));
+
+  const filteredProjects = useMemo(() => {
+    return PROJECTS_DATA.filter((proj) => {
+      if (selectedFilter === 'All') return true;
+      return proj.status === selectedFilter;
+    });
+  }, [selectedFilter]);
 
   return (
     <section id="projects" className="py-14 bg-white relative">
@@ -51,53 +28,68 @@ export default function ProjectsSection() {
         <div className="text-center md:max-w-3xl md:mx-auto space-y-4 mb-8">
           <span className="text-[10px] md:text-xs uppercase tracking-widest text-steel font-extrabold block">LANDMARK DEVELOPMENTS</span>
           <h2 className="font-serif text-3xl md:text-5xl text-navy tracking-tight font-medium">
-            Completed Portfolios (Before &amp; After)
+            Our Landmark Developments
           </h2>
           <div className="w-16 h-1 bg-steel mx-auto rounded-full" />
           <p className="font-sans text-xs sm:text-sm text-slate-500 leading-relaxed">
-            Witness the transformation. Click high-contrast toggles on each project sheet to switch between the raw foundation site and our finished architectural masterpieces.
+            Witness the build precision. Explore our premium completed portfolios and ongoing masterworks crafted with certified materials.
           </p>
         </div>
 
-        {/* Projects comparison sheets */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {PROJECTS_LOCAL_DATA.map((proj) => {
-            const activeState = projectStateState[proj.id] || 'after';
-            const showsAfter = activeState === 'after';
+        {/* Projects Filter Dropdown */}
+        <div className="flex justify-center mb-10">
+          <div className="relative w-full max-w-xs">
+            <select
+              value={selectedFilter}
+              onChange={(e) => setSelectedFilter(e.target.value as any)}
+              className="w-full text-xs sm:text-sm font-sans px-4 py-3.5 bg-white border border-steel text-steel font-bold rounded-xl cursor-pointer shadow-premium hover:shadow-premium-hover focus:outline-none appearance-none transition-all duration-300 pr-10"
+            >
+              <option value="All">All Projects</option>
+              <option value="Completed">Completed Projects</option>
+              <option value="Ongoing">Ongoing Projects</option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-steel">
+              <ChevronDown className="h-4 w-4" />
+            </div>
+          </div>
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {filteredProjects.map((proj) => {
+            const showAfter = showAfterMap[proj.id] !== false; // default: show After
             return (
               <div
                 key={proj.id}
                 className="rounded-3xl overflow-hidden shadow-premium hover:shadow-premium-hover border border-silver flex flex-col bg-silver/20 hover-card-trigger"
               >
-                {/* Visual comparator frame */}
-                <div className="aspect-video w-full relative overflow-hidden bg-navy-deep group">
-                  {/* Stacked before and after images with absolute positioning for crossfade */}
-                  <div className="absolute inset-0 w-full h-full">
-                    <img
-                      src={proj.imageBefore}
-                      alt={`${proj.title} Before`}
-                      className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ease-in-out"
-                      style={{ opacity: showsAfter ? 0 : 1 }}
-                      loading="lazy"
-                      width={800}
-                      height={500}
-                    />
-                    <img
-                      src={proj.imageAfter}
-                      alt={`${proj.title} After`}
-                      className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ease-in-out"
-                      style={{ opacity: showsAfter ? 1 : 0 }}
-                      loading="lazy"
-                      width={800}
-                      height={500}
-                    />
-                  </div>
+                {/* Image area with Before/After toggle */}
+                <div className="aspect-video w-full relative overflow-hidden bg-navy-deep">
 
-                  {/* Backdrop shading for contrast */}
+                  {/* Before image */}
+                  <img
+                    src={proj.image}
+                    alt={`${proj.title} — Before`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${showAfter ? 'opacity-0' : 'opacity-100'}`}
+                    loading="lazy"
+                    width={800}
+                    height={500}
+                  />
+                  {/* After image */}
+                  <img
+                    src={proj.image}
+                    alt={`${proj.title} — After`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${showAfter ? 'opacity-100' : 'opacity-0'}`}
+                    loading="lazy"
+                    width={800}
+                    height={500}
+                  />
+
+                  {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-transparent to-transparent pointer-events-none" />
 
-                  {/* Header metadata tag */}
-                  <div className="absolute top-4 left-4 flex gap-2">
+                  {/* Top-left: category + standard badges */}
+                  <div className="absolute top-4 left-4 flex gap-2 z-10">
                     <span className="text-[9px] uppercase tracking-wider font-extrabold px-2.5 py-1.5 rounded bg-[#0D2136]/90 backdrop-blur-md text-white border border-white/10 shadow-lg">
                       {proj.category}
                     </span>
@@ -106,49 +98,33 @@ export default function ProjectsSection() {
                     </span>
                   </div>
 
-                  {/* Dynamic COMPARISON TACTILE CONTROLS */}
-                  <div className="absolute top-4 right-4 flex items-center bg-[#0D2136]/90 backdrop-blur-md rounded-lg p-1 border border-white/10 shadow-lg z-10">
-                    <button
-                      onClick={() => setProjectStateState((prev) => ({ ...prev, [proj.id]: 'before' }))}
-                      className={`text-[9px] uppercase tracking-widest font-extrabold px-3 py-1.5 rounded-md transition-all cursor-pointer ${!showsAfter ? 'bg-white text-navy shadow-lg' : 'text-slate-400 hover:text-white'
-                        }`}
-                    >
-                      Before
-                    </button>
-                    <button
-                      onClick={() => setProjectStateState((prev) => ({ ...prev, [proj.id]: 'after' }))}
-                      className={`text-[9px] uppercase tracking-widest font-extrabold px-3 py-1.5 rounded-md transition-all cursor-pointer ${showsAfter ? 'bg-white text-navy shadow-lg' : 'text-slate-400 hover:text-white'
-                        }`}
-                    >
-                      After Build
-                    </button>
-                  </div>
-
-                  {/* Interactive toggle prompt overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-navy-deep/35 pointer-events-none z-10">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleProjectImage(proj.id);
-                      }}
-                      className="bg-steel hover:bg-navy text-white font-sans text-[10px] uppercase tracking-widest font-extrabold py-3 px-6 rounded-full shadow-2xl flex items-center gap-2 border border-white/20 transition-all pointer-events-auto cursor-pointer transform hover:scale-103"
-                    >
-                      <Columns className="h-3.5 w-3.5 shrink-0" />
-                      <span>Toggle {showsAfter ? 'Original Plot' : 'Completed Build'}</span>
-                    </button>
-                  </div>
-
-                  {/* Floating active image caption */}
-                  <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end z-10">
-                    <div>
-                      <p className="text-[9px] text-teal uppercase tracking-widest font-extrabold">Active State View</p>
-                      <h4 className="text-white font-serif text-lg font-bold">
-                        {showsAfter ? 'Completed Luxury Landmark' : 'Heavy Ground Site Excavations'}
-                      </h4>
-                    </div>
-                    <span className="text-[10px] bg-white/10 backdrop-blur-sm border border-white/10 rounded px-2 py-1 text-slate-300 font-serif lowercase">
-                      {showsAfter ? 'view: after' : 'view: foundation'}
+                  {/* Top-right: status badge */}
+                  <div className="absolute top-4 right-4 z-10">
+                    <span className={`text-[10px] uppercase tracking-widest font-extrabold px-3 py-1.5 rounded-lg text-white shadow-md border border-white/10 ${
+                      proj.status === 'Completed' ? 'bg-emerald-600' : 'bg-blue-600'
+                    }`}>
+                      {proj.status}
                     </span>
+                  </div>
+
+                  {/* Bottom-center: Before / After pill toggle */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20">
+                    <button
+                      onClick={() => toggleImage(proj.id)}
+                      className="flex items-center bg-[#0D2136]/80 backdrop-blur-md border border-white/20 rounded-full p-1 shadow-lg cursor-pointer"
+                      aria-label="Toggle Before/After image"
+                    >
+                      <span className={`text-[10px] font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-full transition-all duration-300 ${
+                        !showAfter ? 'bg-white text-navy shadow' : 'text-white/50'
+                      }`}>
+                        Before
+                      </span>
+                      <span className={`text-[10px] font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-full transition-all duration-300 ${
+                        showAfter ? 'bg-teal text-white shadow' : 'text-white/50'
+                      }`}>
+                        After
+                      </span>
+                    </button>
                   </div>
                 </div>
 
@@ -176,26 +152,24 @@ export default function ProjectsSection() {
                     </p>
                   </div>
 
-                  {/* Custom transform quotes */}
-                  <div className="bg-steel/5 border border-steel/10 rounded-2xl p-4.5 space-y-2">
+                  {/* Quote */}
+                  <div className="bg-steel/5 border border-steel/10 rounded-2xl p-4 space-y-2">
                     <div className="flex gap-2">
                       <Quote className="h-4 w-4 text-steel font-bold shrink-0 mt-0.5" />
                       <p className="text-[11px] italic text-slate-600 leading-relaxed font-sans">
-                        {showsAfter
-                          ? '"Dhaya Traders supplied all raw materials on time, ensuring strong foundation and quick structural completion."'
-                          : '"Excavation phase involved clearing site foundation and implementing proper structural base."'}
+                        "Dhaya Traders supplied all raw materials on time, ensuring strong foundation and quick structural completion."
                       </p>
                     </div>
                   </div>
 
-                  {/* Navigation click trigger */}
+                  {/* Footer */}
                   <div className="pt-4 border-t border-silver flex items-center justify-between">
                     <span className="text-[10px] uppercase tracking-widest text-teal font-bold">Trading Integration Portfolio</span>
                     <Link
                       to="/contact"
                       className="text-[11px] font-sans font-bold uppercase tracking-wider text-steel hover:text-navy transition-colors flex items-center gap-1.5 cursor-pointer"
                     >
-                      <span>Inquire about this pipeline</span>
+                      <span>Submit Enquiry</span>
                       <Eye className="h-3.5 w-3.5" />
                     </Link>
                   </div>

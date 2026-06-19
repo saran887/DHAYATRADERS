@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { X, Calendar, Clock, Sparkles, User, Mail, Phone, IndianRupee, CheckCircle2 } from 'lucide-react';
+import { X, Sparkles, User, Mail, CheckCircle2 } from 'lucide-react';
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -11,11 +11,11 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
-    concept: 'House Construction',
-    budget: '₹25 Lakhs - ₹1 Crore',
+    propertyType: 'Land',
+    consultationType: 'Physical Consultation',
     date: '',
-    time: '10:00'
+    time: '',
+    message: ''
   });
 
   const [submitting, setSubmitting] = useState(false);
@@ -23,7 +23,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.phone || !formData.date) return;
+    if (!formData.name || !formData.email || !formData.message) return;
 
     setSubmitting(true);
     setTimeout(() => {
@@ -35,17 +35,17 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
         setFormData({
           name: '',
           email: '',
-          phone: '',
-          concept: 'House Construction',
-          budget: '₹25 Lakhs - ₹1 Crore',
+          propertyType: 'Land',
+          consultationType: 'Physical Consultation',
           date: '',
-          time: '10:00'
+          time: '',
+          message: ''
         });
-      }, 4500);
+      }, 4000);
     }, 1500);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -60,13 +60,15 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
         className="absolute inset-0 bg-navy-deep/80 backdrop-blur-md" 
       />
 
-      {/* Modal Dialog */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 15 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 15 }}
-        className="glass-card-dark max-w-lg w-full rounded-2xl overflow-hidden shadow-2xl border border-teal/25 text-white p-6 relative z-10"
-      >
+{/* Modal Dialog */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 15 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 15 }}
+          className="glass-card-dark max-w-lg w-full rounded-2xl overflow-hidden shadow-2xl border border-teal/25 text-white p-6 relative z-10"
+          role="dialog"
+          aria-modal="true"
+        >
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -85,10 +87,10 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
               <h4 className="font-serif text-2xl font-bold">Consultation Confirmed!</h4>
               <p className="text-xs text-teal uppercase tracking-widest font-extrabold">Docket Ref: #DH-{(Math.floor(Math.random() * 90000) + 10000)}</p>
               <p className="text-xs text-slate-300 font-sans max-w-sm mx-auto leading-relaxed pt-2">
-                Dear <span className="font-semibold text-white">{formData.name}</span>, your digital brief matching category <span className="font-semibold text-white">{formData.concept}</span> for <span className="font-semibold text-white">{formData.date}</span> at <span className="font-semibold text-white">{formData.time}</span> is officially processed.
+                Dear <span className="font-semibold text-white">{formData.name}</span>, your consultation request regarding <span className="font-semibold text-white">{formData.propertyType}</span> ({formData.consultationType}) has been received successfully.
               </p>
               <p className="text-[10px] text-slate-400 pt-2 block">
-                A senior planning partner will contact your voice registry directly. Check secure invitations routed to {formData.email}.
+                A senior coordinator will contact you shortly via email at {formData.email} to schedule your session.
               </p>
             </div>
           </div>
@@ -97,11 +99,11 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
             {/* Modal Title */}
             <div>
               <span className="text-[10px] text-teal uppercase tracking-widest font-extrabold block flex items-center gap-1.5">
-                <Sparkles className="h-3.5 w-3.5" /> SOVEREIGN PLANNING SCHEDULER
+                <Sparkles className="h-3.5 w-3.5" /> Professional Consultation Request
               </span>
-              <h3 className="font-serif text-xl md:text-3xl font-bold leading-tight mt-1">Book Custom Consultation</h3>
+              <h3 className="font-serif text-xl md:text-3xl font-bold leading-tight mt-1">Book Consultation</h3>
               <p className="text-xs text-slate-300 font-sans leading-relaxed mt-1">
-                Align with senior partners inside our Meridian plaza offices. Direct integration with calendar databases ensures slots reservation.
+                Align with senior partners for your property, building construction, or materials requirement. Fill out this brief form to proceed.
               </p>
             </div>
 
@@ -110,7 +112,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
               
               <div className="space-y-1">
                 <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
-                  <User className="h-3 w-3 text-teal" /> Client Full Name
+                  <User className="h-3 w-3 text-teal" /> Full Name *
                 </label>
                 <input
                   type="text"
@@ -123,106 +125,103 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
-                    <Mail className="h-3 w-3 text-teal" /> Secure Email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    placeholder="e.g. rajesh@gmail.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
-                  />
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
-                    <Phone className="h-3 w-3 text-teal" /> Mobile Helpline
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    required
-                    placeholder="e.g. +91 98450 12345"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
-                  />
-                </div>
+              <div className="space-y-1">
+                <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
+                  <Mail className="h-3 w-3 text-teal" /> Email Address *
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="e.g. rajesh@gmail.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
+                />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
-                    Concept Scope
+                    Property Type *
                   </label>
                   <select
-                    name="concept"
-                    value={formData.concept}
+                    name="propertyType"
+                    value={formData.propertyType}
                     onChange={handleChange}
                     className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white font-medium cursor-pointer"
                   >
-                    <option value="House Construction" className="bg-navy-deep text-white">House Construction</option>
-                    <option value="Land Sales" className="bg-navy-deep text-white">Land Acquisition</option>
-                    <option value="Ready-Made House" className="bg-navy-deep text-white">Ready-Made Duplex</option>
-                    <option value="Materials Supply" className="bg-navy-deep text-white">Materials Sourcing</option>
-                    <option value="Consultation" className="bg-navy-deep text-white">Feasibility consulting</option>
+                    <option value="Land" className="bg-[#0d2136] text-white">Land</option>
+                    <option value="House" className="bg-[#0d2136] text-white">House</option>
+                    <option value="Villa" className="bg-[#0d2136] text-white">Villa</option>
+                    <option value="Commercial" className="bg-[#0d2136] text-white">Commercial</option>
+                    <option value="Materials" className="bg-[#0d2136] text-white">Materials</option>
+                    <option value="General Consultation" className="bg-[#0d2136] text-white">General Consultation</option>
                   </select>
                 </div>
 
                 <div className="space-y-1">
                   <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
-                    <IndianRupee className="h-3 w-3 text-teal" /> Estimated Budget
+                    Consultation Type *
                   </label>
                   <select
-                    name="budget"
-                    value={formData.budget}
+                    name="consultationType"
+                    value={formData.consultationType}
                     onChange={handleChange}
                     className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white font-medium cursor-pointer"
                   >
-                    <option value="Under ₹25 Lakhs" className="bg-navy-deep text-white">Under ₹25 Lakhs</option>
-                    <option value="₹25 Lakhs - ₹1 Crore" className="bg-navy-deep text-white">₹25 Lakhs - ₹1 Crore</option>
-                    <option value="Over ₹1 Crore" className="bg-navy-deep text-white">Over ₹1 Crore</option>
+                    <option value="Physical Consultation" className="bg-[#0d2136] text-white">Physical Consultation</option>
+                    <option value="Online Consultation" className="bg-[#0d2136] text-white">Online Consultation</option>
+                    <option value="Property Discussion" className="bg-[#0d2136] text-white">Property Discussion</option>
                   </select>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
-                    <Calendar className="h-3 w-3 text-teal" /> Select Date Target
+                  <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold" htmlFor="date">
+                    Date *
                   </label>
                   <input
                     type="date"
                     name="date"
+                    id="date"
                     required
                     value={formData.date}
                     onChange={handleChange}
-                    className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white cursor-pointer"
+                    className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
-                    <Clock className="h-3 w-3 text-teal" /> Select Time Slot
+                  <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold" htmlFor="time">
+                    Time *
                   </label>
-                  <select
+                  <input
+                    type="time"
                     name="time"
+                    id="time"
+                    required
                     value={formData.time}
                     onChange={handleChange}
-                    className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white font-medium cursor-pointer"
-                  >
-                    <option value="09:00" className="bg-navy-deep text-white">09:00 AM</option>
-                    <option value="11:00" className="bg-navy-deep text-white">11:00 AM</option>
-                    <option value="13:00" className="bg-navy-deep text-white">01:00 PM</option>
-                    <option value="15:00" className="bg-navy-deep text-white">03:00 PM</option>
-                    <option value="17:00" className="bg-navy-deep text-white">05:00 PM</option>
-                  </select>
+                    className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
+                  />
                 </div>
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold">
+                  Message *
+                </label>
+                <textarea
+                  name="message"
+                  required
+                  rows={3}
+                  placeholder="Specify details about your requirement..."
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 resize-none transition-colors"
+                />
               </div>
 
               <div className="flex gap-3 pt-4">
@@ -239,7 +238,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                   disabled={submitting}
                   className="w-1/2 text-center bg-teal hover:bg-white text-navy-deep font-sans text-xs uppercase tracking-widest font-extrabold py-3.5 rounded-lg transition-colors cursor-pointer disabled:opacity-50"
                 >
-                  {submitting ? 'Registering...' : 'Reserve Slot'}
+                  {submitting ? 'Registering...' : 'Book Consultation'}
                 </button>
               </div>
 

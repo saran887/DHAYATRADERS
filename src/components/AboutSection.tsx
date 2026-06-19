@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Award, Compass, ShieldCheck, Milestone } from 'lucide-react';
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import useScrollReveal from '../hooks/useScrollReveal';
 
 export default function AboutSection() {
@@ -51,6 +52,22 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="py-14 bg-white relative overflow-hidden" ref={revealRef}>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+              "@type": "Question",
+              "name": "What materials does DHAYATRADERS supply?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Fe-550 TMT steel, river sand, red clay bricks, OPC 53 cement, and other premium construction materials."
+              }
+            }]
+          })}
+        </script>
+      </Helmet>
       <div className="absolute top-0 right-0 w-96 h-96 bg-steel-radial opacity-20 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-10 relative z-10">

@@ -6,7 +6,7 @@ import AboutSection from '../components/AboutSection';
 import WhyChooseUs from '../components/WhyChooseUs';
 import TestimonialsSection from '../components/TestimonialsSection';
 
-export default function Home() {
+export default function Home({ onOpenConsultation }: { onOpenConsultation: () => void }) {
   const navigate = useNavigate();
 
   return (
@@ -17,13 +17,16 @@ export default function Home() {
         <meta name="keywords" content="construction company Tamil Nadu, land sales Tamil Nadu, TMT steel supply, building materials Tamil Nadu, luxury villas, house construction, Dhaya Traders" />
         <meta property="og:title" content="DHAYATRADERS – Building Prosperity, Trusted Global Trading" />
         <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DHAYATRADERS | Premium Construction & Land Sales Tamil Nadu" />
+        <meta name="twitter:image" content="https://dhayatraders.com/assets/og-image.webp" />
         <link rel="canonical" href="https://dhayatraders.com/" />
       </Helmet>
 
       <Hero 
         onExploreProperties={() => navigate('/properties')}
         onGetMaterialsQuote={() => navigate('/materials')}
-        onBookSiteVisit={() => navigate('/contact')}
+        onBookConsultation={onOpenConsultation}
       />
       <AboutSection />
       <WhyChooseUs />

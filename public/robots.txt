@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /private/
+Sitemap: https://dhayatraders.com/sitemap.xml
+Crawl-delay: 10

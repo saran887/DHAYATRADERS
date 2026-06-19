@@ -42,8 +42,7 @@ export interface Project {
   status: 'Completed' | 'Ongoing';
   location: string;
   year: string;
-  imageBefore: string;
-  imageAfter: string;
+  image: string;
   description: string;
 }
 

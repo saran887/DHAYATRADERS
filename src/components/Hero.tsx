@@ -5,31 +5,37 @@ import { ShieldCheck, MapPin, Award, ArrowRight } from 'lucide-react';
 interface HeroProps {
   onExploreProperties: () => void;
   onGetMaterialsQuote: () => void;
-  onBookSiteVisit: () => void;
+  onBookConsultation: () => void;
 }
 
 const HERO_SLIDES = [
   {
-    image: '/assets/20260610_173338.jpg',
+    image: '/assets/20260610_173338.webp',
+    image400: '/assets/20260610_173338-400.webp',
+    image800: '/assets/20260610_173338-800.webp',
     title: 'Architectural Excellence',
     tagline: 'Designing residences that stand the test of time and weather.',
     badge: 'Luxury Real Estate'
   },
   {
-    image: '/assets/20260610_173341.jpg',
+    image: '/assets/20260610_173341.webp',
+    image400: '/assets/20260610_173341-400.webp',
+    image800: '/assets/20260610_173341-800.webp',
     title: 'Direct Sourcing, Absolute Quality',
     tagline: 'Direct-to-site structural metals, clinker cements, and premium sands.',
     badge: 'Industrial Metals & Bricks'
   },
   {
-    image: '/assets/20260610_173443.jpg',
+    image: '/assets/20260610_173443.webp',
+    image400: '/assets/20260610_173443-400.webp',
+    image800: '/assets/20260610_173443-800.webp',
     title: 'DTCP Approved Land Plots',
     tagline: '100% verified clear title land plots in high-growth investment areas.',
     badge: 'Prime Land Plots'
   }
 ];
 
-export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookSiteVisit }: HeroProps) {
+export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookConsultation }: HeroProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -46,14 +52,17 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookS
       {/* Background Slides with smooth crossfade */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
-          <motion.div
+          <motion.img
             key={currentSlide}
             initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 0.65, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.5, ease: 'easeInOut' }}
-            className="absolute inset-0 w-full h-full bg-cover bg-center"
-            style={{ backgroundImage: `url('${HERO_SLIDES[currentSlide].image}')` }}
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            src={HERO_SLIDES[currentSlide].image}
+            srcSet={`${HERO_SLIDES[currentSlide].image400} 400w, ${HERO_SLIDES[currentSlide].image800} 800w, ${HERO_SLIDES[currentSlide].image} 1200w`}
+            sizes="(max-width: 600px) 400px, 800px"
+            alt={HERO_SLIDES[currentSlide].title}
           />
         </AnimatePresence>
 
@@ -122,10 +131,10 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookS
               </button>
 
               <button
-                onClick={onBookSiteVisit}
+                onClick={onBookConsultation}
                 className="group flex items-center justify-center gap-2 bg-[#4AABB8] hover:bg-[#3d919c] text-[#0D2136] font-sans text-xs uppercase tracking-widest font-extrabold py-4 px-8 rounded-lg shadow-lg hover:shadow-[#4AABB8]/50 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
               >
-                <span>Book Site Visit</span>
+                <span>Book Consultation</span>
               </button>
 
               <button
@@ -143,7 +152,7 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookS
                 <p className="text-[10px] text-slate-200 uppercase tracking-widest font-bold">Trusted</p>
               </div>
               <div className="p-3 bg-white/10 rounded-lg border border-white/20 backdrop-blur-md">
-                <p className="text-xl md:text-2xl font-serif text-teal font-bold" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.8)' }}>1000+</p>
+                <p className="text-xl md:text-2xl font-serif text-teal font-bold" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.8)' }}>100%</p>
                 <p className="text-[10px] text-slate-200 uppercase tracking-widest font-bold">Happy Customers</p>
               </div>
             </div>

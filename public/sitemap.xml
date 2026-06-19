@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Home Page -->
+  <url>
+    <loc>https://dhayatraders.com/</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://dhayatraders.com/assets/20260610_173338.webp</image:loc>
+      <image:title>DHAYATRADERS Architectural Excellence</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://dhayatraders.com/assets/20260610_173341.webp</image:loc>
+      <image:title>DHAYATRADERS Direct Sourcing Quality Materials</image:title>
+    </image:image>
+  </url>
+  <!-- Services Page -->
+  <url>
+    <loc>https://dhayatraders.com/services</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Properties Page -->
+  <url>
+    <loc>https://dhayatraders.com/properties</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://dhayatraders.com/assets/20260610_173443.webp</image:loc>
+      <image:title>Prime Gated Plots Layout - DHAYATRADERS</image:title>
+    </image:image>
+  </url>
+  <!-- Materials Page -->
+  <url>
+    <loc>https://dhayatraders.com/materials</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Projects Page -->
+  <url>
+    <loc>https://dhayatraders.com/projects</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://dhayatraders.com/assets/20260610_173518.webp</image:loc>
+      <image:title>Nandavan Villas Completed Project</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://dhayatraders.com/assets/20260610_173957.webp</image:loc>
+      <image:title>Dhaya Business Center Completed Project</image:title>
+    </image:image>
+  </url>
+  <!-- Contact Page / Enquiry -->
+  <url>
+    <loc>https://dhayatraders.com/contact</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <!-- Blog Page -->
+  <url>
+    <loc>https://dhayatraders.com/blog</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>

@@ -1,10 +1,10 @@
 import { useState, Suspense, lazy } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import ScrollToTop from './components/ScrollToTop';
 import PageLoader from './components/PageLoader';
 import ConsultationModal from './components/ConsultationModal';
-import { ShieldCheck, Phone, Mail, Clock, Award, MessageCircle } from 'lucide-react';
+import { ShieldCheck, Phone, Mail, Award, MessageCircle } from 'lucide-react';
 
 // Lazy load all 6 pages
 const Home = lazy(() => import('./pages/Home'));
@@ -13,9 +13,12 @@ const Properties = lazy(() => import('./pages/Properties'));
 const Materials = lazy(() => import('./pages/Materials'));
 const Projects = lazy(() => import('./pages/Projects'));
 const Contact = lazy(() => import('./pages/Contact'));
+const Blog = lazy(() => import('./pages/Blog'));
 
 export default function App() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   return (
     <div className="min-h-screen bg-gray-light flex flex-col text-navy-deep">
@@ -23,19 +26,26 @@ export default function App() {
       {/* Scroll to top component */}
       <ScrollToTop />
 
+      {/* Skip link for accessibility */}
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-white focus:text-navy-deep focus:px-4 focus:py-2 focus:rounded focus:shadow-lg focus:z-50">
+        Skip to main content
+      </a>
+
       {/* Sticky Premium Navbar */}
       <Navbar onOpenConsultation={() => setIsConsultationOpen(true)} />
 
       {/* Main Pages with Suspense Loader */}
-      <main className="flex-grow">
+      <main id="main" className={`flex-grow ${isHomePage ? '' : 'pt-24 lg:pt-28'}`}>
         <Suspense fallback={<PageLoader />}>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home onOpenConsultation={() => setIsConsultationOpen(true)} />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/properties" element={<Properties />} />
+            <Route path="/properties" element={<Properties onOpenConsultation={() => setIsConsultationOpen(true)} />} />
             <Route path="/materials" element={<Materials />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<Blog />} />
           </Routes>
         </Suspense>
       </main>
@@ -50,11 +60,14 @@ export default function App() {
             {/* Column 1 - Brand Slogan */}
             <div className="md:col-span-4 space-y-4 text-left">
               <div className="flex items-center gap-3">
-                <img
-                  src="/assets/logo.png"
-                  alt="DHAYATRADERS Logo"
-                  className="h-10 w-10 rounded-full object-cover bg-white border border-steel/30 shadow-sm"
-                />
+                <div className="h-14 w-14 flex items-center justify-center p-1.5 bg-white border border-steel/30 rounded-lg shadow-sm overflow-visible">
+                  <img
+                    src="../assets/Logo.png"
+                    alt="DHAYATRADERS Logo"
+                    draggable={false}
+                    className="w-full h-full object-contain select-none"
+                  />
+                </div>
                 <h4 className="font-serif text-xl font-bold tracking-wider text-white">DHAYATRADERS</h4>
               </div>
               <p className="text-xs text-slate-200 font-sans font-bold">
@@ -87,18 +100,18 @@ export default function App() {
                   <Link to="/projects" className="hover:text-white transition-colors">Projects</Link>
                 </li>
                 <li>
-                  <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
+                  <Link to="/contact" className="hover:text-white transition-colors">Enquiry</Link>
                 </li>
               </ul>
             </div>
 
-            {/* Column 3 - Quick Contact Actions */}
+            {/* Column 3 - Quick Enquiry Actions */}
             <div className="md:col-span-3 space-y-4 text-left">
-              <h5 className="text-xs uppercase tracking-widest font-extrabold text-teal font-sans">Quick Contact</h5>
+              <h5 className="text-xs uppercase tracking-widest font-extrabold text-teal font-sans">Quick Enquiry</h5>
               <ul className="grid grid-cols-1 gap-3 text-xs text-slate-400 font-semibold font-sans">
                 <li>
                   <a
-                    href="https://wa.me/918005553429?text=Hello%20DHAYATRADERS,%20I%20am%20interested%20in%20a%20construction%20project/materials."
+                    href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=Hello%20DHAYATRADERS,%20I%20am%20interested%20in%20a%20construction%20project/materials.`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-teal transition-colors flex items-center gap-2"
@@ -108,7 +121,7 @@ export default function App() {
                   </a>
                 </li>
                 <li>
-                  <a href="tel:+918005553429" className="hover:text-teal transition-colors flex items-center gap-2">
+                  <a href={`tel:+${import.meta.env.VITE_WHATSAPP_NUMBER}`} className="hover:text-teal transition-colors flex items-center gap-2">
                     <Phone className="h-4 w-4 text-teal shrink-0" />
                     <span>Call Now</span>
                   </a>

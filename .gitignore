@@ -6,3 +6,16 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Storybook
+storybook-static/
+
+# IDE / Editors
+.vscode/
+.idea/
+
+# Package logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

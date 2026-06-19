@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Eye, Image as ImageIcon, Filter, X } from 'lucide-react';
+import { Eye, Filter, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import RevealCard from './RevealCard';
 
