@@ -92,8 +92,8 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
                 className="w-20 h-20 object-contain select-none"
                 loading="eager"
                 fetchPriority="high"
-                width={80}
-                height={80}
+                width={70}
+                height={70}
               />
             </div>
 
@@ -102,8 +102,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
               DHAYATRADERS
             </h1>
             <p className="text-[8px] md:text-[9px] text-teal uppercase tracking-widest font-semibold mt-0.5 leading-none">
-              Trusted Building &amp; Property Solutions
-            </p>
+              Building Property &amp; Trusted Trading             </p>
           </div>
         </Link>
 
@@ -143,7 +142,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
             onClick={onOpenConsultation}
             className="bg-steel hover:bg-navy text-white text-[10px] uppercase font-extrabold px-3 py-2 rounded-md transition-colors cursor-pointer"
           >
-            Book Consultation
+            Book Consult
           </button>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

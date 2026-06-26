@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Send, CheckCircle2, MessageCircle } from 'lucide-react';
+import DatePicker from './DatePicker';
+import TimePicker from './TimePicker';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -8,6 +10,8 @@ export default function ContactSection() {
     phone: '',
     propertyType: 'Land',
     consultationType: 'Physical Consultation',
+    date: '',
+    time: '',
     message: ''
   });
 
@@ -30,6 +34,8 @@ export default function ContactSection() {
           phone: '',
           propertyType: 'Land',
           consultationType: 'Physical Consultation',
+          date: '',
+          time: '',
           message: ''
         });
       }, 4000);
@@ -158,6 +164,22 @@ export default function ContactSection() {
                       <option value="Property Discussion">Property Discussion</option>
                     </select>
                   </div>
+                </div>
+
+                {/* Preferred Date & Time row */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <DatePicker
+                    value={formData.date}
+                    onChange={(d) => setFormData(prev => ({ ...prev, date: d }))}
+                    label="Preferred Date"
+                    dark={false}
+                  />
+                  <TimePicker
+                    value={formData.time}
+                    onChange={(t) => setFormData(prev => ({ ...prev, time: t }))}
+                    label="Preferred Time"
+                    dark={false}
+                  />
                 </div>
 
                 <div className="space-y-1.5">

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { X, Sparkles, User, Mail, CheckCircle2 } from 'lucide-react';
+import DatePicker from './DatePicker';
+import TimePicker from './TimePicker';
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -178,35 +180,20 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold" htmlFor="date">
-                    Date *
-                  </label>
-                  <input
-                    type="date"
-                    name="date"
-                    id="date"
-                    required
-                    value={formData.date}
-                    onChange={handleChange}
-                    className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
-                  />
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold" htmlFor="time">
-                    Time *
-                  </label>
-                  <input
-                    type="time"
-                    name="time"
-                    id="time"
-                    required
-                    value={formData.time}
-                    onChange={handleChange}
-                    className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
-                  />
-                </div>
+                <DatePicker
+                  value={formData.date}
+                  onChange={(d) => setFormData(prev => ({ ...prev, date: d }))}
+                  label="Date"
+                  required
+                  dark
+                />
+                <TimePicker
+                  value={formData.time}
+                  onChange={(t) => setFormData(prev => ({ ...prev, time: t }))}
+                  label="Time"
+                  required
+                  dark
+                />
               </div>
 
               <div className="space-y-1">
