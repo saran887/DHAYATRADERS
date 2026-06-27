@@ -62,15 +62,15 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
         className="absolute inset-0 bg-navy-deep/80 backdrop-blur-md" 
       />
 
-{/* Modal Dialog */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 15 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 15 }}
-          className="glass-card-dark max-w-lg w-full rounded-2xl overflow-hidden shadow-2xl border border-teal/25 text-white p-6 relative z-10"
-          role="dialog"
-          aria-modal="true"
-        >
+      {/* Modal Dialog */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 15 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 15 }}
+        className="glass-card-dark max-w-lg w-full rounded-2xl shadow-2xl border border-teal/25 text-white p-5 sm:p-6 relative z-10 max-h-[90vh] overflow-y-auto"
+        role="dialog"
+        aria-modal="true"
+      >
         {/* Close Button */}
         <button
           onClick={onClose}
