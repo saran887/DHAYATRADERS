@@ -67,7 +67,7 @@ export default React.memo(function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="py-14 bg-gradient-to-b from-gray-light to-white relative">
+    <section id="services" className="py-8 md:py-14 bg-gradient-to-b from-gray-light to-white relative">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-10">
 
         {/* Section Header */}

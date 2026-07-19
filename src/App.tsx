@@ -37,7 +37,7 @@ export default function App() {
       <Navbar onOpenConsultation={() => setIsConsultationOpen(true)} />
 
       {/* Main Pages with Suspense Loader */}
-      <main id="main" className={`flex-grow min-h-[85vh] ${isHomePage ? '' : 'pt-24 lg:pt-28'}`}>
+      <main id="main" className={`flex-grow min-h-[85vh] ${isHomePage ? '' : 'pt-20 lg:pt-24'}`}>
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<Home onOpenConsultation={() => setIsConsultationOpen(true)} />} />
@@ -55,14 +55,14 @@ export default function App() {
       </main>
 
       {/* Persistent Brand Footer */}
-      <footer className="bg-navy-deep text-white pt-14 pb-10 border-t border-steel/30 relative min-h-[360px] md:min-h-[290px]">
+      <footer className="bg-navy-deep text-white pt-8 pb-8 md:pt-12 md:pb-10 border-t border-steel/30 relative">
         <div className="absolute inset-0 bg-steel-radial opacity-10 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-10 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 border-b border-white/10 pb-8 mb-8">
 
             {/* Column 1 - Brand Slogan */}
-            <div className="md:col-span-4 space-y-2.5 text-left">
+            <div className="md:col-span-4 space-y-2.5 text-center md:text-left flex flex-col items-center md:items-start">
               <div className="flex items-center gap-3">
                 <div className="h-12 w-12 flex items-center justify-center bg-white border border-steel/30 rounded-full shadow-sm overflow-hidden shrink-0">
                   <img
@@ -79,15 +79,15 @@ export default function App() {
               <p className="text-[10px] text-teal uppercase tracking-widest font-semibold mt-0.5 leading-none">
                 Building Property &amp; Trusted Trading
               </p>
-              <p className="text-xs text-slate-400 font-sans leading-relaxed pt-1">
+              <p className="hidden md:block text-xs text-slate-400 font-sans leading-relaxed pt-1">
                 Delivering solid house construction, pre-vetted land sales, ready houses, and certified construction materials.
               </p>
             </div>
 
-            {/* Column 2 - Sitemap Links */}
-            <div className="md:col-span-3 space-y-4 text-left">
+            {/* Column 2 - Sitemap Links - Hidden on Mobile */}
+            <div className="hidden md:block md:col-span-3 space-y-4 text-left">
               <h5 className="text-xs uppercase tracking-widest font-extrabold text-teal font-sans">Quick Links</h5>
-              <ul className="grid grid-cols-1 gap-2.5 text-xs text-slate-400 font-semibold font-sans">
+              <ul className="grid grid-cols-2 md:grid-cols-1 gap-2.5 text-xs text-slate-400 font-semibold font-sans">
                 <li>
                   <Link to="/" className="hover:text-white transition-colors">Home</Link>
                 </li>
@@ -110,22 +110,23 @@ export default function App() {
             </div>
 
             {/* Column 3 - Quick Enquiry Actions */}
-            <div className="md:col-span-3 space-y-4 text-left">
+            <div className="md:col-span-3 space-y-4 text-center md:text-left flex flex-col items-center md:items-start w-full">
               <h5 className="text-xs uppercase tracking-widest font-extrabold text-teal font-sans">Quick Enquiry</h5>
-              <ul className="grid grid-cols-1 gap-3 text-xs text-slate-400 font-semibold font-sans">
+              <ul className="grid grid-cols-3 md:grid-cols-1 gap-3 text-xs text-slate-400 font-semibold font-sans w-full justify-items-center">
                 <li>
                   <a
-                    href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=Hello%20DHAYATRADERS,%20I%20am%20interested%20in%20a%20construction%20project/materials.`}
+                    href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918005553429'}?text=Hello%20DHAYA%20TRADERS,%20I%20am%20interested%20in%20a%20construction%20project/materials.`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-teal transition-colors flex items-center gap-2"
                   >
                     <MessageCircle className="h-4 w-4 text-emerald-400 fill-emerald-400/10 shrink-0" />
-                    <span>WhatsApp</span>
+                    <span className="hidden sm:inline">WhatsApp</span>
+                    <span className="inline sm:hidden">Chat</span>
                   </a>
                 </li>
                 <li>
-                  <a href={`tel:+${import.meta.env.VITE_WHATSAPP_NUMBER}`} className="hover:text-teal transition-colors flex items-center gap-2">
+                  <a href={`tel:+${import.meta.env.VITE_WHATSAPP_NUMBER || '918005553429'}`} className="hover:text-teal transition-colors flex items-center gap-2">
                     <Phone className="h-4 w-4 text-teal shrink-0" />
                     <span>Call Now</span>
                   </a>
@@ -139,19 +140,19 @@ export default function App() {
               </ul>
             </div>
 
-            {/* Column 4 - Vetting Certifications */}
-            <div className="md:col-span-2 space-y-4 text-left">
+            {/* Column 4 - Vetting Certifications - Hidden on Mobile */}
+            <div className="hidden md:block md:col-span-2 space-y-4 text-left">
               <h5 className="text-xs uppercase tracking-widest font-extrabold text-teal font-sans">Credentials</h5>
-              <div className="space-y-3">
+              <div className="grid grid-cols-2 md:grid-cols-1 gap-3">
                 <div className="flex gap-2 items-center bg-white/5 border border-white/10 p-2.5 rounded-lg">
                   <ShieldCheck className="h-4.5 w-4.5 text-teal shrink-0" />
-                  <span className="text-[9px] uppercase tracking-widest font-bold text-slate-300 font-sans">
+                  <span className="text-[9px] uppercase tracking-widest font-bold text-slate-300 font-sans truncate">
                     Registry Vetted
                   </span>
                 </div>
                 <div className="flex gap-2 items-center bg-white/5 border border-white/10 p-2.5 rounded-lg">
                   <Award className="h-4.5 w-4.5 text-teal shrink-0" />
-                  <span className="text-[9px] uppercase tracking-widest font-bold text-slate-300 font-sans">
+                  <span className="text-[9px] uppercase tracking-widest font-bold text-slate-300 font-sans truncate">
                     Fe-550 Approved
                   </span>
                 </div>

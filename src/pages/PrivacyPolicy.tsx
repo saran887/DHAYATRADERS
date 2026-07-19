@@ -10,7 +10,7 @@ export default function PrivacyPolicy() {
         <link rel="canonical" href="https://dhayatraders.com/privacy" />
       </Helmet>
 
-      <section className="py-14 sm:py-20 bg-gradient-to-b from-[#0D2136] to-[#1B3A5C] text-white relative overflow-hidden">
+      <section className="py-8 sm:py-16 bg-gradient-to-b from-[#0D2136] to-[#1B3A5C] text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-steel-radial opacity-10 pointer-events-none" />
         <div className="max-w-4xl mx-auto px-6 relative z-10 space-y-8 text-left">
           

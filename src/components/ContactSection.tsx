@@ -269,7 +269,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="text-[9px] text-slate-400 uppercase tracking-widest font-bold">Helpline</p>
-                    <a href={`tel:+${import.meta.env.VITE_WHATSAPP_NUMBER}`} className="text-[11px] text-slate-200 hover:text-teal transition-colors block mt-0.5 font-sans">
+                    <a href={`tel:+${import.meta.env.VITE_WHATSAPP_NUMBER || '918005553429'}`} className="text-[11px] text-slate-200 hover:text-teal transition-colors block mt-0.5 font-sans">
                       +91 800 555 3429
                     </a>
                   </div>
@@ -294,7 +294,7 @@ export default function ContactSection() {
               <span className="text-[9px] text-teal uppercase tracking-widest font-bold block mb-1">Quick Contact Actions</span>
               <div className="grid grid-cols-1 gap-2">
                 <a
-                  href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=Hello%20DHAYATRADERS,%20I%20am%20interested%20in%20a%20construction%20project/materials.`}
+                  href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918005553429'}?text=Hello%20DHAYATRADERS,%20I%20am%20interested%20in%20a%20construction%20project/materials.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white py-2.5 px-4 rounded-lg text-xs font-bold transition-all shadow"
@@ -303,7 +303,7 @@ export default function ContactSection() {
                   <span>WhatsApp Chat</span>
                 </a>
                 <a
-                  href={`tel:+${import.meta.env.VITE_WHATSAPP_NUMBER}`}
+                  href={`tel:+${import.meta.env.VITE_WHATSAPP_NUMBER || '918005553429'}`}
                   className="flex items-center justify-center gap-2 bg-steel hover:bg-navy text-white py-2.5 px-4 rounded-lg text-xs font-bold transition-all shadow"
                 >
                   <Phone className="h-4 w-4" />

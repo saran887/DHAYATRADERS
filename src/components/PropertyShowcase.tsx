@@ -119,7 +119,7 @@ export default React.memo(function PropertyShowcase({ onOpenConsultation }: { on
 
 
   return (
-    <section id="properties" className="py-14 bg-gradient-to-b from-white to-gray-light relative">
+    <section id="properties" className="py-8 md:py-14 bg-gradient-to-b from-white to-gray-light relative">
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-slate-50 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-10 relative z-10">

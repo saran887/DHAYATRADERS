@@ -19,7 +19,7 @@ export default function ProjectsSection() {
   }, [selectedFilter]);
 
   return (
-    <section id="projects" className="py-14 bg-white relative">
+    <section id="projects" className="py-8 md:py-14 bg-white relative">
       <div className="absolute inset-0 bg-steel-radial opacity-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-10 relative z-10">
