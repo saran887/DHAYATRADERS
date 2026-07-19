@@ -51,7 +51,7 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-14 bg-white relative overflow-hidden" ref={revealRef}>
+    <section id="about" className="py-8 md:py-14 bg-white relative overflow-hidden" ref={revealRef}>
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify({

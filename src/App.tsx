@@ -14,6 +14,8 @@ const Materials = lazy(() => import('./pages/Materials'));
 const Projects = lazy(() => import('./pages/Projects'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Blog = lazy(() => import('./pages/Blog'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 
 export default function App() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
@@ -46,6 +48,8 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<Blog />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfService />} />
           </Routes>
         </Suspense>
       </main>
@@ -58,28 +62,26 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 border-b border-white/10 pb-8 mb-8">
 
             {/* Column 1 - Brand Slogan */}
-            <div className="md:col-span-4 space-y-4 text-left">
+            <div className="md:col-span-4 space-y-2.5 text-left">
               <div className="flex items-center gap-3">
                 <div className="h-12 w-12 flex items-center justify-center bg-white border border-steel/30 rounded-full shadow-sm overflow-hidden shrink-0">
                   <img
                     src="/assets/logo.webp?v=2"
-                    alt="DHAYATRADERS Logo"
+                    alt="DHAYA TRADERS Logo"
                     draggable={false}
                     className="w-full h-full object-contain scale-120 select-none"
                     width={48}
                     height={48}
                   />
                 </div>
-                <h4 className="font-serif text-xl font-bold tracking-wider text-white">DHAYATRADERS</h4>
+                <h4 className="font-serif text-xl font-bold tracking-wider text-white">DHAYA TRADERS</h4>
               </div>
-              <p className="text-xs text-slate-200 font-sans font-bold">
-                “Trusted Building &amp; Property Solutions”
+              <p className="text-[10px] text-teal uppercase tracking-widest font-semibold mt-0.5 leading-none">
+                Building Property &amp; Trusted Trading
               </p>
-              <p className="text-xs text-slate-400 font-sans leading-relaxed">
+              <p className="text-xs text-slate-400 font-sans leading-relaxed pt-1">
                 Delivering solid house construction, pre-vetted land sales, ready houses, and certified construction materials.
               </p>
-
-
             </div>
 
             {/* Column 2 - Sitemap Links */}
@@ -161,12 +163,12 @@ export default function App() {
           {/* Bottom Copyright Block */}
           <div className="pt-4 flex flex-col md:flex-row items-center justify-between text-[11px] text-slate-400 gap-4">
             <p className="font-sans text-center md:text-left">
-              © {new Date().getFullYear()} DHAYATRADERS. All rights reserved. Sourced &amp; Engineered with Absolute Precision.
+              © {new Date().getFullYear()} DHAYA TRADERS. All rights reserved. Sourced &amp; Engineered with Absolute Precision.
             </p>
             <div className="flex gap-6 font-sans">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+              <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
               <span>•</span>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+              <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
             </div>
           </div>
         </div>

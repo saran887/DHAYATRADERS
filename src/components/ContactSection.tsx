@@ -48,7 +48,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-14 bg-gradient-to-b from-white to-gray-light relative">
+    <section id="contact" className="py-8 md:py-14 bg-gradient-to-b from-white to-gray-light relative">
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-gray-light to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-10 relative z-10">
@@ -167,19 +167,24 @@ export default function ContactSection() {
                 </div>
 
                 {/* Preferred Date & Time row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <DatePicker
-                    value={formData.date}
-                    onChange={(d) => setFormData(prev => ({ ...prev, date: d }))}
-                    label="Preferred Date"
-                    dark={false}
-                  />
-                  <TimePicker
-                    value={formData.time}
-                    onChange={(t) => setFormData(prev => ({ ...prev, time: t }))}
-                    label="Preferred Time"
-                    dark={false}
-                  />
+                <div className="space-y-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <DatePicker
+                      value={formData.date}
+                      onChange={(d) => setFormData(prev => ({ ...prev, date: d }))}
+                      label="Preferred Date"
+                      dark={false}
+                    />
+                    <TimePicker
+                      value={formData.time}
+                      onChange={(t) => setFormData(prev => ({ ...prev, time: t }))}
+                      label="Preferred Time"
+                      dark={false}
+                    />
+                  </div>
+                  <p className="text-[10px] text-steel font-sans font-semibold">
+                    ⚡ Note: Each date &amp; time slot is reserved for a single person (Individual Consultation).
+                  </p>
                 </div>
 
                 <div className="space-y-1.5">

@@ -48,7 +48,7 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookC
   const headlineWords = "Building Your Future With Trust".split(" ");
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-navy-deep pt-14 md:pt-0">
+    <section id="home" className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-navy-deep pt-10 md:pt-0">
       {/* Background Slides with smooth crossfade */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
@@ -79,7 +79,7 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookC
       <div className="absolute inset-0 bg-steel-radial opacity-20 pointer-events-none z-1" />
 
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-10 py-14 w-full flex flex-col justify-center min-h-[90vh]">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-10 py-8 md:py-14 w-full flex flex-col justify-center min-h-[70vh] md:min-h-[90vh]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
 
           {/* Main Hero Copy - Column 1 to 8 */}

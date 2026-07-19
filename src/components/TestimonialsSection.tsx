@@ -15,7 +15,7 @@ export default React.memo(function TestimonialsSection() {
   };
 
   return (
-    <section id="testimonials" className="py-14 bg-white relative">
+    <section id="testimonials" className="py-8 md:py-14 bg-white relative">
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-silver/20 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-10 relative z-10">
@@ -58,12 +58,30 @@ export default React.memo(function TestimonialsSection() {
                 </p>
 
                 {/* User Bio Details */}
-                <div className="flex flex-col sm:flex-row items-center gap-4 pt-6 border-t border-silver">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-silver">
                   <div className="text-center sm:text-left">
                     <h4 className="font-serif text-md font-bold text-navy">{TESTIMONIALS_DATA[active].name}</h4>
                     <p className="text-[10px] text-slate-500 uppercase tracking-widest font-sans font-semibold mt-0.5">
                       {TESTIMONIALS_DATA[active].role}
                     </p>
+                  </div>
+
+                  {/* Mobile only Nav buttons */}
+                  <div className="flex sm:hidden gap-3 justify-center pt-2">
+                    <button
+                      onClick={handlePrev}
+                      className="h-10 w-10 rounded-lg bg-white hover:bg-slate-100 border border-silver flex items-center justify-center text-slate-500 hover:text-navy transition-colors cursor-pointer"
+                      aria-label="Previous review"
+                    >
+                      <ChevronLeft className="h-5 w-5" />
+                    </button>
+                    <button
+                      onClick={handleNext}
+                      className="h-10 w-10 rounded-lg bg-white hover:bg-slate-100 border border-silver flex items-center justify-center text-slate-500 hover:text-navy transition-colors cursor-pointer"
+                      aria-label="Next review"
+                    >
+                      <ChevronRight className="h-5 w-5" />
+                    </button>
                   </div>
                 </div>
               </motion.div>
@@ -71,7 +89,7 @@ export default React.memo(function TestimonialsSection() {
           </div>
 
           {/* Nav buttons in carousel corners */}
-          <div className="absolute bottom-6 right-6 flex gap-2 pt-4 justify-end">
+          <div className="absolute bottom-6 right-6 hidden sm:flex gap-2 pt-4 justify-end">
             <button
               onClick={handlePrev}
               className="h-10 w-10 rounded-lg bg-white hover:bg-slate-100 border border-silver flex items-center justify-center text-slate-500 hover:text-navy transition-colors cursor-pointer"
@@ -90,7 +108,7 @@ export default React.memo(function TestimonialsSection() {
         </div>
 
         {/* Floating review count markers */}
-        <div className="flex items-center justify-center gap-1.5 mt-8">
+        <div className="hidden md:flex items-center justify-center gap-1.5 mt-8">
           {TESTIMONIALS_DATA.map((_, index) => (
             <button
               key={index}

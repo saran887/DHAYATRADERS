@@ -191,21 +191,26 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                <DatePicker
-                  value={formData.date}
-                  onChange={(d) => setFormData(prev => ({ ...prev, date: d }))}
-                  label="Date"
-                  required
-                  dark
-                />
-                <TimePicker
-                  value={formData.time}
-                  onChange={(t) => setFormData(prev => ({ ...prev, time: t }))}
-                  label="Time"
-                  required
-                  dark
-                />
+              <div className="space-y-1.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  <DatePicker
+                    value={formData.date}
+                    onChange={(d) => setFormData(prev => ({ ...prev, date: d }))}
+                    label="Date"
+                    required
+                    dark
+                  />
+                  <TimePicker
+                    value={formData.time}
+                    onChange={(t) => setFormData(prev => ({ ...prev, time: t }))}
+                    label="Time"
+                    required
+                    dark
+                  />
+                </div>
+                <p className="text-[10px] text-teal font-sans font-semibold">
+                  ⚡ Note: Each slot is reserved for a single person (Individual Consultation) to guarantee focused attention.
+                </p>
               </div>
 
               <div className="space-y-1">

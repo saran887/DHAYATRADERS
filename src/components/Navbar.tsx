@@ -77,7 +77,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
       <nav
         id="main-navbar"
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#0D2136] border-b border-steel/30 shadow-lg ${
-          isScrolled ? 'py-3' : 'py-4.5'
+          isScrolled ? 'py-2 lg:py-3' : 'py-3 lg:py-4.5'
         }`}
       >
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
@@ -99,7 +99,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
 
           <div className="flex flex-col justify-center">
             <h1 className="font-serif text-lg md:text-xl font-bold text-white tracking-wider group-hover:text-teal transition-all duration-300 leading-tight">
-              DHAYATRADERS
+              DHAYA TRADERS
             </h1>
             <p className="text-[8px] md:text-[9px] text-teal uppercase tracking-widest font-semibold mt-0.5 leading-none">
               Building Property &amp; Trusted Trading             </p>
@@ -130,20 +130,14 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
           {/* Core Booking CTA */}
           <button
             onClick={onOpenConsultation}
-            className="bg-steel hover:bg-navy text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all hover:-translate-y-0.5 shadow-md hover:shadow-steel-glow cursor-pointer"
+            className="bg-steel hover:bg-navy text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all hover:-translate-y-0.5 shadow-md hover:shadow-steel-glow cursor-pointer ml-4"
           >
             Book Consultation
           </button>
         </div>
 
         {/* Mobile menu toggle */}
-        <div className="flex items-center gap-4 lg:hidden">
-          <button
-            onClick={onOpenConsultation}
-            className="bg-steel hover:bg-navy text-white text-[10px] uppercase font-extrabold px-3 py-2 rounded-md transition-colors cursor-pointer"
-          >
-            Book Consult
-          </button>
+        <div className="flex items-center gap-2 lg:hidden">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="text-white hover:text-teal hover:bg-white/10 p-2.5 rounded-lg transition-colors cursor-pointer"
@@ -151,6 +145,12 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
             aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+          <button
+            onClick={onOpenConsultation}
+            className="bg-steel hover:bg-navy text-white text-[10px] uppercase font-extrabold px-3 py-2 rounded-md transition-colors cursor-pointer mr-1"
+          >
+            Book Consult
           </button>
         </div>
       </div>

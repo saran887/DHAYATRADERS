@@ -86,7 +86,7 @@ export default React.memo(function ServicesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {SERVICES_DATA.map((service, index) => (
             <RevealCard key={service.id} delay={index * 100}>
-              <div className="group relative h-96 rounded-2xl overflow-hidden shadow-premium hover:shadow-premium-hover bg-white border border-silver hover:border-teal/50 transition-all duration-300 flex flex-col justify-between h-full">
+              <div className="group relative min-h-[340px] md:h-[400px] rounded-2xl overflow-hidden shadow-premium hover:shadow-premium-hover bg-white border border-silver hover:border-teal/50 transition-all duration-300 flex flex-col justify-between">
                 {/* Image Header with brand-colored mask */}
                 <div className="h-44 w-full relative overflow-hidden">
                   <img
@@ -203,13 +203,13 @@ export default React.memo(function ServicesSection() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/40 to-transparent" />
-                <div className="absolute bottom-4 left-6 flex items-center gap-3">
-                  <div className="h-10 w-10 bg-white rounded-lg flex items-center justify-center shadow-lg">
+                <div className="absolute bottom-4 left-6 right-6 pr-12 flex items-center gap-3">
+                  <div className="h-10 w-10 bg-white rounded-lg flex items-center justify-center shadow-lg shrink-0">
                     {renderServiceIcon(selectedService.iconName)}
                   </div>
                   <div>
                     <span className="text-[10px] text-teal uppercase tracking-widest font-extrabold block">DHAYATRADERS CORPORATE SERVICE</span>
-                    <h4 className="font-serif text-xl sm:text-2xl font-bold text-white leading-tight">{selectedService.title}</h4>
+                    <h4 className="font-serif text-lg sm:text-xl md:text-2xl font-bold text-white leading-tight">{selectedService.title}</h4>
                   </div>
                 </div>
               </div>

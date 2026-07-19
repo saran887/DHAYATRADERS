@@ -1,4 +1,4 @@
-import { ShieldCheck, Diamond, DollarSign, Hammer, Truck, FileCheck } from 'lucide-react';
+import { ShieldCheck, Diamond, IndianRupee, Hammer, Truck, FileCheck } from 'lucide-react';
 import RevealCard from './RevealCard';
 
 export default function WhyChooseUs() {
@@ -31,7 +31,7 @@ export default function WhyChooseUs() {
       id: 4,
       title: 'Direct Wholesale Price (No Broker)',
       description: 'By supplying directly from our own sand yards and manufacturing brick kilns, we eliminate middleman commissions and save major costs for you.',
-      icon: <DollarSign className="h-7 w-7 text-steel" />,
+      icon: <IndianRupee className="h-7 w-7 text-steel" />,
       className: 'bg-white text-navy border border-silver',
       descColor: 'text-slate-500'
     },
@@ -54,7 +54,7 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section id="why-us" className="py-14 bg-gray-light relative">
+    <section id="why-us" className="py-8 md:py-14 bg-gray-light relative">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-10">
 
         {/* Title Group */}
