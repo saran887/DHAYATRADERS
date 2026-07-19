@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { X, Sparkles, User, Mail, CheckCircle2 } from 'lucide-react';
 import DatePicker from './DatePicker';
@@ -10,6 +10,18 @@ interface ConsultationModalProps {
 }
 
 export default function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
+  // Lock body scroll when consultation modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -67,7 +79,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
         initial={{ opacity: 0, scale: 0.95, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 15 }}
-        className="glass-card-dark max-w-lg w-full rounded-2xl shadow-2xl border border-teal/25 text-white p-5 sm:p-6 relative z-10 max-h-[90vh] overflow-y-auto"
+        className="glass-card-dark max-w-lg w-full rounded-2xl shadow-2xl border border-teal/25 text-white p-4 sm:p-6 relative z-10 max-h-[90vh] overflow-y-auto"
         role="dialog"
         aria-modal="true"
       >
@@ -97,7 +109,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
             </div>
           </div>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {/* Modal Title */}
             <div>
               <span className="text-[10px] text-teal uppercase tracking-widest font-extrabold block flex items-center gap-1.5">
@@ -110,7 +122,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
             </div>
 
             {/* Scheduling Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
               
               <div className="space-y-1">
                 <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
@@ -123,7 +135,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                   placeholder="e.g. Rajesh Kumar"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
+                  className="w-full text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
                 />
               </div>
 
@@ -138,11 +150,11 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                   placeholder="e.g. rajesh@gmail.com"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
+                  className="w-full text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div className="space-y-1">
                   <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
                     Property Type *
@@ -151,7 +163,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     name="propertyType"
                     value={formData.propertyType}
                     onChange={handleChange}
-                    className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white font-medium cursor-pointer"
+                    className="w-full text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white font-medium cursor-pointer"
                   >
                     <option value="Land" className="bg-[#0d2136] text-white">Land</option>
                     <option value="House" className="bg-[#0d2136] text-white">House</option>
@@ -170,7 +182,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     name="consultationType"
                     value={formData.consultationType}
                     onChange={handleChange}
-                    className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white font-medium cursor-pointer"
+                    className="w-full text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white font-medium cursor-pointer"
                   >
                     <option value="Physical Consultation" className="bg-[#0d2136] text-white">Physical Consultation</option>
                     <option value="Online Consultation" className="bg-[#0d2136] text-white">Online Consultation</option>
@@ -179,7 +191,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <DatePicker
                   value={formData.date}
                   onChange={(d) => setFormData(prev => ({ ...prev, date: d }))}
@@ -207,15 +219,15 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                   placeholder="Specify details about your requirement..."
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full text-xs font-sans px-4 py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 resize-none transition-colors"
+                  className="w-full text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 resize-none transition-colors"
                 />
               </div>
 
-              <div className="flex gap-3 pt-4">
+              <div className="flex gap-3 pt-2 sm:pt-4">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="w-1/2 text-center bg-white/10 hover:bg-white/15 text-slate-300 font-sans text-xs uppercase tracking-widest font-bold py-3.5 rounded-lg border border-white/10 transition-colors cursor-pointer"
+                  className="w-1/2 text-center bg-white/10 hover:bg-white/15 text-slate-300 font-sans text-xs uppercase tracking-widest font-bold py-3 sm:py-3.5 rounded-lg border border-white/10 transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -223,7 +235,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-1/2 text-center bg-teal hover:bg-white text-navy-deep font-sans text-xs uppercase tracking-widest font-extrabold py-3.5 rounded-lg transition-colors cursor-pointer disabled:opacity-50"
+                  className="w-1/2 text-center bg-teal hover:bg-white text-navy-deep font-sans text-xs uppercase tracking-widest font-extrabold py-3 sm:py-3.5 rounded-lg transition-colors cursor-pointer disabled:opacity-50"
                 >
                   {submitting ? 'Registering...' : 'Book Consultation'}
                 </button>

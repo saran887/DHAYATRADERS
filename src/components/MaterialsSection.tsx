@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { X, Sparkles, Diamond } from 'lucide-react';
@@ -9,6 +9,18 @@ import RevealCard from './RevealCard';
 export default React.memo(function MaterialsSection() {
   const [selectedMaterial, setSelectedMaterial] = useState<Material | null>(null);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
+  // Lock body scroll when material modal is open
+  useEffect(() => {
+    if (selectedMaterial) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedMaterial]);
 
   const faqs = [
     {
@@ -189,7 +201,7 @@ export default React.memo(function MaterialsSection() {
               </button>
 
               {/* Modal Image */}
-              <div className="h-56 w-full bg-slate-950 flex items-center justify-center relative">
+              <div className="h-40 sm:h-56 w-full bg-slate-950 flex items-center justify-center relative shrink-0">
                 <img
                   src={selectedMaterial.image}
                   alt={selectedMaterial.name}
@@ -202,22 +214,22 @@ export default React.memo(function MaterialsSection() {
               </div>
 
               {/* Modal Content */}
-              <div className="p-6 md:p-8 space-y-6 overflow-y-auto">
+              <div className="p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6 overflow-y-auto">
                 <div id="material-modal-title">
                   <span className="text-[10px] text-teal uppercase tracking-widest font-extrabold block">
                     {selectedMaterial.grade}
                   </span>
-                  <h4 className="font-serif text-2xl font-bold mt-1 text-white">{selectedMaterial.name}</h4>
+                  <h4 className="font-serif text-xl sm:text-2xl font-bold mt-1 text-white">{selectedMaterial.name}</h4>
                   <p className="text-xs text-slate-400 mt-1 italic">{selectedMaterial.subtitle}</p>
-                  <div className="w-10 h-0.5 bg-teal block mt-3" />
+                  <div className="w-10 h-0.5 bg-teal block mt-2.5 sm:mt-3" />
                 </div>
 
                 {/* Specs block */}
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                   <h5 className="text-xs font-bold uppercase tracking-widest text-teal">Technical Specifications</h5>
-                  <ul className="grid grid-cols-1 gap-2.5 text-xs text-slate-300">
+                  <ul className="grid grid-cols-1 gap-2 text-xs text-slate-300">
                     {selectedMaterial.specs.map((spec, specIdx) => (
-                      <li key={specIdx} className="flex items-center gap-2 bg-white/5 border border-white/5 p-2.5 rounded-lg">
+                      <li key={specIdx} className="flex items-center gap-2 bg-white/5 border border-white/5 p-2 sm:p-2.5 rounded-lg">
                         <Sparkles className="h-3.5 w-3.5 text-teal shrink-0" />
                         <span>{spec}</span>
                       </li>
@@ -226,7 +238,7 @@ export default React.memo(function MaterialsSection() {
                 </div>
 
                 {/* Modal Footer */}
-                <div className="border-t border-white/10 pt-5 flex flex-col gap-3">
+                <div className="border-t border-white/10 pt-4 sm:pt-5 flex flex-col gap-2.5 sm:gap-3">
                   <div className="flex justify-between items-center text-[10px] text-slate-400 uppercase tracking-widest">
                     <span>Standard unit</span>
                     <span className="text-white font-bold">{selectedMaterial.unit}</span>
@@ -235,7 +247,7 @@ export default React.memo(function MaterialsSection() {
                   <Link
                     to="/contact"
                     onClick={() => setSelectedMaterial(null)}
-                    className="w-full text-center bg-steel hover:bg-navy text-white font-sans text-xs uppercase tracking-widest font-extrabold py-3.5 rounded-lg border border-white/10 hover:border-transparent transition-all hover:-translate-y-0.5 block"
+                    className="w-full text-center bg-steel hover:bg-navy text-white font-sans text-xs uppercase tracking-widest font-extrabold py-3 sm:py-3.5 rounded-lg border border-white/10 hover:border-transparent transition-all hover:-translate-y-0.5 block shrink-0"
                   >
                     Request Quote
                   </Link>

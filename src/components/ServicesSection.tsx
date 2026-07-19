@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import {
@@ -38,6 +38,18 @@ const renderServiceIcon = (iconName: string) => {
 export default React.memo(function ServicesSection() {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
+  // Lock body scroll when service modal is open
+  useEffect(() => {
+    if (selectedService) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedService]);
 
   const faqs = [
     {
@@ -184,7 +196,7 @@ export default React.memo(function ServicesSection() {
                 <X className="h-5 w-5" />
               </button>
 
-              <div className="h-48 w-full relative">
+              <div className="h-36 sm:h-48 w-full relative shrink-0">
                 <img
                   src={selectedService.image}
                   alt={selectedService.title}
@@ -202,15 +214,15 @@ export default React.memo(function ServicesSection() {
                 </div>
               </div>
 
-              <div className="p-6 md:p-8 space-y-6 overflow-y-auto">
-                <div className="space-y-3">
+              <div className="p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6 overflow-y-auto">
+                <div className="space-y-2 sm:space-y-3">
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans first-letter:text-2xl first-letter:font-serif first-letter:text-teal first-letter:mr-1">
                     {selectedService.longDescription}
                   </p>
                 </div>
 
                 {/* Corporate Trust Badges Inside Services Detail */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-white/10 pt-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 border-t border-white/10 pt-4 sm:pt-6">
                   <div className="flex gap-2.5 items-start">
                     <ShieldCheck className="h-5 w-5 text-teal shrink-0 mt-0.5" />
                     <div>
@@ -227,14 +239,14 @@ export default React.memo(function ServicesSection() {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div className="pt-3 sm:pt-4 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
                   <p className="text-[11px] text-slate-400 font-sans text-center sm:text-left">
                     Connect with our supply trade divisions for bespoke commercial options.
                   </p>
                   <Link
                     to="/contact"
                     onClick={() => setSelectedService(null)}
-                    className="w-full sm:w-auto bg-teal hover:bg-white text-navy-deep hover:text-navy-deep text-xs uppercase tracking-widest font-extrabold py-3 px-6 rounded-lg transition-colors cursor-pointer text-center block"
+                    className="w-full sm:w-auto bg-teal hover:bg-white text-navy-deep hover:text-navy-deep text-xs uppercase tracking-widest font-extrabold py-2.5 sm:py-3 px-5 sm:px-6 rounded-lg transition-colors cursor-pointer text-center block shrink-0"
                   >
                     Inquire For This Service
                   </Link>
