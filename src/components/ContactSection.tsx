@@ -257,9 +257,15 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="text-[9px] text-slate-400 uppercase tracking-widest font-bold">Office Address</p>
-                    <p className="text-[11px] text-slate-200 mt-0.5 font-sans leading-relaxed">
+                    <a
+                      href="https://maps.app.goo.gl/zUyoruHg22jnVFGt7?g_st=aw"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] text-slate-200 hover:text-teal transition-colors mt-0.5 font-sans leading-relaxed block group"
+                    >
                       Dhaya Plaza, Perundurai Road Junction, Erode, Tamil Nadu, 638011
-                    </p>
+                      <span className="text-[10px] text-teal block font-semibold underline mt-0.5">📍 Open in Google Maps</span>
+                    </a>
                   </div>
                 </div>
 
@@ -320,17 +326,28 @@ export default function ContactSection() {
             </div>
 
             {/* SMALL MAP EMBED - INTERACTIVE GOOGLE MAP */}
-            <div className="rounded-xl overflow-hidden h-36 relative border border-white/10 group bg-slate-800">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3911.9729864273!2d77.717208!3d11.341036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96f4e1f721ab9%3A0x86e680d922fb68!2sErode%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1718183200000!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="DHAYATRADERS Erode Map Location"
-              />
+            <div className="rounded-xl overflow-hidden relative border border-white/10 group bg-slate-800 flex flex-col">
+              <div className="h-32 w-full relative">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3911.9729864273!2d77.717208!3d11.341036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96f4e1f721ab9%3A0x86e680d922fb68!2sErode%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1718183200000!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={false}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="DHAYATRADERS Erode Map Location"
+                />
+              </div>
+              <a
+                href="https://maps.app.goo.gl/zUyoruHg22jnVFGt7?g_st=aw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-[#1B3A5C] hover:bg-teal text-white hover:text-navy text-[11px] font-bold py-2 text-center transition-colors flex items-center justify-center gap-1.5"
+              >
+                <MapPin className="h-3.5 w-3.5" />
+                <span>Open Location in Google Maps</span>
+              </a>
             </div>
 
           </div>
