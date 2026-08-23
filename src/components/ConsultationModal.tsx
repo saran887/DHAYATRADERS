@@ -10,14 +10,17 @@ interface ConsultationModalProps {
 }
 
 export default function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
-  // Lock body scroll when consultation modal is open
+  // Lock body & html scroll when consultation modal is open
   useEffect(() => {
     if (isOpen) {
+      document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
     } else {
+      document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
     }
     return () => {
+      document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
     };
   }, [isOpen]);
@@ -67,11 +70,11 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overscroll-contain overflow-y-auto">
       {/* Backdrop */}
       <div 
         onClick={onClose} 
-        className="absolute inset-0 bg-navy-deep/80 backdrop-blur-md" 
+        className="fixed inset-0 bg-navy-deep/80 backdrop-blur-md touch-none" 
       />
 
       {/* Modal Dialog */}
@@ -79,7 +82,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
         initial={{ opacity: 0, scale: 0.95, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 15 }}
-        className="glass-card-dark max-w-lg w-full rounded-2xl shadow-2xl border border-teal/25 text-white p-4 sm:p-6 relative z-10 max-h-[90vh] overflow-y-auto"
+        className="glass-card-dark max-w-lg w-full rounded-2xl shadow-2xl border border-teal/25 text-white p-4 sm:p-6 relative z-10 my-auto max-h-[85vh] overflow-y-auto font-sans touch-pan-y"
         role="dialog"
         aria-modal="true"
       >
@@ -135,7 +138,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                   placeholder="e.g. Rajesh Kumar"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
+                  className="w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
                 />
               </div>
 
@@ -150,7 +153,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                   placeholder="e.g. rajesh@gmail.com"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
+                  className="w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 transition-colors"
                 />
               </div>
 
@@ -163,7 +166,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     name="propertyType"
                     value={formData.propertyType}
                     onChange={handleChange}
-                    className="w-full text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white font-medium cursor-pointer"
+                    className="w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white font-medium cursor-pointer"
                   >
                     <option value="Land" className="bg-[#0d2136] text-white">Land</option>
                     <option value="House" className="bg-[#0d2136] text-white">House</option>
@@ -182,7 +185,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     name="consultationType"
                     value={formData.consultationType}
                     onChange={handleChange}
-                    className="w-full text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white font-medium cursor-pointer"
+                    className="w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white font-medium cursor-pointer"
                   >
                     <option value="Physical Consultation" className="bg-[#0d2136] text-white">Physical Consultation</option>
                     <option value="Online Consultation" className="bg-[#0d2136] text-white">Online Consultation</option>
@@ -224,7 +227,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                   placeholder="Specify details about your requirement..."
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 resize-none transition-colors"
+                  className="w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white placeholder:text-slate-500 resize-none transition-colors"
                 />
               </div>
 

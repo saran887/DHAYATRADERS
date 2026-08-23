@@ -77,20 +77,16 @@ body {
   overflow-x: hidden;
 }
 
-/* Sleek customized scrollbar */
+/* Hide scrollbar for Chrome, Safari, Firefox, Edge across all pages while retaining scrollability */
+html, body, * {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-silver);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-steel);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-navy);
+  display: none; /* Chrome, Safari, Opera */
+  width: 0;
+  height: 0;
 }
 
 /* ============================================================
