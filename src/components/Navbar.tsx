@@ -29,10 +29,9 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services' },
-    { name: 'Properties', href: '/properties' },
+    // { name: 'Properties', href: '/properties' }, // temporarily hidden
     { name: 'Materials', href: '/materials' },
     { name: 'Projects', href: '/projects' },
-    { name: 'Blog', href: '/blog' },
     { name: 'Enquiry', href: '/contact' }
   ];
 

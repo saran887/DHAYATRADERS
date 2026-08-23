@@ -78,12 +78,12 @@ export default React.memo(function ServicesSection() {
           </h2>
           <div className="w-16 h-1 bg-steel mx-auto rounded-full" />
           <p className="font-sans text-xs sm:text-sm text-slate-500 leading-relaxed">
-            Delivering vertical integration across global clinker trading, structural steel fabrications, certified land distributions, and turn-key luxury estate constructions.
+            Offering turn-key house construction, verified land plot sales, ready-to-move homes, direct building materials supply, and expert construction consultation.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {SERVICES_DATA.map((service, index) => (
             <RevealCard key={service.id} delay={index * 100}>
               <div className="group relative min-h-[340px] md:h-[400px] rounded-2xl overflow-hidden shadow-premium hover:shadow-premium-hover bg-white border border-silver hover:border-teal/50 transition-all duration-300 flex flex-col justify-between">

@@ -57,29 +57,17 @@ export default function ProjectsSection() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {filteredProjects.map((proj) => {
-            const showAfter = showAfterMap[proj.id] !== false; // default: show After
             return (
               <div
                 key={proj.id}
                 className="rounded-3xl overflow-hidden shadow-premium hover:shadow-premium-hover border border-silver flex flex-col bg-silver/20 hover-card-trigger"
               >
-                {/* Image area with Before/After toggle */}
-                <div className="aspect-video w-full relative overflow-hidden bg-navy-deep">
-
-                  {/* Before image */}
+                {/* Project Image */}
+                <div className="aspect-video w-full relative overflow-hidden bg-navy-deep group">
                   <img
                     src={proj.image}
-                    alt={`${proj.title} — Before`}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${showAfter ? 'opacity-0' : 'opacity-100'}`}
-                    loading="lazy"
-                    width={800}
-                    height={500}
-                  />
-                  {/* After image */}
-                  <img
-                    src={proj.image}
-                    alt={`${proj.title} — After`}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${showAfter ? 'opacity-100' : 'opacity-0'}`}
+                    alt={proj.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                     width={800}
                     height={500}
@@ -105,26 +93,6 @@ export default function ProjectsSection() {
                     }`}>
                       {proj.status}
                     </span>
-                  </div>
-
-                  {/* Bottom-center: Before / After pill toggle */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20">
-                    <button
-                      onClick={() => toggleImage(proj.id)}
-                      className="flex items-center bg-[#0D2136]/80 backdrop-blur-md border border-white/20 rounded-full p-1 shadow-lg cursor-pointer"
-                      aria-label="Toggle Before/After image"
-                    >
-                      <span className={`text-[10px] font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-full transition-all duration-300 ${
-                        !showAfter ? 'bg-white text-navy shadow' : 'text-white/50'
-                      }`}>
-                        Before
-                      </span>
-                      <span className={`text-[10px] font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-full transition-all duration-300 ${
-                        showAfter ? 'bg-teal text-white shadow' : 'text-white/50'
-                      }`}>
-                        After
-                      </span>
-                    </button>
                   </div>
                 </div>
 

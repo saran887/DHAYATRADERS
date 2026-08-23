@@ -24,16 +24,16 @@ export default React.memo(function MaterialsSection() {
 
   const faqs = [
     {
-      q: "How to choose Fe-550 TMT steel for construction?",
-      a: "Fe-550D TMT steel provides superior tensile strength and ductility. When selecting, check for certified test parameters (yield strength, elongation percentage) and corrosion resistance. Our TMT steel is source-verified and meets IS:1786 seismic design specifications."
+      q: "How to order TMT steel rods for home construction?",
+      a: "Select your required steel sizes (8mm, 10mm, 12mm, 16mm, etc.) and submit an enquiry or call us directly. We deliver certified Fe-550 TMT steel directly to your site."
     },
     {
-      q: "What certification do your red clay bricks carry?",
-      a: "Our bricks are Grade-A modular red clay bricks, tested for water absorption below 15% and compressive strength exceeding 7.5 N/mm². They are locally baked in chambers for uniform size and premium structural integrity."
+      q: "What is the quality of your red clay bricks?",
+      a: "Our red clay bricks are first-quality chamber bricks with uniform shape, high compression strength, and clean finish. Ideal for strong house walls and load-bearing construction."
     },
     {
-      q: "Is the river sand triple-washed and graded?",
-      a: "Yes, our river sand is triple-washed to eliminate silt and organic impurities, ensuring silt content stays strictly under 3-4%. It is graded to Zone II specifications as per IS 383, which is optimal for concrete mix designs."
+      q: "Is the river sand clean and double-washed?",
+      a: "Yes, our river sand is double-washed to ensure zero mud or silt, giving high strength for concrete casting, brickwork masonry, and smooth wall plastering."
     }
   ];
 
@@ -64,19 +64,18 @@ export default React.memo(function MaterialsSection() {
               <div className="max-w-md mx-auto sm:max-w-none w-full rounded-2xl overflow-hidden shadow-premium hover:shadow-premium-hover border border-silver flex flex-col bg-white hover-card-trigger h-full">
 
                 {/* Visual frame */}
-                <div className="h-40 sm:h-64 relative overflow-hidden bg-navy-deep group">
+                <div className="h-44 sm:h-64 relative overflow-hidden bg-[#F0F4F8] group flex items-center justify-center p-3">
                   <img
                     src={mat.image}
                     alt={mat.name}
-                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                     width={800}
                     height={500}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-transparent to-transparent pointer-events-none" />
 
                   {/* Category overlay */}
-                  <span className="absolute top-4 left-4 text-[9px] uppercase tracking-wider font-extrabold px-2.5 py-1.5 rounded bg-navy-deep/90 backdrop-blur-md text-white border border-white/10 shadow-lg">
+                  <span className="absolute top-4 left-4 text-[9px] uppercase tracking-wider font-extrabold px-2.5 py-1.5 rounded bg-navy-deep text-white shadow-md">
                     {mat.category}
                   </span>
                 </div>
@@ -201,14 +200,13 @@ export default React.memo(function MaterialsSection() {
               </button>
 
               {/* Modal Image */}
-              <div className="h-40 sm:h-56 w-full bg-slate-950 flex items-center justify-center relative shrink-0">
+              <div className="h-44 sm:h-56 w-full bg-[#F0F4F8] flex items-center justify-center relative shrink-0 p-4">
                 <img
                   src={selectedMaterial.image}
                   alt={selectedMaterial.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-transparent to-transparent pointer-events-none" />
-                <span className="absolute bottom-4 left-4 text-[9px] uppercase tracking-wider font-extrabold px-2.5 py-1.5 rounded bg-[#0D2136]/90 backdrop-blur-md text-white border border-white/10 shadow-lg">
+                <span className="absolute bottom-4 left-4 text-[9px] uppercase tracking-wider font-extrabold px-2.5 py-1.5 rounded bg-navy-deep text-white shadow-md">
                   {selectedMaterial.category}
                 </span>
               </div>

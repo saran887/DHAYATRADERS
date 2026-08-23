@@ -4,9 +4,20 @@ import { Eye, Filter, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import RevealCard from './RevealCard';
 
+import house1 from '../assets/House-1.jpeg';
+import house2 from '../assets/House-2.jpg';
+import house3 from '../assets/House-3.jpg';
+import house4 from '../assets/House-4.jpg';
+import house5 from '../assets/House-5.jpg';
+import house6 from '../assets/House-6.jpg';
+import house7 from '../assets/House-7.jpg';
+import house8 from '../assets/House-8.jpg';
+import house9 from '../assets/House-9.jpg';
+import house10 from '../assets/House-10.jpg';
+
 interface GalleryItem {
   id: string;
-  category: 'Buildings' | 'Lands' | 'Materials' | 'Site Operations';
+  category: 'Luxury Villas' | 'Modern Duplex' | 'Turnkey Homes';
   title: string;
   image: string;
   caption: string;
@@ -15,54 +26,82 @@ interface GalleryItem {
 const GALLERY_LOCAL_DATA: GalleryItem[] = [
   {
     id: 'g1',
-    category: 'Buildings',
-    title: 'The Royal Palms Duplex',
-    image: '/assets/20260610_174155.jpg',
-    caption: 'Finished premium dual-wing architectural villa layout showing customized glaze panels.'
+    category: 'Luxury Villas',
+    title: 'Royal Palms Luxury Villa',
+    image: house1,
+    caption: 'Bespoke dual-wing architectural villa layout showing customized glaze panels.'
   },
   {
     id: 'g2',
-    category: 'Buildings',
-    title: 'Meridian Office Glazing',
-    image: '/assets/20260610_174158.jpg',
-    caption: 'Heavy glazing and structural steel works for metropolitan tech headquarters.'
+    category: 'Modern Duplex',
+    title: 'Contemporary Glass Duplex',
+    image: house2,
+    caption: 'Ultra-modern multi-story luxury residence with structural steel framing.'
   },
   {
     id: 'g3',
-    category: 'Lands',
-    title: 'Emerald Gated Plots Layout',
-    image: '/assets/20260610_174254.jpg',
-    caption: 'Sovereign-vetted layout parcels showing certified concrete road bounds.'
+    category: 'Turnkey Homes',
+    title: 'Heritage Contemporary House',
+    image: house3,
+    caption: 'Brand new modern turnkey house built with elite materials supplied by Dhaya Traders.'
   },
   {
     id: 'g4',
-    category: 'Materials',
-    title: 'Fe-550 TMT Rebar Bundles',
-    image: '/assets/20260610_174338.jpg',
-    caption: 'Oxidized protective layer high tensile rebar rods prepared for deep excavation grids.'
+    category: 'Luxury Villas',
+    title: 'Grand Sovereign Villa',
+    image: house4,
+    caption: 'Custom executive mansion featuring spacious open layouts and solar integration.'
   },
   {
     id: 'g5',
-    category: 'Site Operations',
-    title: 'Meridian Tower Excavations',
-    image: '/assets/20260610_174613.jpg',
-    caption: 'Heavy gantry cranes and concrete batch columns foundation preparation.'
+    category: 'Luxury Villas',
+    title: 'Emerald Gated Estate',
+    image: house5,
+    caption: 'Premium villa residence in high-appreciation gated community.'
   },
   {
     id: 'g6',
-    category: 'Site Operations',
-    title: 'Supervisory Blueprint Audit',
-    image: '/assets/20260610_174615.jpg',
-    caption: 'Master electrical and drainage draft analysis executed in our plaza hub.'
+    category: 'Modern Duplex',
+    title: 'Skyline Multi-Tier House',
+    image: house6,
+    caption: 'Contemporary multi-tier luxury home with acoustic glass insulation.'
+  },
+  {
+    id: 'g7',
+    category: 'Luxury Villas',
+    title: 'Horizon Executive Mansion',
+    image: house7,
+    caption: 'Bespoke family villa built with lab-analyzed Fe-550 TMT steel.'
+  },
+  {
+    id: 'g8',
+    category: 'Turnkey Homes',
+    title: 'Urban Elegance Residence',
+    image: house8,
+    caption: 'Ready-to-occupy residential home featuring custom interiors.'
+  },
+  {
+    id: 'g9',
+    category: 'Luxury Villas',
+    title: 'Starlight Architectural Villa',
+    image: house9,
+    caption: 'State-of-the-art residential villa engineered for lifelong structural integrity.'
+  },
+  {
+    id: 'g10',
+    category: 'Turnkey Homes',
+    title: 'Prestige Duplex Home',
+    image: house10,
+    caption: 'Turnkey luxury residence with high-end interior finishes.'
   }
 ];
 
 export default React.memo(function GallerySection() {
-  const [selectedCat, setSelectedCat] = useState<'All' | 'Buildings' | 'Lands' | 'Materials' | 'Site Operations'>('All');
+  const [selectedCat, setSelectedCat] = useState<'All' | 'Luxury Villas' | 'Modern Duplex' | 'Turnkey Homes'>('All');
   const [activeImage, setActiveImage] = useState<GalleryItem | null>(null);
 
-  const filterList: ('All' | 'Buildings' | 'Lands' | 'Materials' | 'Site Operations')[] = [
-    'All', 'Buildings', 'Lands', 'Materials', 'Site Operations'
+  const filterList: ('All' | 'Luxury Villas' | 'Modern Duplex' | 'Turnkey Homes')[] = [
+    'All', 'Luxury Villas', 'Modern Duplex', 'Turnkey Homes'
   ];
 
   const filteredItems = useMemo(() => {

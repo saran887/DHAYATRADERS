@@ -3,6 +3,9 @@ import { Award, Compass, ShieldCheck, Milestone } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import useScrollReveal from '../hooks/useScrollReveal';
+import house5 from '../assets/House-5.jpg';
+import houseConstruction from '../assets/House Construction.webp';
+import Land from '../assets/Land Sale.webp';
 
 export default function AboutSection() {
   const [revealRef, isVisible] = useScrollReveal();
@@ -84,7 +87,7 @@ export default function AboutSection() {
                   transition={{ duration: 0.5 }}
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=400"
+                    src={house5}
                     alt="Elegant luxury villa dining exterior"
                     className="rounded-2xl shadow-premium object-cover h-64 w-full"
                     loading="lazy"
@@ -115,8 +118,8 @@ export default function AboutSection() {
                   transition={{ duration: 0.5, delay: 0.15 }}
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=400"
-                    alt="Excavation and building crane operations"
+                    src={houseConstruction}
+                    alt="House construction site operations"
                     className="rounded-2xl shadow-premium object-cover h-44 w-full"
                     loading="lazy"
                     width={400}
@@ -130,7 +133,7 @@ export default function AboutSection() {
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1590069261209-f8e9b8642343?q=80&w=400"
+                    src={Land}
                     alt="Structural grade steels stacked on site"
                     className="rounded-2xl shadow-premium object-cover h-56 w-full"
                     loading="lazy"

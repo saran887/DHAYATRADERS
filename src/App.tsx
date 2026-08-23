@@ -13,7 +13,6 @@ const Properties = lazy(() => import('./pages/Properties'));
 const Materials = lazy(() => import('./pages/Materials'));
 const Projects = lazy(() => import('./pages/Projects'));
 const Contact = lazy(() => import('./pages/Contact'));
-const Blog = lazy(() => import('./pages/Blog'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 
@@ -46,8 +45,6 @@ export default function App() {
             <Route path="/materials" element={<Materials />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<Blog />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfService />} />
           </Routes>
@@ -94,9 +91,9 @@ export default function App() {
                 <li>
                   <Link to="/services" className="hover:text-white transition-colors">Services</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/properties" className="hover:text-white transition-colors">Properties</Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/materials" className="hover:text-white transition-colors">Materials</Link>
                 </li>

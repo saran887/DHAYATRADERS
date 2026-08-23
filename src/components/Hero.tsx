@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ShieldCheck, MapPin, Award, ArrowRight } from 'lucide-react';
+import hero1 from '../assets/Hero-1.webp';
+import hero2 from '../assets/Hero-2.webp';
+import hero3 from '../assets/Hero-3.webp';
+import landSaleImg from '../assets/Land Sale.webp';
 
 interface HeroProps {
   onExploreProperties: () => void;
@@ -10,25 +14,19 @@ interface HeroProps {
 
 const HERO_SLIDES = [
   {
-    image: '/assets/20260610_173338.webp',
-    image400: '/assets/20260610_173338-400.webp',
-    image800: '/assets/20260610_173338-800.webp',
+    image: hero1,
     title: 'Architectural Excellence',
     tagline: 'Designing residences that stand the test of time and weather.',
     badge: 'Luxury Real Estate'
   },
   {
-    image: '/assets/20260610_173341.webp',
-    image400: '/assets/20260610_173341-400.webp',
-    image800: '/assets/20260610_173341-800.webp',
+    image: hero2,
     title: 'Direct Sourcing, Absolute Quality',
     tagline: 'Direct-to-site structural metals, clinker cements, and premium sands.',
     badge: 'Industrial Metals & Bricks'
   },
   {
-    image: '/assets/20260610_173443.webp',
-    image400: '/assets/20260610_173443-400.webp',
-    image800: '/assets/20260610_173443-800.webp',
+    image: hero3,
     title: 'DTCP Approved Land Plots',
     tagline: '100% verified clear title land plots in high-growth investment areas.',
     badge: 'Prime Land Plots'
@@ -60,8 +58,6 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookC
             transition={{ duration: 1.5, ease: 'easeInOut' }}
             className="absolute inset-0 w-full h-full object-cover object-center"
             src={HERO_SLIDES[currentSlide].image}
-            srcSet={`${HERO_SLIDES[currentSlide].image400} 400w, ${HERO_SLIDES[currentSlide].image800} 800w, ${HERO_SLIDES[currentSlide].image} 1200w`}
-            sizes="(max-width: 600px) 400px, 800px"
             alt={HERO_SLIDES[currentSlide].title}
             fetchPriority="high"
             loading="eager"
@@ -185,7 +181,7 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookC
               {/* Minimal preview map placeholder */}
               <div className="hero-card-image-container rounded-lg border border-white/10 group cursor-pointer bg-slate-800/50">
                 <img
-                  src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=400"
+                  src={landSaleImg}
                   alt="Sovereign Land Plot Layout Sketch"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="eager"
