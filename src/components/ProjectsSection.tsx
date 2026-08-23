@@ -6,11 +6,6 @@ import { PROJECTS_DATA } from '../data';
 export default function ProjectsSection() {
   const [selectedFilter, setSelectedFilter] = useState<'All' | 'Completed' | 'Ongoing'>('All');
 
-  // Track "showAfter" per project id — default true (show After)
-  const [showAfterMap, setShowAfterMap] = useState<Record<string, boolean>>({});
-  const toggleImage = (id: string) =>
-    setShowAfterMap(prev => ({ ...prev, [id]: !(prev[id] !== false) }));
-
   const filteredProjects = useMemo(() => {
     return PROJECTS_DATA.filter((proj) => {
       if (selectedFilter === 'All') return true;
@@ -69,6 +64,7 @@ export default function ProjectsSection() {
                     alt={proj.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
+                    decoding="async"
                     width={800}
                     height={500}
                   />

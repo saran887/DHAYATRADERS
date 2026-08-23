@@ -4,16 +4,16 @@ import { Eye, Filter, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import RevealCard from './RevealCard';
 
-import house1 from '../assets/House-1.jpeg';
-import house2 from '../assets/House-2.jpg';
-import house3 from '../assets/House-3.jpg';
-import house4 from '../assets/House-4.jpg';
-import house5 from '../assets/House-5.jpg';
-import house6 from '../assets/House-6.jpg';
-import house7 from '../assets/House-7.jpg';
-import house8 from '../assets/House-8.jpg';
-import house9 from '../assets/House-9.jpg';
-import house10 from '../assets/House-10.jpg';
+import house1 from '../assets/House-1.webp';
+import house2 from '../assets/House-2.webp';
+import house3 from '../assets/House-3.webp';
+import house4 from '../assets/House-4.webp';
+import house5 from '../assets/House-5.webp';
+import house6 from '../assets/House-6.webp';
+import house7 from '../assets/House-7.webp';
+import house8 from '../assets/House-8.webp';
+import house9 from '../assets/House-9.webp';
+import house10 from '../assets/House-10.webp';
 
 interface GalleryItem {
   id: string;
@@ -138,7 +138,7 @@ export default React.memo(function GallerySection() {
                 : 'bg-white text-slate-500 hover:text-navy border border-silver hover:bg-slate-50'
                 }`}
             >
-              {catKey === 'Site Operations' ? 'On Site Work' : catKey}
+              {catKey}
             </button>
           ))}
         </div>
@@ -158,6 +158,7 @@ export default React.memo(function GallerySection() {
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500"
                     loading="lazy"
+                    decoding="async"
                     width={400}
                     height={300}
                   />
@@ -168,7 +169,7 @@ export default React.memo(function GallerySection() {
                   {/* Info block hidden until hover */}
                   <div className="absolute inset-x-0 bottom-0 p-5 text-white transform translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400 pointer-events-none">
                     <span className="text-[9px] text-teal uppercase tracking-widest font-extrabold block">
-                      {item.category === 'Site Operations' ? 'On Site Work' : item.category}
+                      {item.category}
                     </span>
                     <h4 className="font-serif text-md font-bold text-white mt-0.5">{item.title}</h4>
                     <p className="text-[10px] text-slate-300 font-sans line-clamp-2 mt-1 leading-relaxed">
@@ -227,7 +228,7 @@ export default React.memo(function GallerySection() {
               <div className="w-full md:w-1/3 p-6 md:p-8 flex flex-col justify-between space-y-6">
                 <div>
                   <span className="text-[9px] text-teal uppercase tracking-widest font-extrabold block">
-                    {activeImage.category === 'Site Operations' ? 'On Site Work' : activeImage.category}
+                    {activeImage.category}
                   </span>
                   <h4 className="font-serif text-xl md:text-2xl font-bold mt-1 text-white">{activeImage.title}</h4>
                   <div className="w-10 h-0.5 bg-teal block mt-3" />

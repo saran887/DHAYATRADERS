@@ -61,6 +61,7 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookC
             alt={HERO_SLIDES[currentSlide].title}
             fetchPriority="high"
             loading="eager"
+            decoding="async"
             width={1200}
             height={800}
           />

@@ -8,10 +8,10 @@ import landSaleImg from './assets/Land Sale.webp';
 import sandImg from './assets/Sand.webp';
 import steelImg from './assets/Steal.webp';
 
-import house1 from './assets/House-1.jpeg';
-import house2 from './assets/House-2.jpg';
-import house3 from './assets/House-3.jpg';
-import house4 from './assets/House-4.jpg';
+import house1 from './assets/House-1.webp';
+import house2 from './assets/House-2.webp';
+import house3 from './assets/House-3.webp';
+import house4 from './assets/House-4.webp';
 
 export const SERVICES_DATA: Service[] = [
   {

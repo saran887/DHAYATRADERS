@@ -70,6 +70,7 @@ export default React.memo(function MaterialsSection() {
                     alt={mat.name}
                     className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
+                    decoding="async"
                     width={800}
                     height={500}
                   />

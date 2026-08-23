@@ -3,7 +3,7 @@ import { Award, Compass, ShieldCheck, Milestone } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import useScrollReveal from '../hooks/useScrollReveal';
-import house5 from '../assets/House-5.jpg';
+import house5 from '../assets/House-5.webp';
 import houseConstruction from '../assets/House Construction.webp';
 import Land from '../assets/Land Sale.webp';
 
@@ -91,6 +91,7 @@ export default function AboutSection() {
                     alt="Elegant luxury villa dining exterior"
                     className="rounded-2xl shadow-premium object-cover h-64 w-full"
                     loading="lazy"
+                    decoding="async"
                     width={400}
                     height={300}
                   />
@@ -122,6 +123,7 @@ export default function AboutSection() {
                     alt="House construction site operations"
                     className="rounded-2xl shadow-premium object-cover h-44 w-full"
                     loading="lazy"
+                    decoding="async"
                     width={400}
                     height={200}
                   />
@@ -137,6 +139,7 @@ export default function AboutSection() {
                     alt="Structural grade steels stacked on site"
                     className="rounded-2xl shadow-premium object-cover h-56 w-full"
                     loading="lazy"
+                    decoding="async"
                     width={400}
                     height={280}
                   />
