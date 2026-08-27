@@ -7,10 +7,16 @@ interface TimePickerProps {
   label?: string;
   required?: boolean;
   dark?: boolean;
+  error?: string;
+  slots?: { label: string; value: string }[];
+  loading?: boolean;
+  loadingMessage?: string;
+  emptyMessage?: string;
+  disabled?: boolean;
 }
 
-// Business hours: 8 AM – 6 PM in 30-min slots
-const TIME_SLOTS: { label: string; value: string }[] = [];
+// Default business hours fallback if slots are not explicitly passed
+const DEFAULT_TIME_SLOTS: { label: string; value: string }[] = [];
 for (let h = 8; h <= 18; h++) {
   for (const m of [0, 30]) {
     if (h === 18 && m === 30) continue;
@@ -20,14 +26,28 @@ for (let h = 8; h <= 18; h++) {
     const hour12 = h > 12 ? h - 12 : h === 0 ? 12 : h;
     const ampm = h >= 12 ? 'PM' : 'AM';
     const label = `${String(hour12).padStart(2, '0')}:${mm} ${ampm}`;
-    TIME_SLOTS.push({ label, value });
+    DEFAULT_TIME_SLOTS.push({ label, value });
   }
 }
 
-export default function TimePicker({ value, onChange, label = 'Time', required, dark = false }: TimePickerProps) {
+export default function TimePicker({
+  value,
+  onChange,
+  label = 'Time',
+  required,
+  dark = false,
+  error,
+  slots,
+  loading = false,
+  loadingMessage = 'Checking available times...',
+  emptyMessage = 'No available time slots for this date.',
+  disabled = false
+}: TimePickerProps) {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+
+  const activeSlots = slots !== undefined ? slots : DEFAULT_TIME_SLOTS;
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -49,7 +69,7 @@ export default function TimePicker({ value, onChange, label = 'Time', required, 
 
   const displayValue = value
     ? (() => {
-        const slot = TIME_SLOTS.find(s => s.value === value);
+        const slot = activeSlots.find(s => s.value === value);
         return slot ? slot.label : value;
       })()
     : '';
@@ -78,55 +98,82 @@ export default function TimePicker({ value, onChange, label = 'Time', required, 
       {/* Trigger button */}
       <button
         type="button"
+        disabled={disabled || loading}
         onClick={() => setOpen(o => !o)}
-        className={`w-full text-xs font-sans px-4 py-3 border rounded-lg transition-colors flex items-center justify-between gap-2 ${bg} ${open ? (dark ? 'border-teal' : 'border-steel') : ''} focus:outline-none`}
+        className={`w-full text-xs font-sans px-4 py-3 border rounded-lg transition-colors flex items-center justify-between gap-2 disabled:opacity-60 disabled:cursor-not-allowed ${
+          error ? (dark ? 'border-rose-400 bg-rose-500/10 text-white' : 'border-rose-500 bg-rose-50/50 text-navy') : bg
+        } ${open ? (dark ? 'border-teal' : 'border-steel') : ''} focus:outline-none`}
       >
         <span className={value ? '' : (dark ? 'text-slate-500' : 'text-slate-400')}>
-          {displayValue || 'Select time'}
+          {loading ? (
+            <span className="flex items-center gap-1.5 text-teal font-medium">
+              <Clock className="h-3.5 w-3.5 animate-spin" />
+              {loadingMessage}
+            </span>
+          ) : (
+            displayValue || (disabled ? 'Select a date first' : 'Select time')
+          )}
         </span>
-        <Clock className={`h-4 w-4 shrink-0 ${dark ? 'text-teal' : 'text-steel'}`} />
+        <Clock className={`h-4 w-4 shrink-0 ${loading ? 'animate-spin text-teal' : error ? (dark ? 'text-rose-400' : 'text-rose-500') : (dark ? 'text-teal' : 'text-steel')}`} />
       </button>
 
+      {error && (
+        <p className={`text-[11px] font-sans font-medium mt-1 flex items-center gap-1 ${dark ? 'text-rose-400' : 'text-rose-500'}`}>
+          <span>⚠️</span> {error}
+        </p>
+      )}
+
       {/* Slots Dropdown */}
-      {open && (
-        <div className={`absolute top-full left-0 mt-2 z-50 w-48 rounded-2xl border shadow-2xl overflow-hidden ${popupBg}`}>
+      {open && !disabled && (
+        <div className={`absolute top-full left-0 mt-2 z-50 w-56 rounded-2xl border shadow-2xl overflow-hidden ${popupBg}`}>
           {/* Header */}
           <div className={`px-4 py-2.5 border-b ${divider} flex items-center gap-2`}>
             <Clock className={`h-3.5 w-3.5 ${headerText}`} />
             <span className={`text-[10px] uppercase tracking-widest font-extrabold ${headerText}`}>
-              Office Hours
+              Available Slots
             </span>
           </div>
 
           {/* Scrollable slot list */}
           <div ref={listRef} className="max-h-52 overflow-y-auto">
-            {TIME_SLOTS.map(slot => {
-              const isSelected = slot.value === value;
-              return (
-                <button
-                  key={slot.value}
-                  type="button"
-                  data-selected={isSelected}
-                  onClick={() => { onChange(slot.value); setOpen(false); }}
-                  className={`
-                    w-full text-left px-4 py-2.5 text-xs font-sans font-medium
-                    ${isSelected ? slotSelected : slotBase}
-                    flex items-center justify-between
-                  `}
-                >
-                  <span>{slot.label}</span>
-                  {isSelected && (
-                    <span className="text-[10px] font-extrabold text-navy-deep bg-navy-deep/10 px-1.5 py-0.5 rounded">✓</span>
-                  )}
-                </button>
-              );
-            })}
+            {loading ? (
+              <div className="p-4 text-center text-xs font-sans text-teal flex items-center justify-center gap-2">
+                <Clock className="h-4 w-4 animate-spin" />
+                <span>{loadingMessage}</span>
+              </div>
+            ) : activeSlots.length === 0 ? (
+              <div className="p-4 text-center text-xs font-sans text-slate-400 font-medium">
+                {emptyMessage}
+              </div>
+            ) : (
+              activeSlots.map(slot => {
+                const isSelected = slot.value === value;
+                return (
+                  <button
+                    key={slot.value}
+                    type="button"
+                    data-selected={isSelected}
+                    onClick={() => { onChange(slot.value); setOpen(false); }}
+                    className={`
+                      w-full text-left px-4 py-2.5 text-xs font-sans font-medium
+                      ${isSelected ? slotSelected : slotBase}
+                      flex items-center justify-between
+                    `}
+                  >
+                    <span>{slot.label}</span>
+                    {isSelected && (
+                      <span className="text-[10px] font-extrabold text-navy-deep bg-navy-deep/10 px-1.5 py-0.5 rounded">✓</span>
+                    )}
+                  </button>
+                );
+              })
+            )}
           </div>
 
           {/* Footer note */}
           <div className={`px-4 py-2 border-t ${divider}`}>
             <p className={`text-[10px] font-sans ${dark ? 'text-slate-500' : 'text-slate-400'}`}>
-              Mon–Fri · 8:00 AM – 6:00 PM
+              Mon–Sat · 8:00 AM – 6:00 PM
             </p>
           </div>
         </div>

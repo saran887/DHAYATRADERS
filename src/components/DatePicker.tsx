@@ -7,6 +7,7 @@ interface DatePickerProps {
   label?: string;
   required?: boolean;
   dark?: boolean; // true = dark modal theme, false = light contact theme
+  error?: string;
 }
 
 const DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
@@ -19,7 +20,7 @@ function toLocal(date: Date) {
   return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
 }
 
-export default function DatePicker({ value, onChange, label = 'Date', required, dark = false }: DatePickerProps) {
+export default function DatePicker({ value, onChange, label = 'Date', required, dark = false, error }: DatePickerProps) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const todayStr = toLocal(today);
@@ -100,13 +101,21 @@ export default function DatePicker({ value, onChange, label = 'Date', required, 
       <button
         type="button"
         onClick={() => setOpen(o => !o)}
-        className={`w-full text-xs font-sans px-4 py-3 border rounded-lg transition-colors flex items-center justify-between gap-2 ${bg} ${focusBorder} ${open ? (dark ? 'border-teal' : 'border-steel') : ''}`}
+        className={`w-full text-xs font-sans px-4 py-3 border rounded-lg transition-colors flex items-center justify-between gap-2 ${
+          error ? (dark ? 'border-rose-400 bg-rose-500/10 text-white' : 'border-rose-500 bg-rose-50/50 text-navy') : bg
+        } ${focusBorder} ${open ? (dark ? 'border-teal' : 'border-steel') : ''}`}
       >
         <span className={value ? '' : (dark ? 'text-slate-500' : 'text-slate-400')}>
           {displayValue || 'Select a date'}
         </span>
-        <CalendarDays className={`h-4 w-4 shrink-0 ${dark ? 'text-teal' : 'text-steel'}`} />
+        <CalendarDays className={`h-4 w-4 shrink-0 ${error ? (dark ? 'text-rose-400' : 'text-rose-500') : (dark ? 'text-teal' : 'text-steel')}`} />
       </button>
+
+      {error && (
+        <p className={`text-[11px] font-sans font-medium mt-1 flex items-center gap-1 ${dark ? 'text-rose-400' : 'text-rose-500'}`}>
+          <span>⚠️</span> {error}
+        </p>
+      )}
 
       {/* Calendar Popup */}
       {open && (
@@ -141,6 +150,9 @@ export default function DatePicker({ value, onChange, label = 'Date', required, 
               const day = i + 1;
               const dateStr = `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
               const isPast = dateStr < todayStr;
+              const dayOfWeek = new Date(viewYear, viewMonth, day).getDay();
+              const isSunday = dayOfWeek === 0;
+              const isDisabled = isPast || isSunday;
               const isToday = dateStr === todayStr;
               const isSelected = dateStr === value;
 
@@ -148,15 +160,16 @@ export default function DatePicker({ value, onChange, label = 'Date', required, 
                 <button
                   key={day}
                   type="button"
-                  disabled={isPast}
+                  disabled={isDisabled}
                   onClick={() => selectDate(day)}
                   className={`
                     w-full aspect-square flex items-center justify-center text-xs font-medium
                     ${isSelected ? selectedCls : ''}
                     ${!isSelected && isToday ? todayRing + ' rounded-lg' : ''}
-                    ${!isSelected && !isPast ? enabledCls : ''}
-                    ${isPast ? disabledCls : ''}
+                    ${!isSelected && !isDisabled ? enabledCls : ''}
+                    ${isDisabled ? disabledCls : ''}
                   `}
+                  title={isSunday ? 'Sunday Closed' : undefined}
                 >
                   {day}
                 </button>

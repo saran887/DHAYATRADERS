@@ -15,36 +15,199 @@ export default function ContactSection() {
     message: ''
   });
 
+  const [availableSlots, setAvailableSlots] = useState<{ label: string; value: string }[]>([]);
+  const [loadingSlots, setLoadingSlots] = useState(false);
+  const [slotError, setSlotError] = useState('');
+  const [bookingDetails, setBookingDetails] = useState<{ bookingId?: string; meetLink?: string }>({});
+
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbw4kRYqwuXp3-3zAEw-TY95eOPqusmARznNPiXceqiS-74iIHr7G2EsFwjASmkHj7LJ/exec';
+
+  const fetchAvailability = async (selectedDate: string) => {
+    if (!selectedDate) {
+      setAvailableSlots([]);
+      setSlotError('');
+      return;
+    }
+
+    const dateObj = new Date(selectedDate + 'T00:00:00');
+    if (dateObj.getDay() === 0) {
+      setAvailableSlots([]);
+      setSlotError('Sundays are closed for consultations. Please select a Monday–Saturday date.');
+      return;
+    }
+
+    setLoadingSlots(true);
+    setSlotError('');
+    setAvailableSlots([]);
+
+    try {
+      const url = `${GOOGLE_SCRIPT_URL}?action=availability&date=${encodeURIComponent(selectedDate)}`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+
+      const data = await response.json();
+      if (data && data.success === true && Array.isArray(data.slots)) {
+        setAvailableSlots(data.slots);
+        if (data.slots.length === 0) {
+          setSlotError('No available time slots for this date.');
+        }
+      } else {
+        throw new Error(data?.message || 'Failed to load time slots');
+      }
+    } catch (err) {
+      console.error('Error loading available times:', err);
+      setSlotError('Unable to load available times. Please try again.');
+      setAvailableSlots([]);
+    } finally {
+      setLoadingSlots(false);
+    }
+  };
+
+  const handleDateChange = (newDate: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      date: newDate,
+      time: '' // Clear time when date changes
+    }));
+    if (errors.date) setErrors((prev) => ({ ...prev, date: '' }));
+    if (errors.time) setErrors((prev) => ({ ...prev, time: '' }));
+
+    fetchAvailability(newDate);
+  };
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Full name is required';
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email address is required';
+    } else if (!emailRegex.test(formData.email.trim())) {
+      newErrors.email = 'Please enter a valid email address (e.g. name@example.com)';
+    }
+
+    if (formData.phone.trim()) {
+      const phoneRegex = /^[\d\s+\-()]{7,15}$/;
+      if (!phoneRegex.test(formData.phone.trim())) {
+        newErrors.phone = 'Please enter a valid phone number';
+      }
+    }
+
+    if (!formData.date) {
+      newErrors.date = 'Please select a date for consultation';
+    } else {
+      const dateObj = new Date(formData.date + 'T00:00:00');
+      if (dateObj.getDay() === 0) {
+        newErrors.date = 'Sundays are closed for consultations';
+      }
+    }
+
+    if (!formData.time) {
+      newErrors.time = 'Please select an available time slot';
+    } else if (slotError && availableSlots.length === 0) {
+      newErrors.time = slotError;
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'Requirement details must be at least 10 characters';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    if (!validateForm()) return;
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          propertyType: 'Land',
-          consultationType: 'Physical Consultation',
-          date: '',
-          time: '',
-          message: ''
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          propertyType: formData.propertyType,
+          consultationType: formData.consultationType,
+          preferredDate: formData.date,
+          preferredTime: formData.time,
+          message: formData.message
+        })
+      });
+
+      const result = await response.json();
+
+      if (result && (result.code === 'SLOT_BOOKED' || result.error === 'SLOT_BOOKED')) {
+        setIsSubmitting(false);
+        setFormData((prev) => ({ ...prev, time: '' }));
+        setErrors((prev) => ({
+          ...prev,
+          time: 'This time slot was just booked. Please select another available time.'
+        }));
+        if (formData.date) {
+          fetchAvailability(formData.date);
+        }
+        return;
+      }
+
+      if (result && (result.success === true || result.result === 'success' || result.status === 'success')) {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        setBookingDetails({
+          bookingId: result.bookingId,
+          meetLink: result.meetLink
         });
-      }, 4000);
-    }, 1500);
+        setErrors({});
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setBookingDetails({});
+          setAvailableSlots([]);
+          setSlotError('');
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            propertyType: 'Land',
+            consultationType: 'Physical Consultation',
+            date: '',
+            time: '',
+            message: ''
+          });
+        }, 4000);
+      } else {
+        throw new Error(result?.message || result?.error || 'Failed to submit enquiry to server');
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setIsSubmitting(false);
+      setErrors((prev) => ({
+        ...prev,
+        submit: 'Failed to send enquiry. Please check your connection or try again.'
+      }));
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: '' }));
+    }
   };
 
   return (
@@ -79,19 +242,36 @@ export default function ContactSection() {
             </div>
 
             {isSubmitted ? (
-              <div className="py-16 text-center space-y-4 flex-grow flex flex-col justify-center items-center">
+              <div className="py-16 text-center space-y-4 flex-grow flex flex-col justify-center items-center font-sans">
                 <div className="h-16 w-16 bg-emerald-500/10 border border-emerald-400 rounded-full flex items-center justify-center text-emerald-500 shadow animate-pulse">
                   <CheckCircle2 className="h-10 w-10" />
                 </div>
-                <div>
+                <div className="space-y-1.5">
                   <h5 className="font-serif text-xl font-bold text-navy">Enquiry Received Successfully!</h5>
-                  <p className="text-xs text-slate-500 font-sans max-w-sm mx-auto mt-1">
+                  {bookingDetails.bookingId && (
+                    <p className="text-xs text-[#2E6B9E] uppercase tracking-widest font-extrabold">
+                      Booking Ref: #{bookingDetails.bookingId}
+                    </p>
+                  )}
+                  <p className="text-xs text-slate-500 font-sans max-w-sm mx-auto mt-1 leading-relaxed">
                     Thank you for reaching out. One of our project managers will contact you shortly via email or phone callback.
                   </p>
+                  {bookingDetails.meetLink && (
+                    <div className="pt-3">
+                      <a
+                        href={bookingDetails.meetLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#2E6B9E] hover:bg-[#1B3A5C] text-white font-sans text-xs font-bold rounded-lg shadow transition-colors"
+                      >
+                        <span>📹 Join Google Meet Consultation</span>
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleFormSubmit} className="space-y-5 flex-grow flex flex-col justify-between">
+              <form onSubmit={handleFormSubmit} noValidate className="space-y-5 flex-grow flex flex-col justify-between">
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
@@ -99,12 +279,20 @@ export default function ContactSection() {
                     <input
                       type="text"
                       name="name"
-                      required
                       placeholder="e.g. Rajesh Kumar"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full text-xs font-sans px-4 py-3 bg-slate-50 border border-silver focus:border-steel focus:ring-1 focus:ring-steel focus:outline-none rounded-lg text-navy placeholder:text-slate-400 font-medium transition-colors"
+                      className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors ${
+                        errors.name
+                          ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
+                          : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
+                      }`}
                     />
+                    {errors.name && (
+                      <p className="text-[11px] text-rose-500 font-sans font-medium mt-1 flex items-center gap-1">
+                        <span>⚠️</span> {errors.name}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-1.5">
@@ -112,12 +300,20 @@ export default function ContactSection() {
                     <input
                       type="email"
                       name="email"
-                      required
                       placeholder="e.g. rajesh@email.com"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full text-xs font-sans px-4 py-3 bg-slate-50 border border-silver focus:border-steel focus:ring-1 focus:ring-steel focus:outline-none rounded-lg text-navy placeholder:text-slate-400 font-medium transition-colors"
+                      className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors ${
+                        errors.email
+                          ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
+                          : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
+                      }`}
                     />
+                    {errors.email && (
+                      <p className="text-[11px] text-rose-500 font-sans font-medium mt-1 flex items-center gap-1">
+                        <span>⚠️</span> {errors.email}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -130,8 +326,17 @@ export default function ContactSection() {
                       placeholder="e.g. +91 98450 12345"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full text-xs font-sans px-4 py-3 bg-slate-50 border border-silver focus:border-steel focus:ring-1 focus:ring-steel focus:outline-none rounded-lg text-navy placeholder:text-slate-400 font-medium transition-colors"
+                      className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors ${
+                        errors.phone
+                          ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
+                          : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
+                      }`}
                     />
+                    {errors.phone && (
+                      <p className="text-[11px] text-rose-500 font-sans font-medium mt-1 flex items-center gap-1">
+                        <span>⚠️</span> {errors.phone}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-1.5 sm:col-span-1">
@@ -171,14 +376,23 @@ export default function ContactSection() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <DatePicker
                       value={formData.date}
-                      onChange={(d) => setFormData(prev => ({ ...prev, date: d }))}
+                      onChange={handleDateChange}
                       label="Preferred Date"
+                      error={errors.date}
                       dark={false}
                     />
                     <TimePicker
                       value={formData.time}
-                      onChange={(t) => setFormData(prev => ({ ...prev, time: t }))}
+                      onChange={(t) => {
+                        setFormData(prev => ({ ...prev, time: t }));
+                        if (errors.time) setErrors(prev => ({ ...prev, time: '' }));
+                      }}
                       label="Preferred Time"
+                      error={errors.time || (slotError && !loadingSlots ? slotError : undefined)}
+                      slots={availableSlots}
+                      loading={loadingSlots}
+                      disabled={!formData.date}
+                      emptyMessage={slotError || 'No available time slots for this date.'}
                       dark={false}
                     />
                   </div>
@@ -191,14 +405,29 @@ export default function ContactSection() {
                   <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Message / Requirements *</label>
                   <textarea
                     name="message"
-                    required
                     rows={5}
                     placeholder="Provide details about your project size, location, required building materials, or preferred schedule..."
                     value={formData.message}
                     onChange={handleInputChange}
-                    className="w-full text-xs font-sans px-4 py-3 bg-slate-50 border border-silver focus:border-steel focus:ring-1 focus:ring-steel focus:outline-none rounded-lg text-navy placeholder:text-slate-400 font-medium transition-colors resize-none"
+                    className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors resize-none ${
+                      errors.message
+                        ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
+                        : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
+                    }`}
                   />
+                  {errors.message && (
+                    <p className="text-[11px] text-rose-500 font-sans font-medium mt-1 flex items-center gap-1">
+                      <span>⚠️</span> {errors.message}
+                    </p>
+                  )}
                 </div>
+
+                {errors.submit && (
+                  <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-lg text-xs text-rose-600 font-sans font-medium flex items-center gap-2">
+                    <span>⚠️</span>
+                    <span>{errors.submit}</span>
+                  </div>
+                )}
 
                 <div className="pt-4 border-t border-silver space-y-4">
                   <p className="text-xs text-[#2E6B9E] font-sans font-bold text-center sm:text-right">

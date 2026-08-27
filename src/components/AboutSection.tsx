@@ -3,8 +3,8 @@ import { Award, Compass, ShieldCheck, Milestone } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import useScrollReveal from '../hooks/useScrollReveal';
-import house5 from '../assets/House-5.webp';
-import houseConstruction from '../assets/House Construction.webp';
+import house5 from '../assets/House-10.webp';
+import houseConstruction from '../assets/House Construction - 2.webp';
 import Land from '../assets/Land Sale.webp';
 
 export default function AboutSection() {
