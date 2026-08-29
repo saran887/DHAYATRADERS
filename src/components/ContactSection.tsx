@@ -170,25 +170,12 @@ export default function ContactSection() {
         setIsSubmitted(true);
         setBookingDetails({
           bookingId: result.bookingId,
-          meetLink: result.meetLink
+          meetLink: result.meetLink || result.meetUrl || result.googleMeetLink || ''
         });
         setErrors({});
-        setTimeout(() => {
-          setIsSubmitted(false);
-          setBookingDetails({});
-          setAvailableSlots([]);
-          setSlotError('');
-          setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            propertyType: 'Land',
-            consultationType: 'Physical Consultation',
-            date: '',
-            time: '',
-            message: ''
-          });
-        }, 4000);
+        // Keep the confirmation visible so the customer has time to
+        // read/click the Google Meet button on mobile.
+        // The form can be reset with the button below.
       } else {
         throw new Error(result?.message || result?.error || 'Failed to submit enquiry to server');
       }
@@ -211,10 +198,10 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-8 md:py-14 bg-gradient-to-b from-white to-gray-light relative">
+    <section id="contact" className="py-6 sm:py-8 md:py-14 bg-gradient-to-b from-white to-gray-light relative">
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-gray-light to-transparent pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-10 relative z-10">
+      <div className="max-w-7xl mx-auto w-full px-3 sm:px-4 md:px-6 lg:px-10 relative z-10">
 
         {/* Title Unit */}
         <div className="text-center md:max-w-3xl md:mx-auto space-y-4 mb-8">
@@ -232,7 +219,7 @@ export default function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
           {/* CLIENT ENQUIRY FORM PANEL - RIGHT LARGE */}
-          <div className="order-1 lg:order-2 lg:col-span-8 bg-white rounded-3xl shadow-2xl border-2 border-[#2E6B9E]/30 p-8 sm:p-10 flex flex-col justify-between transition-all hover:border-[#2E6B9E]/50">
+          <div className="order-1 lg:order-2 lg:col-span-8 bg-white rounded-2xl sm:rounded-3xl shadow-2xl border-2 border-[#2E6B9E]/30 p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-between transition-all hover:border-[#2E6B9E]/50">
             <div className="space-y-3 mb-6 border-b border-silver pb-4 text-left">
               <span className="text-[9px] uppercase tracking-widest text-[#2E6B9E] font-extrabold px-2 py-1 bg-[#2E6B9E]/10 rounded inline-block">Direct Enquiry Desk</span>
               <h4 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#1B3A5C] leading-tight mt-1">Enquiry Form</h4>
@@ -242,9 +229,9 @@ export default function ContactSection() {
             </div>
 
             {isSubmitted ? (
-              <div className="py-16 text-center space-y-4 flex-grow flex flex-col justify-center items-center font-sans">
-                <div className="h-16 w-16 bg-emerald-500/10 border border-emerald-400 rounded-full flex items-center justify-center text-emerald-500 shadow animate-pulse">
-                  <CheckCircle2 className="h-10 w-10" />
+              <div className="py-10 sm:py-14 md:py-16 px-1 text-center space-y-4 flex-grow flex flex-col justify-center items-center font-sans">
+                <div className="h-14 w-14 sm:h-16 sm:w-16 bg-emerald-500/10 border border-emerald-400 rounded-full flex items-center justify-center text-emerald-500 shadow animate-pulse">
+                  <CheckCircle2 className="h-8 w-8 sm:h-10 sm:w-10" />
                 </div>
                 <div className="space-y-1.5">
                   <h5 className="font-serif text-xl font-bold text-navy">Enquiry Received Successfully!</h5>
@@ -256,24 +243,36 @@ export default function ContactSection() {
                   <p className="text-xs text-slate-500 font-sans max-w-sm mx-auto mt-1 leading-relaxed">
                     Thank you for reaching out. One of our project managers will contact you shortly via email or phone callback.
                   </p>
-                  {bookingDetails.meetLink && (
-                    <div className="pt-3">
-                      <a
-                        href={bookingDetails.meetLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#2E6B9E] hover:bg-[#1B3A5C] text-white font-sans text-xs font-bold rounded-lg shadow transition-colors"
-                      >
-                        <span>📹 Join Google Meet Consultation</span>
-                      </a>
-                    </div>
-                  )}
+
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsSubmitted(false);
+                      setBookingDetails({});
+                      setAvailableSlots([]);
+                      setSlotError('');
+                      setFormData({
+                        name: '',
+                        email: '',
+                        phone: '',
+                        propertyType: 'Land',
+                        consultationType: 'Physical Consultation',
+                        date: '',
+                        time: '',
+                        message: ''
+                      });
+                    }}
+                    className="mt-4 text-xs font-bold text-[#2E6B9E] hover:text-[#1B3A5C] underline underline-offset-4"
+                  >
+                    Submit another enquiry
+                  </button>
                 </div>
               </div>
             ) : (
               <form onSubmit={handleFormSubmit} noValidate className="space-y-5 flex-grow flex flex-col justify-between">
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Your Name *</label>
                     <input
@@ -317,8 +316,8 @@ export default function ContactSection() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="space-y-1.5 sm:col-span-1">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="space-y-1.5 md:col-span-1">
                     <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Phone Number (Optional)</label>
                     <input
                       type="tel"
@@ -339,7 +338,7 @@ export default function ContactSection() {
                     )}
                   </div>
 
-                  <div className="space-y-1.5 sm:col-span-1">
+                  <div className="space-y-1.5 md:col-span-1">
                     <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Property Type *</label>
                     <select
                       name="propertyType"
@@ -356,7 +355,7 @@ export default function ContactSection() {
                     </select>
                   </div>
 
-                  <div className="space-y-1.5 sm:col-span-1">
+                  <div className="space-y-1.5 md:col-span-1">
                     <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Consultation Type *</label>
                     <select
                       name="consultationType"
@@ -373,7 +372,7 @@ export default function ContactSection() {
 
                 {/* Preferred Date & Time row */}
                 <div className="space-y-2">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <DatePicker
                       value={formData.date}
                       onChange={handleDateChange}
@@ -434,14 +433,14 @@ export default function ContactSection() {
                     ⚡ Our team will contact you within 24 hours
                   </p>
 
-                  <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
                     <p className="text-[10px] text-slate-400 font-sans text-center sm:text-left">
                       By submitting, you agree to our team contacting you via email or callback.
                     </p>
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full sm:w-auto bg-[#2E6B9E] hover:bg-[#1B3A5C] text-white font-sans text-xs uppercase tracking-widest font-extrabold py-4 px-8 rounded-lg shadow-lg hover:shadow-[#2E6B9E]/30 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                      className="w-full sm:w-auto min-h-12 bg-[#2E6B9E] hover:bg-[#1B3A5C] text-white font-sans text-xs uppercase tracking-widest font-extrabold py-4 px-8 rounded-lg shadow-lg hover:shadow-[#2E6B9E]/30 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                     >
                       <Send className="h-4 w-4" />
                       <span>{isSubmitting ? 'Sending...' : 'Submit Enquiry'}</span>
@@ -449,7 +448,7 @@ export default function ContactSection() {
                   </div>
 
                   {/* Trust Indicators below button */}
-                  <div className="grid grid-cols-3 gap-2 pt-3 border-t border-silver/50 text-[9px] uppercase tracking-wider text-slate-500 font-extrabold text-center">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-3 border-t border-silver/50 text-[9px] uppercase tracking-wider text-slate-500 font-extrabold text-center">
                     <div className="flex items-center justify-center gap-1.5">
                       <span className="text-teal text-[11px]">✓</span> Trusted Service
                     </div>
@@ -468,7 +467,7 @@ export default function ContactSection() {
           </div>
 
           {/* CONTACT INFO & SMALL MAP - LEFT SMALL */}
-          <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-6 bg-navy-deep text-white rounded-2xl shadow-xl border border-teal/20 p-6 relative overflow-hidden">
+          <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-6 bg-navy-deep text-white rounded-2xl shadow-xl border border-teal/20 p-4 sm:p-6 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-teal/5 rounded-full blur-2xl pointer-events-none" />
 
             <div className="space-y-6">
