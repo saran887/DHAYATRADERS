@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { X, Sparkles, User, Mail, CheckCircle2 } from 'lucide-react';
 import DatePicker from './DatePicker';
 import TimePicker from './TimePicker';
+import CustomDropdown from './CustomDropdown';
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -378,39 +379,47 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                <div className="space-y-1">
+                <div className="space-y-1 z-20">
                   <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
                     Property Type *
                   </label>
-                  <select
+                  <CustomDropdown
                     name="propertyType"
+                    options={[
+                      { value: 'Land', label: 'Land' },
+                      { value: 'House', label: 'House' },
+                      { value: 'Villa', label: 'Villa' },
+                      { value: 'Commercial', label: 'Commercial' },
+                      { value: 'Materials', label: 'Materials' },
+                      { value: 'General Consultation', label: 'General Consultation' }
+                    ]}
                     value={formData.propertyType}
-                    onChange={handleChange}
-                    className="w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white font-medium cursor-pointer"
-                  >
-                    <option value="Land" className="bg-[#0d2136] text-white">Land</option>
-                    <option value="House" className="bg-[#0d2136] text-white">House</option>
-                    <option value="Villa" className="bg-[#0d2136] text-white">Villa</option>
-                    <option value="Commercial" className="bg-[#0d2136] text-white">Commercial</option>
-                    <option value="Materials" className="bg-[#0d2136] text-white">Materials</option>
-                    <option value="General Consultation" className="bg-[#0d2136] text-white">General Consultation</option>
-                  </select>
+                    onChange={(value) => setFormData(prev => ({ ...prev, propertyType: value }))}
+                    buttonClassName="bg-white/10 border border-white/20 text-white font-medium py-3 backdrop-blur-sm focus:border-teal"
+                    dropdownClassName="bg-[#0d2136] border border-white/20 shadow-premium"
+                    optionClassName="text-slate-300 hover:bg-white/10"
+                    activeOptionClassName="bg-teal/20 font-bold text-teal"
+                  />
                 </div>
 
-                <div className="space-y-1">
+                <div className="space-y-1 z-20">
                   <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
                     Consultation Type *
                   </label>
-                  <select
+                  <CustomDropdown
                     name="consultationType"
+                    options={[
+                      { value: 'Physical Consultation', label: 'Physical Consultation' },
+                      { value: 'Online Consultation', label: 'Online Consultation' },
+                      { value: 'Property Discussion', label: 'Property Discussion' }
+                    ]}
                     value={formData.consultationType}
-                    onChange={handleChange}
-                    className="w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 bg-white/10 border border-white/20 focus:border-teal focus:outline-none rounded-lg text-white font-medium cursor-pointer"
-                  >
-                    <option value="Physical Consultation" className="bg-[#0d2136] text-white">Physical Consultation</option>
-                    <option value="Online Consultation" className="bg-[#0d2136] text-white">Online Consultation</option>
-                    <option value="Property Discussion" className="bg-[#0d2136] text-white">Property Discussion</option>
-                  </select>
+                    onChange={(value) => setFormData(prev => ({ ...prev, consultationType: value }))}
+                    buttonClassName="bg-white/10 border border-white/20 text-white font-medium py-3 backdrop-blur-sm focus:border-teal"
+                    dropdownClassName="bg-[#0d2136] border border-white/20 shadow-premium"
+                    optionClassName="text-slate-300 hover:bg-white/10"
+                    activeOptionClassName="bg-teal/20 font-bold text-teal"
+                  />
                 </div>
               </div>
 

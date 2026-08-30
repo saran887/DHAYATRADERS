@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, MapPin, Eye, Building2, Quote, ChevronDown } from 'lucide-react';
 import { PROJECTS_DATA } from '../data';
+import CustomDropdown from './CustomDropdown';
 
 export default function ProjectsSection() {
   const [selectedFilter, setSelectedFilter] = useState<'All' | 'Completed' | 'Ongoing'>('All');
@@ -33,19 +34,21 @@ export default function ProjectsSection() {
 
         {/* Projects Filter Dropdown */}
         <div className="flex justify-center mb-10">
-          <div className="relative w-full max-w-xs">
-            <select
+          <div className="relative w-full max-w-xs z-20">
+            <CustomDropdown
+              options={[
+                { value: 'All', label: 'All Projects' },
+                { value: 'Completed', label: 'Completed Projects' },
+                { value: 'Ongoing', label: 'Ongoing Projects' }
+              ]}
               value={selectedFilter}
-              onChange={(e) => setSelectedFilter(e.target.value as any)}
-              className="w-full text-xs sm:text-sm font-sans px-4 py-3.5 bg-white border border-steel text-steel font-bold rounded-xl cursor-pointer shadow-premium hover:shadow-premium-hover focus:outline-none appearance-none transition-all duration-300 pr-10"
-            >
-              <option value="All">All Projects</option>
-              <option value="Completed">Completed Projects</option>
-              <option value="Ongoing">Ongoing Projects</option>
-            </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-steel">
-              <ChevronDown className="h-4 w-4" />
-            </div>
+              onChange={(val) => setSelectedFilter(val as any)}
+              buttonClassName="bg-white border-2 border-steel text-steel font-bold rounded-xl shadow-premium hover:shadow-premium-hover py-3.5"
+              dropdownClassName="bg-white border border-steel/20 shadow-premium"
+              optionClassName="text-steel font-medium hover:bg-silver/50"
+              activeOptionClassName="bg-silver/40 font-bold text-navy"
+              iconClassName="text-steel"
+            />
           </div>
         </div>
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Send, CheckCircle2, MessageCircle } from 'lucide-react';
 import DatePicker from './DatePicker';
 import TimePicker from './TimePicker';
+import CustomDropdown from './CustomDropdown';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -338,35 +339,43 @@ export default function ContactSection() {
                     )}
                   </div>
 
-                  <div className="space-y-1.5 md:col-span-1">
+                  <div className="space-y-1.5 md:col-span-1 z-20">
                     <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Property Type *</label>
-                    <select
+                    <CustomDropdown
                       name="propertyType"
+                      options={[
+                        { value: 'Land', label: 'Land' },
+                        { value: 'House', label: 'House' },
+                        { value: 'Villa', label: 'Villa' },
+                        { value: 'Commercial', label: 'Commercial' },
+                        { value: 'Materials', label: 'Materials' },
+                        { value: 'General Consultation', label: 'General Consultation' },
+                      ]}
                       value={formData.propertyType}
-                      onChange={handleInputChange}
-                      className="w-full text-xs font-sans px-4 py-3 bg-slate-50 border border-silver focus:border-steel focus:outline-none rounded-lg text-navy font-medium transition-colors cursor-pointer"
-                    >
-                      <option value="Land">Land</option>
-                      <option value="House">House</option>
-                      <option value="Villa">Villa</option>
-                      <option value="Commercial">Commercial</option>
-                      <option value="Materials">Materials</option>
-                      <option value="General Consultation">General Consultation</option>
-                    </select>
+                      onChange={(value) => setFormData(prev => ({ ...prev, propertyType: value }))}
+                      buttonClassName="bg-slate-50 border border-silver text-navy font-medium py-3"
+                      dropdownClassName="bg-white border border-silver shadow-premium"
+                      optionClassName="text-navy hover:bg-slate-50"
+                      activeOptionClassName="bg-silver/40 font-bold text-navy"
+                    />
                   </div>
 
-                  <div className="space-y-1.5 md:col-span-1">
+                  <div className="space-y-1.5 md:col-span-1 z-20">
                     <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Consultation Type *</label>
-                    <select
+                    <CustomDropdown
                       name="consultationType"
+                      options={[
+                        { value: 'Physical Consultation', label: 'Physical Consultation' },
+                        { value: 'Online Consultation', label: 'Online Consultation' },
+                        { value: 'Property Discussion', label: 'Property Discussion' },
+                      ]}
                       value={formData.consultationType}
-                      onChange={handleInputChange}
-                      className="w-full text-xs font-sans px-4 py-3 bg-slate-50 border border-silver focus:border-steel focus:outline-none rounded-lg text-navy font-medium transition-colors cursor-pointer"
-                    >
-                      <option value="Physical Consultation">Physical Consultation</option>
-                      <option value="Online Consultation">Online Consultation</option>
-                      <option value="Property Discussion">Property Discussion</option>
-                    </select>
+                      onChange={(value) => setFormData(prev => ({ ...prev, consultationType: value }))}
+                      buttonClassName="bg-slate-50 border border-silver text-navy font-medium py-3"
+                      dropdownClassName="bg-white border border-silver shadow-premium"
+                      optionClassName="text-navy hover:bg-slate-50"
+                      activeOptionClassName="bg-silver/40 font-bold text-navy"
+                    />
                   </div>
                 </div>
 
