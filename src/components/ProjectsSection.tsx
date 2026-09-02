@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, MapPin, Eye, Building2, Quote, ChevronDown } from 'lucide-react';
+import { Calendar, MapPin, Eye, Building2, Quote } from 'lucide-react';
 import { PROJECTS_DATA } from '../data';
-import CustomDropdown from './CustomDropdown';
+import CustomSelect from './CustomSelect';
 
 export default function ProjectsSection() {
   const [selectedFilter, setSelectedFilter] = useState<'All' | 'Completed' | 'Ongoing'>('All');
@@ -34,20 +34,16 @@ export default function ProjectsSection() {
 
         {/* Projects Filter Dropdown */}
         <div className="flex justify-center mb-10">
-          <div className="relative w-full max-w-xs z-20">
-            <CustomDropdown
-              options={[
-                { value: 'All', label: 'All Projects' },
-                { value: 'Completed', label: 'Completed Projects' },
-                { value: 'Ongoing', label: 'Ongoing Projects' }
-              ]}
+          <div className="w-full max-w-xs">
+            <CustomSelect
               value={selectedFilter}
               onChange={(val) => setSelectedFilter(val as any)}
-              buttonClassName="bg-white border-2 border-steel text-steel font-bold rounded-xl shadow-premium hover:shadow-premium-hover py-3.5"
-              dropdownClassName="bg-white border border-steel/20 shadow-premium"
-              optionClassName="text-steel font-medium hover:bg-silver/50"
-              activeOptionClassName="bg-silver/40 font-bold text-navy"
-              iconClassName="text-steel"
+              options={[
+                { label: 'All Projects', value: 'All' },
+                { label: 'Completed Projects', value: 'Completed' },
+                { label: 'Ongoing Projects', value: 'Ongoing' }
+              ]}
+              dark={false}
             />
           </div>
         </div>
@@ -75,23 +71,26 @@ export default function ProjectsSection() {
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-transparent to-transparent pointer-events-none" />
 
-                  {/* Top-left: category + standard badges */}
-                  <div className="absolute top-4 left-4 flex gap-2 z-10">
-                    <span className="text-[9px] uppercase tracking-wider font-extrabold px-2.5 py-1.5 rounded bg-[#0D2136]/90 backdrop-blur-md text-white border border-white/10 shadow-lg">
-                      {proj.category}
-                    </span>
-                    <span className="text-[9px] uppercase tracking-wider font-bold px-2 py-1 bg-teal text-white rounded flex items-center gap-1 shadow">
-                      <Building2 className="h-3 w-3 text-white" /> DHAYA STANDARD
-                    </span>
-                  </div>
+                  {/* Top Header Bar Badges - Responsive flex-wrap to prevent overlaps */}
+                  <div className="absolute top-3 left-3 right-3 flex flex-wrap items-center justify-between gap-1.5 z-10">
+                    <div className="flex flex-wrap items-center gap-1.5 max-w-[calc(100%-85px)]">
+                      <span className="text-[9px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded bg-[#0D2136]/90 backdrop-blur-md text-white border border-white/10 shadow-lg truncate">
+                        {proj.category}
+                      </span>
+                      <span className="text-[9px] uppercase tracking-wider font-bold px-2 py-1 bg-teal text-white rounded flex items-center gap-1 shadow">
+                        <Building2 className="h-3 w-3 text-white shrink-0" />
+                        <span className="hidden sm:inline">DHAYA STANDARD</span>
+                        <span className="sm:hidden">STANDARD</span>
+                      </span>
+                    </div>
 
-                  {/* Top-right: status badge */}
-                  <div className="absolute top-4 right-4 z-10">
-                    <span className={`text-[10px] uppercase tracking-widest font-extrabold px-3 py-1.5 rounded-lg text-white shadow-md border border-white/10 ${
-                      proj.status === 'Completed' ? 'bg-emerald-600' : 'bg-blue-600'
-                    }`}>
-                      {proj.status}
-                    </span>
+                    <div className="shrink-0">
+                      <span className={`text-[9px] sm:text-[10px] uppercase tracking-widest font-extrabold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-white shadow-md border border-white/10 ${
+                        proj.status === 'Completed' ? 'bg-emerald-600' : 'bg-blue-600'
+                      }`}>
+                        {proj.status}
+                      </span>
+                    </div>
                   </div>
                 </div>
 

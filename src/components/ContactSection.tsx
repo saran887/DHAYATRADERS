@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Send, CheckCircle2, MessageCircle } from 'lucide-react';
 import DatePicker from './DatePicker';
 import TimePicker from './TimePicker';
-import CustomDropdown from './CustomDropdown';
+import CustomSelect from './CustomSelect';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -25,7 +25,7 @@ export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbw4kRYqwuXp3-3zAEw-TY95eOPqusmARznNPiXceqiS-74iIHr7G2EsFwjASmkHj7LJ/exec';
+  const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL || '';
 
   const fetchAvailability = async (selectedDate: string) => {
     if (!selectedDate) {
@@ -47,20 +47,93 @@ export default function ContactSection() {
 
     try {
       const url = `${GOOGLE_SCRIPT_URL}?action=availability&date=${encodeURIComponent(selectedDate)}`;
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+      console.log(`[fetchAvailability] Fetching: ${url}`);
+
+      const response = await fetch(url, {
+        method: 'GET',
+        redirect: 'follow',
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        const errBody = await response.text();
+        console.error(`[fetchAvailability] HTTP error ${response.status}:`, errBody);
+        throw new Error(`HTTP error ${response.status}`);
+      }
 
       const data = await response.json();
-      if (data && data.success === true && Array.isArray(data.slots)) {
-        setAvailableSlots(data.slots);
-        if (data.slots.length === 0) {
-          setSlotError('No available time slots for this date.');
+      console.log('[fetchAvailability] Received response data:', data);
+
+      if (data.date && data.date !== selectedDate) {
+        console.warn(`[fetchAvailability] Date mismatch: requested ${selectedDate}, received ${data.date}`);
+      }
+
+      const rawSlots = data.availableSlots || data.slots;
+
+      if (data && (data.success === true || Array.isArray(rawSlots)) && Array.isArray(rawSlots)) {
+        const normalizedSlots: { label: string; value: string }[] = rawSlots.map((slotItem: any) => {
+          if (typeof slotItem === 'object' && slotItem !== null && slotItem.label && slotItem.value) {
+            return slotItem;
+          }
+          if (typeof slotItem === 'string') {
+            if (slotItem.includes('T')) {
+              const d = new Date(slotItem);
+              if (!isNaN(d.getTime())) {
+                const h = d.getHours();
+                const m = d.getMinutes();
+                const hh = String(h).padStart(2, '0');
+                const mm = String(m).padStart(2, '0');
+                const hour12 = h % 12 || 12;
+                const ampm = h >= 12 ? 'PM' : 'AM';
+                return {
+                  label: `${String(hour12).padStart(2, '0')}:${mm} ${ampm}`,
+                  value: `${hh}:${mm}`
+                };
+              }
+            }
+            const parts = slotItem.split(':');
+            if (parts.length >= 2) {
+              const h = parseInt(parts[0], 10);
+              const m = parseInt(parts[1], 10);
+              if (!isNaN(h) && !isNaN(m)) {
+                const hh = String(h).padStart(2, '0');
+                const mm = String(m).padStart(2, '0');
+                const hour12 = h % 12 || 12;
+                const ampm = h >= 12 ? 'PM' : 'AM';
+                return {
+                  label: `${String(hour12).padStart(2, '0')}:${mm} ${ampm}`,
+                  value: `${hh}:${mm}`
+                };
+              }
+            }
+            return { label: slotItem, value: slotItem };
+          }
+          return { label: String(slotItem), value: String(slotItem) };
+        });
+
+        const todayObj = new Date();
+        const todayStr = `${todayObj.getFullYear()}-${String(todayObj.getMonth() + 1).padStart(2, '0')}-${String(todayObj.getDate()).padStart(2, '0')}`;
+        const currentHH = String(todayObj.getHours()).padStart(2, '0');
+        const currentMM = String(todayObj.getMinutes()).padStart(2, '0');
+        const currentTimeStr = `${currentHH}:${currentMM}`;
+
+        let validSlots = normalizedSlots;
+        if (selectedDate === todayStr) {
+          validSlots = normalizedSlots.filter((s) => s.value > currentTimeStr);
+        }
+
+        setAvailableSlots(validSlots);
+        if (validSlots.length === 0) {
+          setSlotError(selectedDate === todayStr ? 'No remaining slots available for today. Please select tomorrow or a future date.' : 'No available time slots for this date.');
         }
       } else {
-        throw new Error(data?.message || 'Failed to load time slots');
+        console.error('[fetchAvailability] Missing availableSlots or slots array in response:', data);
+        throw new Error(data?.message || 'Failed to load time slots: invalid format');
       }
     } catch (err) {
-      console.error('Error loading available times:', err);
+      console.error('[fetchAvailability] Error loading available times:', err);
       setSlotError('Unable to load available times. Please try again.');
       setAvailableSlots([]);
     } finally {
@@ -339,42 +412,25 @@ export default function ContactSection() {
                     )}
                   </div>
 
-                  <div className="space-y-1.5 md:col-span-1 z-20">
-                    <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Property Type *</label>
-                    <CustomDropdown
-                      name="propertyType"
-                      options={[
-                        { value: 'Land', label: 'Land' },
-                        { value: 'House', label: 'House' },
-                        { value: 'Villa', label: 'Villa' },
-                        { value: 'Commercial', label: 'Commercial' },
-                        { value: 'Materials', label: 'Materials' },
-                        { value: 'General Consultation', label: 'General Consultation' },
-                      ]}
+                  <div className="space-y-1.5 sm:col-span-1">
+                    <CustomSelect
+                      label="Property Type"
+                      required
                       value={formData.propertyType}
-                      onChange={(value) => setFormData(prev => ({ ...prev, propertyType: value }))}
-                      buttonClassName="bg-slate-50 border border-silver text-navy font-medium py-3"
-                      dropdownClassName="bg-white border border-silver shadow-premium"
-                      optionClassName="text-navy hover:bg-slate-50"
-                      activeOptionClassName="bg-silver/40 font-bold text-navy"
+                      onChange={(val) => setFormData((prev) => ({ ...prev, propertyType: val }))}
+                      options={['Land', 'House', 'Villa', 'Commercial', 'Materials', 'General Consultation']}
+                      dark={false}
                     />
                   </div>
 
-                  <div className="space-y-1.5 md:col-span-1 z-20">
-                    <label className="text-[11px] uppercase tracking-wider text-navy font-bold">Consultation Type *</label>
-                    <CustomDropdown
-                      name="consultationType"
-                      options={[
-                        { value: 'Physical Consultation', label: 'Physical Consultation' },
-                        { value: 'Online Consultation', label: 'Online Consultation' },
-                        { value: 'Property Discussion', label: 'Property Discussion' },
-                      ]}
+                  <div className="space-y-1.5 sm:col-span-1">
+                    <CustomSelect
+                      label="Consultation Type"
+                      required
                       value={formData.consultationType}
-                      onChange={(value) => setFormData(prev => ({ ...prev, consultationType: value }))}
-                      buttonClassName="bg-slate-50 border border-silver text-navy font-medium py-3"
-                      dropdownClassName="bg-white border border-silver shadow-premium"
-                      optionClassName="text-navy hover:bg-slate-50"
-                      activeOptionClassName="bg-silver/40 font-bold text-navy"
+                      onChange={(val) => setFormData((prev) => ({ ...prev, consultationType: val }))}
+                      options={['Physical Consultation', 'Online Consultation', 'Property Discussion']}
+                      dark={false}
                     />
                   </div>
                 </div>
@@ -395,6 +451,7 @@ export default function ContactSection() {
                         setFormData(prev => ({ ...prev, time: t }));
                         if (errors.time) setErrors(prev => ({ ...prev, time: '' }));
                       }}
+                      selectedDate={formData.date}
                       label="Preferred Time"
                       error={errors.time || (slotError && !loadingSlots ? slotError : undefined)}
                       slots={availableSlots}

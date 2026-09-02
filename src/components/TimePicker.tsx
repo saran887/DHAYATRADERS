@@ -4,6 +4,7 @@ import { Clock } from 'lucide-react';
 interface TimePickerProps {
   value: string; // HH:MM (24h)
   onChange: (time: string) => void;
+  selectedDate?: string; // YYYY-MM-DD
   label?: string;
   required?: boolean;
   dark?: boolean;
@@ -33,6 +34,7 @@ for (let h = 8; h <= 18; h++) {
 export default function TimePicker({
   value,
   onChange,
+  selectedDate,
   label = 'Time',
   required,
   dark = false,
@@ -47,7 +49,21 @@ export default function TimePicker({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
-  const activeSlots = slots !== undefined ? slots : DEFAULT_TIME_SLOTS;
+  const todayObj = new Date();
+  const todayStr = `${todayObj.getFullYear()}-${String(todayObj.getMonth() + 1).padStart(2, '0')}-${String(todayObj.getDate()).padStart(2, '0')}`;
+  const currentHH = String(todayObj.getHours()).padStart(2, '0');
+  const currentMM = String(todayObj.getMinutes()).padStart(2, '0');
+  const currentTimeStr = `${currentHH}:${currentMM}`;
+
+  const rawSlots = slots !== undefined ? slots : DEFAULT_TIME_SLOTS;
+
+  // Filter out past time slots if selected date is today
+  const activeSlots = rawSlots.filter((slot) => {
+    if (selectedDate === todayStr) {
+      return slot.value > currentTimeStr;
+    }
+    return true;
+  });
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
