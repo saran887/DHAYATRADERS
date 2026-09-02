@@ -228,21 +228,23 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
 
     setSubmitting(true);
     try {
+      const params = new URLSearchParams();
+      params.append('name', formData.name);
+      params.append('email', formData.email);
+      params.append('phone', formData.phone || 'N/A');
+      params.append('propertyType', formData.propertyType);
+      params.append('consultationType', formData.consultationType);
+      params.append('preferredDate', formData.date);
+      params.append('preferredTime', formData.time);
+      params.append('message', formData.message);
+
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         headers: {
-          'Content-Type': 'text/plain;charset=utf-8'
+          'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          propertyType: formData.propertyType,
-          consultationType: formData.consultationType,
-          preferredDate: formData.date,
-          preferredTime: formData.time,
-          message: formData.message
-        })
+        body: params.toString(),
+        redirect: 'follow'
       });
 
       const result = await response.json();
@@ -265,7 +267,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
         setSuccess(true);
         setBookingDetails({
           bookingId: result.bookingId,
-          meetLink: result.meetLink
+          meetLink: result.meetLink && result.meetLink !== 'N/A' ? result.meetLink : ''
         });
         setErrors({});
         setTimeout(() => {
@@ -286,14 +288,14 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
           });
         }, 4000);
       } else {
-        throw new Error(result?.message || result?.error || 'Failed to submit consultation booking');
+        throw new Error(result?.error || result?.message || 'Failed to submit consultation booking');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Submission error:', error);
       setSubmitting(false);
       setErrors((prev) => ({
         ...prev,
-        submit: 'Failed to book consultation. Please check your connection and try again.'
+        submit: error?.message || 'Failed to book consultation. Please check your connection and try again.'
       }));
     }
   };

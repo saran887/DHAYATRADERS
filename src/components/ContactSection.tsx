@@ -207,21 +207,23 @@ export default function ContactSection() {
 
     setIsSubmitting(true);
     try {
+      const params = new URLSearchParams();
+      params.append('name', formData.name);
+      params.append('email', formData.email);
+      params.append('phone', formData.phone || 'N/A');
+      params.append('propertyType', formData.propertyType);
+      params.append('consultationType', formData.consultationType);
+      params.append('preferredDate', formData.date);
+      params.append('preferredTime', formData.time);
+      params.append('message', formData.message);
+
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         headers: {
-          'Content-Type': 'text/plain;charset=utf-8'
+          'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          propertyType: formData.propertyType,
-          consultationType: formData.consultationType,
-          preferredDate: formData.date,
-          preferredTime: formData.time,
-          message: formData.message
-        })
+        body: params.toString(),
+        redirect: 'follow'
       });
 
       const result = await response.json();
@@ -244,21 +246,18 @@ export default function ContactSection() {
         setIsSubmitted(true);
         setBookingDetails({
           bookingId: result.bookingId,
-          meetLink: result.meetLink || result.meetUrl || result.googleMeetLink || ''
+          meetLink: result.meetLink && result.meetLink !== 'N/A' ? result.meetLink : ''
         });
         setErrors({});
-        // Keep the confirmation visible so the customer has time to
-        // read/click the Google Meet button on mobile.
-        // The form can be reset with the button below.
       } else {
-        throw new Error(result?.message || result?.error || 'Failed to submit enquiry to server');
+        throw new Error(result?.error || result?.message || 'Failed to submit enquiry to server');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Submission error:', error);
       setIsSubmitting(false);
       setErrors((prev) => ({
         ...prev,
-        submit: 'Failed to send enquiry. Please check your connection or try again.'
+        submit: error?.message || 'Failed to send enquiry. Please check your connection or try again.'
       }));
     }
   };
