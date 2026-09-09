@@ -1,9 +1,17 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ShieldCheck, MapPin, Award, ArrowRight } from 'lucide-react';
+import hero1Small from '../assets/Hero-1-640w.webp';
+import hero1Medium from '../assets/Hero-1-960w.webp';
 import hero1 from '../assets/Hero-1.webp';
+import hero2Small from '../assets/Hero-2-640w.webp';
+import hero2Medium from '../assets/Hero-2-960w.webp';
 import hero2 from '../assets/Hero-2.webp';
+import hero3Small from '../assets/Hero-3-640w.webp';
+import hero3Medium from '../assets/Hero-3-960w.webp';
 import hero3 from '../assets/Hero-3.webp';
+import landSaleSmall from '../assets/Land Sale-320w.webp';
+import landSaleMedium from '../assets/Land Sale-480w.webp';
 import landSaleImg from '../assets/Land Sale.webp';
 
 interface HeroProps {
@@ -15,18 +23,21 @@ interface HeroProps {
 const HERO_SLIDES = [
   {
     image: hero1,
+    imageSrcSet: `${hero1Small} 640w, ${hero1Medium} 960w, ${hero1} 1600w`,
     title: 'Architectural Excellence',
     tagline: 'Designing residences that stand the test of time and weather.',
     badge: 'Luxury Real Estate'
   },
   {
     image: hero2,
+    imageSrcSet: `${hero2Small} 640w, ${hero2Medium} 960w, ${hero2} 1600w`,
     title: 'Direct Sourcing, Absolute Quality',
     tagline: 'Direct-to-site structural metals, clinker cements, and premium sands.',
     badge: 'Industrial Metals & Bricks'
   },
   {
     image: hero3,
+    imageSrcSet: `${hero3Small} 640w, ${hero3Medium} 960w, ${hero3} 1600w`,
     title: 'DTCP Approved Land Plots',
     tagline: '100% verified clear title land plots in high-growth investment areas.',
     badge: 'Prime Land Plots'
@@ -43,6 +54,7 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookC
     return () => clearInterval(timer);
   }, []);
 
+  const currentHeroSlide = HERO_SLIDES[currentSlide];
   const headlineWords = "Building Your Future With Trust".split(" ");
 
   return (
@@ -57,8 +69,10 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookC
             exit={{ opacity: 0 }}
             transition={{ duration: 1.5, ease: 'easeInOut' }}
             className="absolute inset-0 w-full h-full object-cover object-center"
-            src={HERO_SLIDES[currentSlide].image}
-            alt={HERO_SLIDES[currentSlide].title}
+            src={currentHeroSlide.image}
+            srcSet={currentHeroSlide.imageSrcSet}
+            sizes="100vw"
+            alt={currentHeroSlide.title}
             fetchPriority="high"
             loading="eager"
             decoding="async"
@@ -90,7 +104,7 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookC
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal/25 border border-teal/50 text-[10px] md:text-xs text-teal tracking-widest font-sans uppercase font-bold shadow-sm"
             >
               <Award className="h-4 w-4 animate-pulse text-teal" />
-              <span>{HERO_SLIDES[currentSlide].badge}</span>
+              <span>{currentHeroSlide.badge}</span>
             </motion.div>
 
             {/* Static Core Title with word-by-word reveal */}
@@ -182,11 +196,14 @@ export default function Hero({ onExploreProperties, onGetMaterialsQuote, onBookC
               {/* Minimal preview map placeholder */}
               <div className="hero-card-image-container rounded-lg border border-white/10 group cursor-pointer bg-slate-800/50">
                 <img
-                  src={landSaleImg}
+                  src={landSaleMedium}
+                  srcSet={`${landSaleSmall} 320w, ${landSaleMedium} 480w, ${landSaleImg} 800w`}
+                  sizes="320px"
                   alt="Sovereign Land Plot Layout Sketch"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  loading="eager"
-                  fetchPriority="high"
+                  loading="lazy"
+                  fetchPriority="auto"
+                  decoding="async"
                   width={400}
                   height={200}
                 />

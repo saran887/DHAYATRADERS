@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
       <section className="py-8 sm:py-16 bg-gradient-to-b from-[#0D2136] to-[#1B3A5C] text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-steel-radial opacity-10 pointer-events-none" />
         <div className="max-w-4xl mx-auto px-6 relative z-10 space-y-8 text-left">
-          
+
           <div className="space-y-4">
             <span className="text-teal text-xs uppercase tracking-widest font-extrabold block">LEGAL COMPLIANCE</span>
             <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight">Privacy Policy</h1>
@@ -35,7 +35,7 @@ export default function PrivacyPolicy() {
                 <li>Your Full Name</li>
                 <li>Email Address</li>
                 <li>Phone Number (optional)</li>
-                <li>Your specific property requirements, construction queries, or materials procurement preferences</li>
+                <li>Your specific Prosperity requirements, construction queries, or materials procurement preferences</li>
                 <li>Your chosen appointment date and time slots</li>
               </ul>
             </div>

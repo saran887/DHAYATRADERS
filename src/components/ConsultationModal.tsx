@@ -30,7 +30,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
     name: '',
     email: '',
     phone: '',
-    propertyType: 'Land',
+    ProsperityType: 'Land',
     consultationType: 'Physical Consultation',
     date: '',
     time: '',
@@ -232,7 +232,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
       params.append('name', formData.name);
       params.append('email', formData.email);
       params.append('phone', formData.phone || 'N/A');
-      params.append('propertyType', formData.propertyType);
+      params.append('ProsperityType', formData.ProsperityType);
       params.append('consultationType', formData.consultationType);
       params.append('preferredDate', formData.date);
       params.append('preferredTime', formData.time);
@@ -280,7 +280,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
             name: '',
             email: '',
             phone: '',
-            propertyType: 'Land',
+            ProsperityType: 'Land',
             consultationType: 'Physical Consultation',
             date: '',
             time: '',
@@ -313,9 +313,9 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overscroll-contain overflow-y-auto">
       {/* Backdrop */}
-      <div 
-        onClick={onClose} 
-        className="fixed inset-0 bg-navy-deep/80 backdrop-blur-md touch-none" 
+      <div
+        onClick={onClose}
+        className="fixed inset-0 bg-navy-deep/80 backdrop-blur-md touch-none"
       />
 
       {/* Modal Dialog */}
@@ -347,7 +347,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                 <p className="text-xs text-teal uppercase tracking-widest font-extrabold">Docket Ref: #{bookingDetails.bookingId}</p>
               )}
               <p className="text-xs text-slate-300 font-sans max-w-sm mx-auto leading-relaxed pt-2">
-                Dear <span className="font-semibold text-white">{formData.name}</span>, your consultation request regarding <span className="font-semibold text-white">{formData.propertyType}</span> ({formData.consultationType}) has been received successfully.
+                Dear <span className="font-semibold text-white">{formData.name}</span>, your consultation request regarding <span className="font-semibold text-white">{formData.ProsperityType}</span> ({formData.consultationType}) has been received successfully.
               </p>
               {bookingDetails.meetLink && (
                 <div className="pt-3">
@@ -375,13 +375,13 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
               </span>
               <h3 className="font-serif text-xl md:text-3xl font-bold leading-tight mt-1">Book Consultation</h3>
               <p className="text-xs text-slate-300 font-sans leading-relaxed mt-1">
-                Align with senior partners for your property, building construction, or materials requirement. Fill out this brief form to proceed.
+                Align with senior partners for your Prosperity, building construction, or materials requirement. Fill out this brief form to proceed.
               </p>
             </div>
 
             {/* Scheduling Form */}
             <form onSubmit={handleSubmit} noValidate className="space-y-3 sm:space-y-4">
-              
+
               <div className="space-y-1">
                 <label className="text-[10px] uppercase tracking-wider text-slate-300 font-bold flex items-center gap-1">
                   <User className="h-3 w-3 text-teal" /> Full Name *
@@ -392,11 +392,10 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                   placeholder="e.g. Rajesh Kumar"
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 border focus:outline-none rounded-lg text-white transition-colors ${
-                    errors.name
+                  className={`w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 border focus:outline-none rounded-lg text-white transition-colors ${errors.name
                       ? 'bg-rose-500/10 border-rose-400 ring-1 ring-rose-400 placeholder:text-rose-300'
                       : 'bg-white/10 border-white/20 focus:border-teal placeholder:text-slate-500'
-                  }`}
+                    }`}
                 />
                 {errors.name && (
                   <p className="text-[11px] text-rose-400 font-sans font-medium mt-1 flex items-center gap-1">
@@ -416,11 +415,10 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     placeholder="e.g. rajesh@gmail.com"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 border focus:outline-none rounded-lg text-white transition-colors ${
-                      errors.email
+                    className={`w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 border focus:outline-none rounded-lg text-white transition-colors ${errors.email
                         ? 'bg-rose-500/10 border-rose-400 ring-1 ring-rose-400 placeholder:text-rose-300'
                         : 'bg-white/10 border-white/20 focus:border-teal placeholder:text-slate-500'
-                    }`}
+                      }`}
                   />
                   {errors.email && (
                     <p className="text-[11px] text-rose-400 font-sans font-medium mt-1 flex items-center gap-1">
@@ -439,11 +437,10 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     placeholder="e.g. +91 98450 12345"
                     value={formData.phone}
                     onChange={handleChange}
-                    className={`w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 border focus:outline-none rounded-lg text-white transition-colors ${
-                      errors.phone
+                    className={`w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 border focus:outline-none rounded-lg text-white transition-colors ${errors.phone
                         ? 'bg-rose-500/10 border-rose-400 ring-1 ring-rose-400 placeholder:text-rose-300'
                         : 'bg-white/10 border-white/20 focus:border-teal placeholder:text-slate-500'
-                    }`}
+                      }`}
                   />
                   {errors.phone && (
                     <p className="text-[11px] text-rose-400 font-sans font-medium mt-1 flex items-center gap-1">
@@ -456,10 +453,10 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div className="space-y-1">
                   <CustomSelect
-                    label="Property Type"
+                    label="Prosperity Type"
                     required
-                    value={formData.propertyType}
-                    onChange={(val) => setFormData((prev) => ({ ...prev, propertyType: val }))}
+                    value={formData.ProsperityType}
+                    onChange={(val) => setFormData((prev) => ({ ...prev, ProsperityType: val }))}
                     options={['Land', 'House', 'Villa', 'Commercial', 'Materials', 'General Consultation']}
                     dark
                   />
@@ -471,7 +468,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     required
                     value={formData.consultationType}
                     onChange={(val) => setFormData((prev) => ({ ...prev, consultationType: val }))}
-                    options={['Physical Consultation', 'Online Consultation', 'Property Discussion']}
+                    options={['Physical Consultation', 'Online Consultation', 'Prosperity Discussion']}
                     dark
                   />
                 </div>
@@ -519,11 +516,10 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                   placeholder="Specify details about your requirement..."
                   value={formData.message}
                   onChange={handleChange}
-                  className={`w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 border focus:outline-none rounded-lg text-white resize-none transition-colors ${
-                    errors.message
+                  className={`w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 border focus:outline-none rounded-lg text-white resize-none transition-colors ${errors.message
                       ? 'bg-rose-500/10 border-rose-400 ring-1 ring-rose-400 placeholder:text-rose-300'
                       : 'bg-white/10 border-white/20 focus:border-teal placeholder:text-slate-500'
-                  }`}
+                    }`}
                 />
                 {errors.message && (
                   <p className="text-[11px] text-rose-400 font-sans font-medium mt-1 flex items-center gap-1">
@@ -540,7 +536,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                 >
                   Cancel
                 </button>
-                
+
                 <button
                   type="submit"
                   disabled={submitting}

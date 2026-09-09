@@ -1,4 +1,4 @@
-import { Service, Property, Material, Project, Testimonial } from './types';
+import { Service, Prosperity, Material, Project, Testimonial } from './types';
 
 import brickImg from './assets/Brick.webp';
 import cementImg from './assets/Cement.webp';
@@ -72,7 +72,7 @@ export const SERVICES_DATA: Service[] = [
   }
 ];
 
-export const PROPERTIES_DATA: Property[] = [
+export const PROPERTIES_DATA: Prosperity[] = [
   {
     id: 'p1',
     title: 'Nandavan Luxury Villa',

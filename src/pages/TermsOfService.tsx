@@ -13,7 +13,7 @@ export default function TermsOfService() {
       <section className="py-8 sm:py-16 bg-gradient-to-b from-[#0D2136] to-[#1B3A5C] text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-steel-radial opacity-10 pointer-events-none" />
         <div className="max-w-4xl mx-auto px-6 relative z-10 space-y-8 text-left">
-          
+
           <div className="space-y-4">
             <span className="text-teal text-xs uppercase tracking-widest font-extrabold block">LEGAL COMPLIANCE</span>
             <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight">Terms of Service</h1>
@@ -34,9 +34,9 @@ export default function TermsOfService() {
             </div>
 
             <div className="space-y-3 pt-4 border-t border-white/10">
-              <h3 className="font-serif text-lg font-bold text-white uppercase tracking-wider">2. Property Listings & Materials Estimates</h3>
+              <h3 className="font-serif text-lg font-bold text-white uppercase tracking-wider">2. Prosperity Listings & Materials Estimates</h3>
               <p>
-                We strive to keep all property descriptions, layouts, sizing (sq ft), and construction materials prices accurate. However, all listed figures, estimates, and parameters (including TMT steel weights or brick compression indices) are meant for preliminary cost assessment. Final prices and agreements are subject to direct physical verification and contract execution between the client and our corporate managers.
+                We strive to keep all Prosperity descriptions, layouts, sizing (sq ft), and construction materials prices accurate. However, all listed figures, estimates, and parameters (including TMT steel weights or brick compression indices) are meant for preliminary cost assessment. Final prices and agreements are subject to direct physical verification and contract execution between the client and our corporate managers.
               </p>
             </div>
 
@@ -48,9 +48,9 @@ export default function TermsOfService() {
             </div>
 
             <div className="space-y-3 pt-4 border-t border-white/10">
-              <h3 className="font-serif text-lg font-bold text-white uppercase tracking-wider">4. Intellectual Property</h3>
+              <h3 className="font-serif text-lg font-bold text-white uppercase tracking-wider">4. Intellectual Prosperity</h3>
               <p>
-                All brand logos, text layouts, structural descriptions, and site illustrations are the property of DHAYA TRADERS. Copying or modifying them for commercial redistribution without our explicit written permission is strictly prohibited.
+                All brand logos, text layouts, structural descriptions, and site illustrations are the Prosperity of DHAYA TRADERS. Copying or modifying them for commercial redistribution without our explicit written permission is strictly prohibited.
               </p>
             </div>
 

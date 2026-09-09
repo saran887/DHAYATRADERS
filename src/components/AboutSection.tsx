@@ -3,8 +3,14 @@ import { Award, Compass, ShieldCheck, Milestone } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import useScrollReveal from '../hooks/useScrollReveal';
+import house5Small from '../assets/House-10-320w.webp';
+import house5Medium from '../assets/House-10-480w.webp';
 import house5 from '../assets/House-10.webp';
+import houseConstructionSmall from '../assets/House Construction - 2-320w.webp';
+import houseConstructionMedium from '../assets/House Construction - 2-480w.webp';
 import houseConstruction from '../assets/House Construction - 2.webp';
+import landSmall from '../assets/Land Sale-320w.webp';
+import landMedium from '../assets/Land Sale-480w.webp';
 import Land from '../assets/Land Sale.webp';
 
 export default function AboutSection() {
@@ -87,7 +93,9 @@ export default function AboutSection() {
                   transition={{ duration: 0.5 }}
                 >
                   <img
-                    src={house5}
+                    src={house5Medium}
+                    srcSet={`${house5Small} 320w, ${house5Medium} 480w, ${house5} 1000w`}
+                    sizes="(min-width: 1024px) 296px, calc((100vw - 48px) / 2)"
                     alt="Elegant luxury villa dining exterior"
                     className="rounded-2xl shadow-premium object-cover h-64 w-full"
                     loading="lazy"
@@ -119,7 +127,9 @@ export default function AboutSection() {
                   transition={{ duration: 0.5, delay: 0.15 }}
                 >
                   <img
-                    src={houseConstruction}
+                    src={houseConstructionMedium}
+                    srcSet={`${houseConstructionSmall} 320w, ${houseConstructionMedium} 480w, ${houseConstruction} 800w`}
+                    sizes="(min-width: 1024px) 296px, calc((100vw - 48px) / 2)"
                     alt="House construction site operations"
                     className="rounded-2xl shadow-premium object-cover h-44 w-full"
                     loading="lazy"
@@ -135,7 +145,9 @@ export default function AboutSection() {
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
                   <img
-                    src={Land}
+                    src={landMedium}
+                    srcSet={`${landSmall} 320w, ${landMedium} 480w, ${Land} 800w`}
+                    sizes="(min-width: 1024px) 296px, calc((100vw - 48px) / 2)"
                     alt="Structural grade steels stacked on site"
                     className="rounded-2xl shadow-premium object-cover h-56 w-full"
                     loading="lazy"
@@ -171,7 +183,7 @@ export default function AboutSection() {
             </div>
 
             <p className="font-sans text-xs sm:text-sm text-slate-500 leading-relaxed">
-              Established as a trusted partner for home builders and property buyers in Tamil Nadu, DHAYA TRADERS combines quality material supply with reliable construction services. We help families, local builders, and contractors across Madurai, Erode, Trichy, Coimbatore, and Chennai build strong homes and secure verified plots with 100% clear deeds.
+              Established as a trusted partner for home builders and Prosperity buyers in Tamil Nadu, DHAYA TRADERS combines quality material supply with reliable construction services. We help families, local builders, and contractors across Madurai, Erode, Trichy, Coimbatore, and Chennai build strong homes and secure verified plots with 100% clear deeds.
             </p>
 
             {/* Highlighted Values bullets */}

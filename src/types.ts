@@ -7,12 +7,12 @@ export interface Service {
   image: string;
 }
 
-export type PropertyType = 'Villa' | 'Ready-Made House' | 'Land' | 'Commercial';
+export type ProsperityType = 'Villa' | 'Ready-Made House' | 'Land' | 'Commercial';
 
-export interface Property {
+export interface Prosperity {
   id: string;
   title: string;
-  type: PropertyType;
+  type: ProsperityType;
   location: string;
   size: string;
   price: string;

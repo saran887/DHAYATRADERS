@@ -14,7 +14,7 @@ Investing in vacant land is one of the most reliable ways to build long-term gen
 ## 1. Trace the Title History for at least 30 Years
 
 Ensure the seller holds a clear, unencumbered title. A parent document trace going back 30 years is required to confirm that the chain of ownership is completely unbroken.
-*   **Encumbrance Certificate (EC):** Obtain a fresh EC from the Sub-Registrar's office for the past 30 years to verify that no active mortgages or liens exist against the property.
+*   **Encumbrance Certificate (EC):** Obtain a fresh EC from the Sub-Registrar's office for the past 30 years to verify that no active mortgages or liens exist against the Prosperity.
 
 ## 2. Check for DTCP Approval and RERA Registration
 
@@ -32,6 +32,6 @@ Ensure the land is classified under a residential zone in the city's master plan
 
 ## 5. Verify Boundary Stones and FSI (Floor Space Index)
 
-Request a government surveyor to measure the property and mark boundary lines before registration. Also, check the FSI limits for the area, which determines the maximum built-up square footage allowed.
+Request a government surveyor to measure the Prosperity and mark boundary lines before registration. Also, check the FSI limits for the area, which determines the maximum built-up square footage allowed.
 
-Our team at **DHAYATRADERS** does all this due diligence beforehand. Every property in our portfolio is pre-vetted, legally clear, and ready for immediate registry. Get in touch to schedule a site visit!
+Our team at **DHAYATRADERS** does all this due diligence beforehand. Every Prosperity in our portfolio is pre-vetted, legally clear, and ready for immediate registry. Get in touch to schedule a site visit!

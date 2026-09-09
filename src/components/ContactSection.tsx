@@ -9,7 +9,7 @@ export default function ContactSection() {
     name: '',
     email: '',
     phone: '',
-    propertyType: 'Land',
+    ProsperityType: 'Land',
     consultationType: 'Physical Consultation',
     date: '',
     time: '',
@@ -211,7 +211,7 @@ export default function ContactSection() {
       params.append('name', formData.name);
       params.append('email', formData.email);
       params.append('phone', formData.phone || 'N/A');
-      params.append('propertyType', formData.propertyType);
+      params.append('ProsperityType', formData.ProsperityType);
       params.append('consultationType', formData.consultationType);
       params.append('preferredDate', formData.date);
       params.append('preferredTime', formData.time);
@@ -329,7 +329,7 @@ export default function ContactSection() {
                         name: '',
                         email: '',
                         phone: '',
-                        propertyType: 'Land',
+                        ProsperityType: 'Land',
                         consultationType: 'Physical Consultation',
                         date: '',
                         time: '',
@@ -354,11 +354,10 @@ export default function ContactSection() {
                       placeholder="e.g. Rajesh Kumar"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors ${
-                        errors.name
+                      className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors ${errors.name
                           ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
                           : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
-                      }`}
+                        }`}
                     />
                     {errors.name && (
                       <p className="text-[11px] text-rose-500 font-sans font-medium mt-1 flex items-center gap-1">
@@ -375,11 +374,10 @@ export default function ContactSection() {
                       placeholder="e.g. rajesh@email.com"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors ${
-                        errors.email
+                      className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors ${errors.email
                           ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
                           : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
-                      }`}
+                        }`}
                     />
                     {errors.email && (
                       <p className="text-[11px] text-rose-500 font-sans font-medium mt-1 flex items-center gap-1">
@@ -398,11 +396,10 @@ export default function ContactSection() {
                       placeholder="e.g. +91 98450 12345"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors ${
-                        errors.phone
+                      className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors ${errors.phone
                           ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
                           : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
-                      }`}
+                        }`}
                     />
                     {errors.phone && (
                       <p className="text-[11px] text-rose-500 font-sans font-medium mt-1 flex items-center gap-1">
@@ -413,10 +410,10 @@ export default function ContactSection() {
 
                   <div className="space-y-1.5 sm:col-span-1">
                     <CustomSelect
-                      label="Property Type"
+                      label="Prosperity Type"
                       required
-                      value={formData.propertyType}
-                      onChange={(val) => setFormData((prev) => ({ ...prev, propertyType: val }))}
+                      value={formData.ProsperityType}
+                      onChange={(val) => setFormData((prev) => ({ ...prev, ProsperityType: val }))}
                       options={['Land', 'House', 'Villa', 'Commercial', 'Materials', 'General Consultation']}
                       dark={false}
                     />
@@ -428,7 +425,7 @@ export default function ContactSection() {
                       required
                       value={formData.consultationType}
                       onChange={(val) => setFormData((prev) => ({ ...prev, consultationType: val }))}
-                      options={['Physical Consultation', 'Online Consultation', 'Property Discussion']}
+                      options={['Physical Consultation', 'Online Consultation', 'Prosperity Discussion']}
                       dark={false}
                     />
                   </div>
@@ -473,11 +470,10 @@ export default function ContactSection() {
                     placeholder="Provide details about your project size, location, required building materials, or preferred schedule..."
                     value={formData.message}
                     onChange={handleInputChange}
-                    className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors resize-none ${
-                      errors.message
+                    className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors resize-none ${errors.message
                         ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
                         : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
-                    }`}
+                      }`}
                   />
                   {errors.message && (
                     <p className="text-[11px] text-rose-500 font-sans font-medium mt-1 flex items-center gap-1">

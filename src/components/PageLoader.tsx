@@ -8,7 +8,7 @@ export default function PageLoader() {
         <div className="w-24 h-24 border-2 border-[#2E6B9E]/20 border-t-[#4AABB8] rounded-full animate-spin absolute" />
         <div className="w-14 h-14 flex items-center justify-center rounded-full bg-white border border-[#2E6B9E]/30 animate-pulse relative z-10 overflow-hidden">
           <img
-            src="/assets/logo.webp?v=2"
+            src="/assets/logo-64w.webp?v=3"
             alt="DHAYATRADERS Logo"
             draggable={false}
             width={56}

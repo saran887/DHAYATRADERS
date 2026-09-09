@@ -63,7 +63,7 @@ export default function App() {
               <div className="flex items-center gap-3">
                 <div className="h-12 w-12 flex items-center justify-center bg-white border border-steel/30 rounded-full shadow-sm overflow-hidden shrink-0">
                   <img
-                    src="/assets/logo.webp?v=2"
+                    src="/assets/logo-64w.webp?v=3"
                     alt="DHAYA TRADERS Logo"
                     draggable={false}
                     className="w-full h-full object-contain scale-120 select-none"
@@ -74,7 +74,7 @@ export default function App() {
                 <h4 className="font-serif text-xl font-bold tracking-wider text-white">DHAYA TRADERS</h4>
               </div>
               <p className="text-[10px] text-teal uppercase tracking-widest font-semibold mt-0.5 leading-none">
-                Building Property &amp; Trusted Trading
+                Building Prosperity &amp; Trusted Trading
               </p>
               <p className="hidden md:block text-xs text-slate-400 font-sans leading-relaxed pt-1">
                 Delivering solid house construction, pre-vetted land sales, ready houses, and certified construction materials.

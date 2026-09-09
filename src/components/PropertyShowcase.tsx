@@ -2,10 +2,10 @@ import React, { useState, useMemo } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { MapPin, Filter, Search, Check, ShieldAlert } from 'lucide-react';
 import { PROPERTIES_DATA } from '../data';
-import { Property, PropertyType } from '../types';
+import { Prosperity, ProsperityType } from '../types';
 import RevealCard from './RevealCard';
 
-const renderSpecs = (prop: Property) => {
+const renderSpecs = (prop: Prosperity) => {
   switch (prop.type) {
     case 'Land':
       return (
@@ -99,12 +99,12 @@ const renderSpecs = (prop: Property) => {
   }
 };
 
-export default React.memo(function PropertyShowcase({ onOpenConsultation }: { onOpenConsultation: () => void }) {
-  const [activeType, setActiveType] = useState<PropertyType | 'All'>('All');
+export default React.memo(function ProsperityShowcase({ onOpenConsultation }: { onOpenConsultation: () => void }) {
+  const [activeType, setActiveType] = useState<ProsperityType | 'All'>('All');
   const [searchQuery, setSearchQuery] = useState('');
 
   // Categories list ordered: All | Land | House | Villa | Commercial
-  const categories: (PropertyType | 'All')[] = ['All', 'Land', 'Ready-Made House', 'Villa', 'Commercial'];
+  const categories: (ProsperityType | 'All')[] = ['All', 'Land', 'Ready-Made House', 'Villa', 'Commercial'];
 
   // Filters calculation
   const filteredProperties = useMemo(() => {
@@ -127,7 +127,7 @@ export default React.memo(function PropertyShowcase({ onOpenConsultation }: { on
         {/* Header Block */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-8 gap-6">
           <div className="space-y-4 max-w-2xl text-left">
-            <span className="text-[10px] md:text-xs uppercase tracking-widest text-steel font-extrabold block">LAND &amp; PROPERTY SHOWCASE</span>
+            <span className="text-[10px] md:text-xs uppercase tracking-widest text-steel font-extrabold block">LAND &amp; Prosperity SHOWCASE</span>
             <h2 className="font-serif text-3xl md:text-5xl text-navy tracking-tight font-medium">
               Visions of Landmark Estates
             </h2>
@@ -174,7 +174,7 @@ export default React.memo(function PropertyShowcase({ onOpenConsultation }: { on
               filteredProperties.map((prop, index) => (
                 <RevealCard key={prop.id} delay={index * 100}>
                   <div className="rounded-2xl overflow-hidden glass-card shadow-premium border border-silver flex flex-col sm:flex-row group h-full">
-                    {/* Property Image Container */}
+                    {/* Prosperity Image Container */}
                     <div className="relative w-full sm:w-1/2 h-64 sm:h-auto overflow-hidden min-h-64">
                       <img
                         src={prop.image}
