@@ -177,7 +177,7 @@ export default function AboutSection() {
             <div className="space-y-4">
               <span className="text-[10px] md:text-xs uppercase tracking-widest text-steel font-extrabold block font-sans">WHO WE ARE</span>
               <h2 className="font-serif text-3xl md:text-5xl text-navy tracking-tight font-medium leading-tight">
-                Building Prosperity • Trusted Global Trading
+                Building Prosperity & Trusted Trading
               </h2>
               <div className="w-16 h-1 bg-steel rounded-full" />
             </div>

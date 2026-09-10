@@ -15,7 +15,7 @@ export default function Home({ onOpenConsultation }: { onOpenConsultation: () =>
         <title>DHAYATRADERS | Premium Construction & Land Sales Tamil Nadu</title>
         <meta name="description" content="DHAYATRADERS delivers luxury house construction, certified land sales, ready-made homes, TMT steel and premium building materials across Tamil Nadu. 15+ landmark estates completed." />
         <meta name="keywords" content="construction company Tamil Nadu, land sales Tamil Nadu, TMT steel supply, building materials Tamil Nadu, luxury villas, house construction, Dhaya Traders" />
-        <meta property="og:title" content="DHAYATRADERS – Building Prosperity, Trusted Global Trading" />
+        <meta property="og:title" content="DHAYATRADERS – Building Prosperity & Trusted Trading" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="DHAYATRADERS | Premium Construction & Land Sales Tamil Nadu" />
