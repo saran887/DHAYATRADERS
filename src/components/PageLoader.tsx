@@ -6,7 +6,7 @@ export default function PageLoader() {
       <div className="relative flex items-center justify-center">
         {/* Spinner outer border ring */}
         <div className="w-24 h-24 border-2 border-[#2E6B9E]/20 border-t-[#4AABB8] rounded-full animate-spin absolute" />
-        <div className="w-20 h-20 flex items-center justify-center rounded-full bg-white border border-[#2E6B9E]/30 animate-pulse relative z-10 overflow-hidden p-1">
+        <div className="w-16 h-16 flex items-center justify-center rounded-full bg-white border border-[#2E6B9E]/30 animate-pulse relative z-10 overflow-hidden">
           <img
             src="/assets/logo.webp"
             alt="DHAYATRADERS Logo"

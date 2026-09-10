@@ -61,7 +61,7 @@ export default function App() {
             {/* Column 1 - Brand Slogan */}
             <div className="md:col-span-4 space-y-2.5 text-center md:text-left flex flex-col items-center md:items-start">
               <div className="flex items-center gap-3">
-                <div className="h-12 w-12 flex items-center justify-center bg-white border border-steel/30 rounded-full shadow-sm overflow-hidden shrink-0 p-0.5">
+                <div className="h-11 w-11 flex items-center justify-center bg-white border border-steel/30 rounded-full shadow-sm overflow-hidden shrink-0">
                   <img
                     src="/assets/logo.webp"
                     alt="DHAYA TRADERS Logo"
