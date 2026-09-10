@@ -81,7 +81,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
           {/* Logo Section */}
 
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="h-12 w-12 lg:h-16 lg:w-16 flex items-center justify-center bg-white rounded-full shadow-md border border-steel/20 shrink-0 overflow-hidden p-2">
+            <div className="h-12 w-12 lg:h-16 lg:w-16 flex items-center justify-center bg-white rounded-full shadow-md border border-steel/20 shrink-0 overflow-hidden p-0.5">
               <img
                 src="/assets/logo.webp"
                 alt="Dhaya Traders Logo"
