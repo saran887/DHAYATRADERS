@@ -40,26 +40,42 @@ async function main() {
   const meta = await sharp(SOURCE).metadata();
   console.log(`Source: ${meta.width}×${meta.height} (${meta.format})\n`);
 
+  const bg = { r: 161, g: 166, b: 166, alpha: 1 };
+  
   // Also copy the original into public/assets/ as the full-resolution fallback
+  // Make it a perfect square
   const originalDest = resolve(OUT_DIR, 'logo.webp');
+  const size = Math.max(meta.width, meta.height);
   await sharp(SOURCE)
+    .resize({
+      width: size,
+      height: size,
+      fit: 'contain',
+      background: bg
+    })
     .webp({ quality: QUALITY })
     .toFile(originalDest);
-  console.log(`  ✓ logo.webp (${meta.width}×${meta.height}) → assets/logo.webp`);
+  console.log(`  ✓ logo.webp (${size}×${size}) → assets/logo.webp`);
 
   for (const width of WIDTHS) {
-    // Skip if the requested width exceeds the source width
-    if (width > meta.width) {
-      console.log(`  ⊘ logo-${width}w.webp skipped (exceeds source width)`);
+    // Skip if the requested width exceeds the source size
+    if (width > size) {
+      console.log(`  ⊘ logo-${width}w.webp skipped (exceeds source size)`);
       continue;
     }
 
     const outPath = resolve(OUT_DIR, `logo-${width}w.webp`);
 
     // Resize from the ORIGINAL source each time (never from another variant).
-    // sharp's .resize() with only width preserves aspect ratio automatically.
+    // Make the output a perfect square by padding with the background color.
     await sharp(SOURCE)
-      .resize({ width, withoutEnlargement: true })
+      .resize({ 
+        width, 
+        height: width,
+        fit: 'contain',
+        background: bg,
+        withoutEnlargement: true 
+      })
       .webp({ quality: QUALITY })
       .toFile(outPath);
 
