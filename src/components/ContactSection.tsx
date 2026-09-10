@@ -545,14 +545,23 @@ export default function ContactSection() {
                     <MapPin className="h-4 w-4" />
                   </div>
                   <div>
-                    <p className="text-[9px] text-slate-400 uppercase tracking-widest font-bold">Office Address</p>
+                    <p className="text-[9px] text-slate-400 uppercase tracking-widest font-bold">Office Addresses</p>
                     <a
-                      href="https://maps.app.goo.gl/zUyoruHg22jnVFGt7?g_st=aw"
+                      href="https://maps.app.goo.gl/9oaLJBNpBZBiLL3D7?g_st=aw"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[11px] text-slate-200 hover:text-teal transition-colors mt-0.5 font-sans leading-relaxed block group"
                     >
-                      Dhaya Plaza, Perundurai Road Junction, Erode, Tamil Nadu, 638011
+                      Primary Location
+                      <span className="text-[10px] text-teal block font-semibold underline mt-0.5">📍 Open in Google Maps</span>
+                    </a>
+                    <a
+                      href="https://maps.app.goo.gl/zUyoruHg22jnVFGt7?g_st=aw"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] text-slate-200 hover:text-teal transition-colors mt-2 font-sans leading-relaxed block group"
+                    >
+                      Secondary Location
                       <span className="text-[10px] text-teal block font-semibold underline mt-0.5">📍 Open in Google Maps</span>
                     </a>
                   </div>
@@ -564,8 +573,11 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="text-[9px] text-slate-400 uppercase tracking-widest font-bold">Helpline</p>
-                    <a href={`tel:+${import.meta.env.VITE_WHATSAPP_NUMBER || '918005553429'}`} className="text-[11px] text-slate-200 hover:text-teal transition-colors block mt-0.5 font-sans">
-                      +91 800 555 3429
+                    <a href="tel:+919965084471" className="text-[11px] text-slate-200 hover:text-teal transition-colors block mt-0.5 font-sans">
+                      +91 9965 084 471
+                    </a>
+                    <a href="tel:+916369534524" className="text-[11px] text-slate-200 hover:text-teal transition-colors block mt-0.5 font-sans">
+                      +91 6369 534 524
                     </a>
                   </div>
                 </div>
@@ -589,7 +601,7 @@ export default function ContactSection() {
               <span className="text-[9px] text-teal uppercase tracking-widest font-bold block mb-1">Quick Contact Actions</span>
               <div className="grid grid-cols-1 gap-2">
                 <a
-                  href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918005553429'}?text=Hello%20DHAYATRADERS,%20I%20am%20interested%20in%20a%20construction%20project/materials.`}
+                  href={`https://wa.me/919965084471?text=Hello%20DHAYATRADERS,%20I%20am%20interested%20in%20a%20construction%20project/materials.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white py-2.5 px-4 rounded-lg text-xs font-bold transition-all shadow"
@@ -598,7 +610,7 @@ export default function ContactSection() {
                   <span>WhatsApp Chat</span>
                 </a>
                 <a
-                  href={`tel:+${import.meta.env.VITE_WHATSAPP_NUMBER || '918005553429'}`}
+                  href="tel:+919965084471"
                   className="flex items-center justify-center gap-2 bg-steel hover:bg-navy text-white py-2.5 px-4 rounded-lg text-xs font-bold transition-all shadow"
                 >
                   <Phone className="h-4 w-4" />
@@ -629,7 +641,7 @@ export default function ContactSection() {
                 />
               </div>
               <a
-                href="https://maps.app.goo.gl/zUyoruHg22jnVFGt7?g_st=aw"
+                href="https://maps.app.goo.gl/9oaLJBNpBZBiLL3D7?g_st=aw"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-[#1B3A5C] hover:bg-teal text-white hover:text-navy text-[11px] font-bold py-2 text-center transition-colors flex items-center justify-center gap-1.5"

@@ -61,7 +61,7 @@ export default function App() {
             {/* Column 1 - Brand Slogan */}
             <div className="md:col-span-4 space-y-2.5 text-center md:text-left flex flex-col items-center md:items-start">
               <div className="flex items-center gap-3">
-                <div className="h-12 w-12 flex items-center justify-center bg-white border border-steel/30 rounded-full shadow-sm overflow-hidden shrink-0 p-1">
+                <div className="h-12 w-12 flex items-center justify-center bg-white border border-steel/30 rounded-full shadow-sm overflow-hidden shrink-0 p-2">
                   <img
                     src="/assets/logo.webp"
                     alt="DHAYA TRADERS Logo"
@@ -114,7 +114,7 @@ export default function App() {
               <ul className="grid grid-cols-3 md:grid-cols-1 gap-3 text-xs text-slate-400 font-semibold font-sans w-full justify-items-center">
                 <li>
                   <a
-                    href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || '918005553429'}?text=Hello%20DHAYA%20TRADERS,%20I%20am%20interested%20in%20a%20construction%20project/materials.`}
+                    href="https://wa.me/919965084471?text=Hello%20DHAYA%20TRADERS,%20I%20am%20interested%20in%20a%20construction%20project/materials."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-teal transition-colors flex items-center gap-2"
@@ -125,7 +125,7 @@ export default function App() {
                   </a>
                 </li>
                 <li>
-                  <a href={`tel:+${import.meta.env.VITE_WHATSAPP_NUMBER || '918005553429'}`} className="hover:text-teal transition-colors flex items-center gap-2">
+                  <a href="tel:+919965084471" className="hover:text-teal transition-colors flex items-center gap-2">
                     <Phone className="h-4 w-4 text-teal shrink-0" />
                     <span>Call Now</span>
                   </a>
