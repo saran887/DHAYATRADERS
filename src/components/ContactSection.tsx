@@ -552,7 +552,7 @@ export default function ContactSection() {
                       rel="noopener noreferrer"
                       className="text-[11px] text-slate-200 hover:text-teal transition-colors mt-0.5 font-sans leading-relaxed block group"
                     >
-                      Primary Location
+                      A. Subramanian, 3/112 Annai Garden, Perumampalayam, Thuduppadhi Post, Perundurai, 638057
                       <span className="text-[10px] text-teal block font-semibold underline mt-0.5">📍 Open in Google Maps</span>
                     </a>
                     <a

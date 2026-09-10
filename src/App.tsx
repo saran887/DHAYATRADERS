@@ -111,7 +111,7 @@ export default function App() {
             {/* Column 3 - Quick Enquiry Actions */}
             <div className="md:col-span-3 space-y-4 text-center md:text-left flex flex-col items-center md:items-start w-full">
               <h5 className="text-xs uppercase tracking-widest font-extrabold text-teal font-sans">Quick Enquiry</h5>
-              <ul className="grid grid-cols-3 md:grid-cols-1 gap-3 text-xs text-slate-400 font-semibold font-sans w-full justify-items-center">
+              <ul className="grid grid-cols-3 md:grid-cols-1 gap-3 text-xs text-slate-400 font-semibold font-sans w-full justify-items-center md:justify-items-start">
                 <li>
                   <a
                     href="https://wa.me/919965084471?text=Hello%20DHAYA%20TRADERS,%20I%20am%20interested%20in%20a%20construction%20project/materials."
