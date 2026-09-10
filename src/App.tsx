@@ -63,12 +63,14 @@ export default function App() {
               <div className="flex items-center gap-3">
                 <div className="h-12 w-12 flex items-center justify-center bg-white border border-steel/30 rounded-full shadow-sm overflow-hidden shrink-0">
                   <img
-                    src="/assets/logo-64w.webp?v=3"
+                    src="/assets/logo.webp"
                     alt="DHAYA TRADERS Logo"
                     draggable={false}
-                    className="w-full h-full object-contain scale-120 select-none"
-                    width={48}
-                    height={48}
+                    srcSet="/assets/logo-48w.webp 48w, /assets/logo-64w.webp 64w, /assets/logo-128w.webp 128w, /assets/logo-256w.webp 256w, /assets/logo-512w.webp 512w, /assets/logo-1024w.webp 1024w, /assets/logo.webp 1500w"
+                    sizes="96px"
+                    className="w-full h-full object-contain select-none"
+                    width={96}
+                    height={96}
                   />
                 </div>
                 <h4 className="font-serif text-xl font-bold tracking-wider text-white">DHAYA TRADERS</h4>

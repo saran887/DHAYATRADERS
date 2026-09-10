@@ -393,8 +393,8 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                   value={formData.name}
                   onChange={handleChange}
                   className={`w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 border focus:outline-none rounded-lg text-white transition-colors ${errors.name
-                      ? 'bg-rose-500/10 border-rose-400 ring-1 ring-rose-400 placeholder:text-rose-300'
-                      : 'bg-white/10 border-white/20 focus:border-teal placeholder:text-slate-500'
+                    ? 'bg-rose-500/10 border-rose-400 ring-1 ring-rose-400 placeholder:text-rose-300'
+                    : 'bg-white/10 border-white/20 focus:border-teal placeholder:text-slate-500'
                     }`}
                 />
                 {errors.name && (
@@ -416,8 +416,8 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     value={formData.email}
                     onChange={handleChange}
                     className={`w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 border focus:outline-none rounded-lg text-white transition-colors ${errors.email
-                        ? 'bg-rose-500/10 border-rose-400 ring-1 ring-rose-400 placeholder:text-rose-300'
-                        : 'bg-white/10 border-white/20 focus:border-teal placeholder:text-slate-500'
+                      ? 'bg-rose-500/10 border-rose-400 ring-1 ring-rose-400 placeholder:text-rose-300'
+                      : 'bg-white/10 border-white/20 focus:border-teal placeholder:text-slate-500'
                       }`}
                   />
                   {errors.email && (
@@ -438,8 +438,8 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     value={formData.phone}
                     onChange={handleChange}
                     className={`w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 border focus:outline-none rounded-lg text-white transition-colors ${errors.phone
-                        ? 'bg-rose-500/10 border-rose-400 ring-1 ring-rose-400 placeholder:text-rose-300'
-                        : 'bg-white/10 border-white/20 focus:border-teal placeholder:text-slate-500'
+                      ? 'bg-rose-500/10 border-rose-400 ring-1 ring-rose-400 placeholder:text-rose-300'
+                      : 'bg-white/10 border-white/20 focus:border-teal placeholder:text-slate-500'
                       }`}
                   />
                   {errors.phone && (
@@ -517,8 +517,8 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                   value={formData.message}
                   onChange={handleChange}
                   className={`w-full text-sm sm:text-xs font-sans px-3.5 py-2.5 sm:px-4 sm:py-3 border focus:outline-none rounded-lg text-white resize-none transition-colors ${errors.message
-                      ? 'bg-rose-500/10 border-rose-400 ring-1 ring-rose-400 placeholder:text-rose-300'
-                      : 'bg-white/10 border-white/20 focus:border-teal placeholder:text-slate-500'
+                    ? 'bg-rose-500/10 border-rose-400 ring-1 ring-rose-400 placeholder:text-rose-300'
+                    : 'bg-white/10 border-white/20 focus:border-teal placeholder:text-slate-500'
                     }`}
                 />
                 {errors.message && (

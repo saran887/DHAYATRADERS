@@ -355,8 +355,8 @@ export default function ContactSection() {
                       value={formData.name}
                       onChange={handleInputChange}
                       className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors ${errors.name
-                          ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
-                          : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
+                        ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
+                        : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
                         }`}
                     />
                     {errors.name && (
@@ -375,8 +375,8 @@ export default function ContactSection() {
                       value={formData.email}
                       onChange={handleInputChange}
                       className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors ${errors.email
-                          ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
-                          : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
+                        ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
+                        : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
                         }`}
                     />
                     {errors.email && (
@@ -397,8 +397,8 @@ export default function ContactSection() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors ${errors.phone
-                          ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
-                          : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
+                        ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
+                        : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
                         }`}
                     />
                     {errors.phone && (
@@ -471,8 +471,8 @@ export default function ContactSection() {
                     value={formData.message}
                     onChange={handleInputChange}
                     className={`w-full text-xs font-sans px-4 py-3 border focus:outline-none rounded-lg text-navy font-medium transition-colors resize-none ${errors.message
-                        ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
-                        : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
+                      ? 'bg-rose-50/50 border-rose-500 ring-1 ring-rose-500 placeholder:text-rose-300'
+                      : 'bg-slate-50 border-silver focus:border-steel focus:ring-1 focus:ring-steel placeholder:text-slate-400'
                       }`}
                   />
                   {errors.message && (

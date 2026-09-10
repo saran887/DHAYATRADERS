@@ -1,4 +1,4 @@
-// Logo served from public folder — no Vite import to avoid bundling the 1.19MB PNG
+// Logo served from the public folder so it is not bundled into the JS graph.
 
 export default function PageLoader() {
   return (
@@ -6,14 +6,16 @@ export default function PageLoader() {
       <div className="relative flex items-center justify-center">
         {/* Spinner outer border ring */}
         <div className="w-24 h-24 border-2 border-[#2E6B9E]/20 border-t-[#4AABB8] rounded-full animate-spin absolute" />
-        <div className="w-14 h-14 flex items-center justify-center rounded-full bg-white border border-[#2E6B9E]/30 animate-pulse relative z-10 overflow-hidden">
+        <div className="w-20 h-20 flex items-center justify-center rounded-full bg-white border border-[#2E6B9E]/30 animate-pulse relative z-10 overflow-hidden">
           <img
-            src="/assets/logo-64w.webp?v=3"
+            src="/assets/logo.webp"
             alt="DHAYATRADERS Logo"
             draggable={false}
-            width={56}
-            height={56}
-            className="w-full h-full object-contain scale-120 select-none"
+            srcSet="/assets/logo-128w.webp 128w, /assets/logo-256w.webp 256w, /assets/logo-512w.webp 512w, /assets/logo.webp 1500w"
+            sizes="160px"
+            width={160}
+            height={160}
+            className="w-full h-full object-contain select-none"
           />
         </div>
       </div>
