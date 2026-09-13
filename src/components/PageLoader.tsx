@@ -20,7 +20,7 @@ export default function PageLoader() {
         </div>
       </div>
       <p className="text-[#E8EDF2] text-[10px] mt-6 font-sans tracking-widest uppercase font-bold animate-pulse">
-        DHAYATRADERS
+        DHAYA TRADERS
       </p>
     </div>
   );

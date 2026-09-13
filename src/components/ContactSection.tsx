@@ -630,14 +630,14 @@ export default function ContactSection() {
             <div className="rounded-xl overflow-hidden relative border border-white/10 group bg-slate-800 flex flex-col">
               <div className="h-32 w-full relative">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3911.9729864273!2d77.717208!3d11.341036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96f4e1f721ab9%3A0x86e680d922fb68!2sErode%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1718183200000!5m2!1sen!2sin"
+                  src="https://maps.google.com/maps?q=11%C2%B017%2731.9%22N+77%C2%B032%2736.2%22E&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen={false}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="DHAYATRADERS Erode Map Location"
+                  title="DHAYATRADERS Primary Location"
                 />
               </div>
               <a
