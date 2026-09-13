@@ -1,0 +1,21 @@
+{
+  "name": "DHAYATRADERS",
+  "short_name": "DHAYATRADERS",
+  "description": "Building Prosperity & Trusted Trading",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0D2136",
+  "theme_color": "#0D2136",
+  "icons": [
+    {
+      "src": "/assets/logo-192w.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/logo-512w.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

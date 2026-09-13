@@ -10,8 +10,8 @@ export default function Services() {
         <meta name="description" content="Explore DHAYATRADERS' 8 core services: house construction, land sales, ready-made homes, materials supply, bricks, river sand, TMT steel, and consultation." />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Construction & Real Estate Services | DHAYATRADERS" />
-        <meta name="twitter:image" content="https://dhayatraders.com/assets/og-image.webp" />
-        <link rel="canonical" href="https://dhayatraders.com/services" />
+        <meta name="twitter:image" content="https://dhayatraders.in/assets/og-image.webp" />
+        <link rel="canonical" href="https://dhayatraders.in/services" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

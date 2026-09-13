@@ -588,8 +588,8 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="text-[9px] text-slate-400 uppercase tracking-widest font-bold">Email Channels</p>
-                    <a href="mailto:trade@dhayatraders.com" className="text-[11px] text-slate-200 hover:text-teal transition-colors block mt-0.5 font-sans">
-                      trade@dhayatraders.com
+                    <a href="mailto:contact@dhayatraders.in" className="text-[11px] text-slate-200 hover:text-teal transition-colors block mt-0.5 font-sans">
+                      contact@dhayatraders.in
                     </a>
                   </div>
                 </div>
@@ -617,7 +617,7 @@ export default function ContactSection() {
                   <span>Call Now</span>
                 </a>
                 <a
-                  href="mailto:trade@dhayatraders.com"
+                  href="mailto:contact@dhayatraders.in"
                   className="flex items-center justify-center gap-2 bg-transparent hover:bg-white/5 text-slate-300 hover:text-white border border-white/20 py-2.5 px-4 rounded-lg text-xs font-bold transition-all"
                 >
                   <Mail className="h-4 w-4" />

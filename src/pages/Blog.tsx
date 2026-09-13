@@ -94,7 +94,7 @@ export default function Blog() {
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={`${currentPost.title} | DHAYATRADERS Blog`} />
           <meta name="twitter:image" content={currentPost.coverImage} />
-          <link rel="canonical" href={`https://dhayatraders.com/blog/${currentPost.slug}`} />
+          <link rel="canonical" href={`https://dhayatraders.in/blog/${currentPost.slug}`} />
         </Helmet>
 
         <article className="min-h-screen bg-white text-navy font-sans pt-20">
@@ -184,7 +184,7 @@ export default function Blog() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Corporate Construction & Real Estate Blog | DHAYATRADERS" />
         <meta name="twitter:image" content="/assets/og-image.webp" />
-        <link rel="canonical" href="https://dhayatraders.com/blog" />
+        <link rel="canonical" href="https://dhayatraders.in/blog" />
       </Helmet>
 
       <div className="min-h-screen bg-gray-light text-navy font-sans pt-20">

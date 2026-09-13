@@ -19,8 +19,8 @@ export default function Home({ onOpenConsultation }: { onOpenConsultation: () =>
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="DHAYATRADERS | Premium Construction & Land Sales Tamil Nadu" />
-        <meta name="twitter:image" content="https://dhayatraders.com/assets/og-image.webp" />
-        <link rel="canonical" href="https://dhayatraders.com/" />
+        <meta name="twitter:image" content="https://dhayatraders.in/assets/og-image.webp" />
+        <link rel="canonical" href="https://dhayatraders.in/" />
       </Helmet>
 
       <Hero

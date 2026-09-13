@@ -42,7 +42,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://dhayatraders.com/"
+        "item": "https://dhayatraders.in/"
       }
     ];
 
@@ -54,7 +54,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
         "@type": "ListItem",
         "position": index + 2,
         "name": name,
-        "item": `https://dhayatraders.com${accumulatedPath}`
+        "item": `https://dhayatraders.in${accumulatedPath}`
       });
     });
 

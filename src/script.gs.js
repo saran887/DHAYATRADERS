@@ -8,7 +8,7 @@ const COMPANY_TAGLINE = "Your Trusted Trading Partner";
 const COMPANY_PHONE = "+91 9965 084 471";
 const COMPANY_LOCATION = "3/112 Annai Garden, Perumampalayam, Thuduppadhi Post, Perundurai, 638057";
 const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/9oaLJBNpBZBiLL3D7?g_st=aw";
-const LOGO_URL = "https://dhayatraders.vercel.app/logo.webp";
+const LOGO_URL = "https://dhayatraders.in/logo.webp";
 const CALENDAR_ID = "primary";                              // Uses default personal Google Calendar
 
 // ============================================================

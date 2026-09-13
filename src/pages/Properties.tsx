@@ -10,8 +10,8 @@ export default function Properties({ onOpenConsultation }: { onOpenConsultation:
         <meta name="description" content="Browse DHAYATRADERS' elite portfolio: luxury villas, gated land plots, ready-made duplex homes, and commercial hubs. Double-audited titles, instant registry." />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Land & Prosperity Listings Tamil Nadu | DHAYATRADERS" />
-        <meta name="twitter:image" content="https://dhayatraders.com/assets/og-image.webp" />
-        <link rel="canonical" href="https://dhayatraders.com/properties" />
+        <meta name="twitter:image" content="https://dhayatraders.in/assets/og-image.webp" />
+        <link rel="canonical" href="https://dhayatraders.in/properties" />
       </Helmet>
 
       <ProsperityShowcase onOpenConsultation={onOpenConsultation} />

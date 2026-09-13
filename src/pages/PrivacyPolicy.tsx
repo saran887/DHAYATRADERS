@@ -7,7 +7,7 @@ export default function PrivacyPolicy() {
       <Helmet>
         <title>Privacy Policy | DHAYA TRADERS</title>
         <meta name="description" content="Privacy Policy for DHAYA TRADERS. Learn how we handle and protect your coordinates, messages, and enquiry data securely." />
-        <link rel="canonical" href="https://dhayatraders.com/privacy" />
+        <link rel="canonical" href="https://dhayatraders.in/privacy" />
       </Helmet>
 
       <section className="py-8 sm:py-16 bg-gradient-to-b from-[#0D2136] to-[#1B3A5C] text-white relative overflow-hidden">
@@ -76,7 +76,7 @@ export default function PrivacyPolicy() {
                 <strong>DHAYA TRADERS Office</strong><br />
                 Dhaya Plaza, Perundurai Road Junction,<br />
                 Erode, Tamil Nadu, 638011<br />
-                Email: <a href="mailto:trade@dhayatraders.com" className="text-teal hover:underline">trade@dhayatraders.com</a>
+                Email: <a href="mailto:contact@dhayatraders.in" className="text-teal hover:underline">contact@dhayatraders.in</a>
               </p>
             </div>
           </div>

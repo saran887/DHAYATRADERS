@@ -15,6 +15,8 @@ const Projects = lazy(() => import('./pages/Projects'));
 const Contact = lazy(() => import('./pages/Contact'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const Blog = lazy(() => import('./pages/Blog'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 export default function App() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
@@ -47,6 +49,9 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<Blog />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </main>
@@ -93,14 +98,17 @@ export default function App() {
                 <li>
                   <Link to="/services" className="hover:text-white transition-colors">Services</Link>
                 </li>
-                {/* <li>
+                <li>
                   <Link to="/properties" className="hover:text-white transition-colors">Properties</Link>
-                </li> */}
+                </li>
                 <li>
                   <Link to="/materials" className="hover:text-white transition-colors">Materials</Link>
                 </li>
                 <li>
                   <Link to="/projects" className="hover:text-white transition-colors">Projects</Link>
+                </li>
+                <li>
+                  <Link to="/blog" className="hover:text-white transition-colors">Blog</Link>
                 </li>
                 <li>
                   <Link to="/contact" className="hover:text-white transition-colors">Enquiry</Link>
@@ -131,7 +139,7 @@ export default function App() {
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:trade@dhayatraders.com" className="hover:text-teal transition-colors flex items-center gap-2">
+                  <a href="mailto:contact@dhayatraders.in" className="hover:text-teal transition-colors flex items-center gap-2">
                     <Mail className="h-4 w-4 text-teal shrink-0" />
                     <span>Email</span>
                   </a>

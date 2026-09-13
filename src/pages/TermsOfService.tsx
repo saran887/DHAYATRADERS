@@ -7,7 +7,7 @@ export default function TermsOfService() {
       <Helmet>
         <title>Terms of Service | DHAYA TRADERS</title>
         <meta name="description" content="Terms of Service for DHAYA TRADERS. Read our guidelines on real estate estimates, material shipments, and consultation rules." />
-        <link rel="canonical" href="https://dhayatraders.com/terms" />
+        <link rel="canonical" href="https://dhayatraders.in/terms" />
       </Helmet>
 
       <section className="py-8 sm:py-16 bg-gradient-to-b from-[#0D2136] to-[#1B3A5C] text-white relative overflow-hidden">
@@ -23,7 +23,7 @@ export default function TermsOfService() {
 
           <div className="space-y-6 text-sm font-sans text-slate-200 leading-relaxed">
             <p>
-              Welcome to <strong>DHAYA TRADERS</strong> (referred to as the "Service", "Website", or "we"). By visiting our website at dhayatraders.com, browsing properties, or initiating materials requests, you agree to comply with and be bound by the following terms, conditions, and disclaimer policies.
+              Welcome to <strong>DHAYA TRADERS</strong> (referred to as the "Service", "Website", or "we"). By visiting our website at dhayatraders.in, browsing properties, or initiating materials requests, you agree to comply with and be bound by the following terms, conditions, and disclaimer policies.
             </p>
 
             <div className="space-y-3 pt-4 border-t border-white/10">
